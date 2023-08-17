@@ -1,1 +1,2 @@
-# CSC_340
+# CSC_340 Project
+### Usman Zia, Danial Afzal
