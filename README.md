@@ -1,6 +1,6 @@
 ## Title
 
-> GLookUp - A UncG Computer Science Students Rating application
+> GLookUp
 
  
 
@@ -13,7 +13,7 @@
 
 ## Nickname
 
-> GLookUp
+> GLU
 
 
 ## Description (about 100 words)
