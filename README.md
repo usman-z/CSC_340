@@ -1,6 +1,6 @@
 ## Title
 
-> GLookUp - An UncG Computer Science Students Rating application
+> GLookUp - A UncG Computer Science Students Rating application
 
  
 
