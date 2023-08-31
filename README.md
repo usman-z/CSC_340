@@ -1,6 +1,6 @@
 ## Title
 
-> GLookUp - An UNC Greensboro Computer Science Students Rating application
+> GLookUp - An UncG Computer Science Students Rating application
 
  
 
@@ -13,7 +13,7 @@
 
 ## Nickname
 
-> A Student Rating application
+> GLookUp
 
 
 ## Description (about 100 words)
