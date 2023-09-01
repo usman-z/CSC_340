@@ -1,0 +1,55 @@
+div{
+    margin: 0;
+}
+
+.loginPage{
+    //border: 2px solid black;
+    width: 100vw;
+    height: 25vh;
+    padding: 2%;
+}
+
+
+
+.email {
+    // border: 1px solid red;
+    border-radius: 10px;
+    font-size: large;
+    width: 17.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.password {
+    // border: 1px solid red;
+    border-radius: 100px;
+    font-size: large;
+    width: 17.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loginbutton{
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lineOne, .lineTwo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lineOne{
+    font-size: xx-large;
+}
+
+.lineTwo{
+    font-size: xx-large;
+    font-weight: bold;
+    color: #FFB71B;
+}
+

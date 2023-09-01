@@ -1,0 +1,18 @@
+<div class="loginPage">
+  <p class="lineOne">Welcome Back</p>
+  <p class="lineTwo">Spartan</p>
+  </div>
+  <div>
+    <form class="formDiv" (submit)="onSubmit()">
+      <input class="email" type="text" placeholder="Email">
+    </form>
+  </div>
+  <div>
+    <form (submit)="onSubmit()">
+      <input class="password" type="text" placeholder="password">
+    </form>
+  </div>
+  <div class="loginbutton">
+    <app-custom-button buttonName="Log In"></app-custom-button>
+  </div>
+  
