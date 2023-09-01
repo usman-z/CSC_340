@@ -1,0 +1,22 @@
+.buttons{
+    // border: 1px solid red;
+    display: flex;
+    align-items: end;
+    justify-content:flex-end;
+}
+
+.logIn{
+    margin-left: .5em;   
+}
+
+.signUp{
+    display: inline-flex;
+}
+
+.mainContent{
+    // border: 1px solid lawngreen;
+    display: flex;
+    justify-content: center;
+    height: 85vh;
+    align-items: center;
+}

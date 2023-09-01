@@ -1,7 +1,75 @@
-.search {
-    border-radius: 10px;
+div{
+    margin: 0;
 }
 
-.cscDepartmentLogo{
-    width: 15em;
+.mainPage{
+    //border: 2px solid black;
+    width: 75vw;
+    height: 80vh;
+    padding: 2%;
+}
+
+.cscImage{
+    //border: 1px solid yellow;
+    height: 18vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img{
+        height: 6em;
+        width: 10em;
+    }
+}
+
+.search {
+    // border: 1px solid red;
+    border-radius: 10px;
+    font-size: large;
+    width: 17.5em;
+}
+
+.searchDiv{
+    margin: 1em;
+    //border: 1px solid purple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section{
+    //border: 1px solid skyblue;
+    height: 53vh;  
+}
+.lineOne, .lineTwo, .lineThree{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lineOne{
+    font-size: large;
+}
+
+.lineTwo{
+    font-size: x-large;
+    font-weight: bold;
+    color: #FFB71B;
+}
+.lineThree{
+    font-size: large;
+    color: #0F2044;
+}
+
+.sectionImage{
+    //border: 3px solid darkcyan;
+    height: 25vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img{
+        width: 24em;
+        height: 24vh;
+    }
 }
