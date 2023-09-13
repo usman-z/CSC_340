@@ -2,39 +2,56 @@ div{
     margin: 0;
 }
 
+
+
 .loginPage{
-    //border: 2px solid black;
-    width: 100vw;
-    height: 25vh;
+    border: 2px solid orange;
+    width: 50vw;
     padding: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .welcome{
+        border: 2px solid green;
+    }
+    .loginPrompt{
+    border: 2px solid black;
+    width: 20vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+        .emailDiv{
+            border: 1px solid blue;
+        }
+
+        .passwordDiv{
+        border: 1px solid red;
+        }
+
+    }
 }
 
 
 
+
+
 .email {
-    // border: 1px solid red;
+   
     border-radius: 10px;
     font-size: large;
-    width: 17.5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
 }
 .password {
     // border: 1px solid red;
     border-radius: 100px;
     font-size: large;
-    width: 17.5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 .loginbutton{
     border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+   
 }
 
 .lineOne, .lineTwo {
