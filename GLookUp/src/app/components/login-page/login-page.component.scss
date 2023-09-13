@@ -2,12 +2,10 @@ div{
     margin: 0;
 }
 
-
-
 .loginPage{
     border: 2px solid orange;
     width: 50vw;
-    padding: 2%;
+    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,10 +13,28 @@ div{
 
     .welcome{
         border: 2px solid green;
+        width: 100%;
+
+        p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lineOne{
+            font-size: xx-large;
+        }
+        
+        .lineTwo{
+            font-size: xx-large;
+            font-weight: bold;
+            color: #FFB71B;
+        }
+        
     }
     .loginPrompt{
     border: 2px solid black;
-    width: 20vw;
+    width: 100%;
     height: 50vh;
     display: flex;
     flex-direction: column;
@@ -26,47 +42,24 @@ div{
     align-items: center;
         .emailDiv{
             border: 1px solid blue;
+            .email {
+   
+                border-radius: 10px;
+                font-size: large;
+            }
         }
 
         .passwordDiv{
         border: 1px solid red;
-        }
 
+            .password {
+                // border: 1px solid red;
+                border-radius: 100px;
+                font-size: large;
+            }
+        }
+        .loginbutton{
+            border-radius: 15px;
+        }
     }
 }
-
-
-
-
-
-.email {
-   
-    border-radius: 10px;
-    font-size: large;
-}
-.password {
-    // border: 1px solid red;
-    border-radius: 100px;
-    font-size: large;
-}
-.loginbutton{
-    border-radius: 15px;
-   
-}
-
-.lineOne, .lineTwo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.lineOne{
-    font-size: xx-large;
-}
-
-.lineTwo{
-    font-size: xx-large;
-    font-weight: bold;
-    color: #FFB71B;
-}
-
