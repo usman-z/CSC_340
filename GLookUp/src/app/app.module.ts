@@ -9,6 +9,7 @@ import { BackButtonComponent } from './components/back-button/back-button.compon
 import { ProfileComponent } from './components/profile/profile.component';
 import { CustomButtonComponent } from './components/custom-button/custom-button.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { MainViewComponent } from './pages/main-view/main-view.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LoginPageComponent } from './components/login-page/login-page.component
     QuestionnaireComponent,
     BackButtonComponent,
     ProfileComponent,
-    CustomButtonComponent
+    CustomButtonComponent,
+    MainViewComponent
   ],
   imports: [
     BrowserModule,
