@@ -1,7 +1,7 @@
 package com.server.glookup.Student;
 
 import java.util.List;
-
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +15,12 @@ public class StudentService {
 		return studentRepository.findAll();
 	}
 	
-	public Student getStudent(int studentId) {
-		return studentRepository.getReferenceById(studentId);
+	public Optional<Student> getStudent(int studentId) {
+		return studentRepository.findById(studentId);
+	}
+	
+	public Optional<Student> getStudent(String studentName) {
+		return studentRepository.findByName(studentName);
 	}
 	
 	public void createStudent(Student student) {
@@ -24,7 +28,17 @@ public class StudentService {
 	}
 	
 	public void updateStudent(Student student) {
-		studentRepository.save(student);
+	    Student existingStudent = studentRepository.getReferenceById(student.getId());
+	    if (existingStudent != null) {
+	        existingStudent.setName(student.getName());
+	        existingStudent.setEmail(student.getEmail());
+	        existingStudent.setPassword(student.getPassword());
+	        existingStudent.setRating(student.getRating());
+	        existingStudent.setTotal_collaborators(student.getTotal_collaborators());
+	        existingStudent.setTotal_ratings(student.getTotal_ratings());
+	        existingStudent.setYes_collaborators(student.getYes_collaborators());
+	        studentRepository.save(existingStudent);
+	    }
 	}
 	
 	public void deleteStudent(int id) {

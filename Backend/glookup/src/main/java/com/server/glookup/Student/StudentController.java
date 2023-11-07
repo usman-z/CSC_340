@@ -1,10 +1,10 @@
 package com.server.glookup.Student;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/student")
+@CrossOrigin(origins = "http://localhost:4200")
 public class StudentController {
 	
 	@Autowired
@@ -25,9 +26,20 @@ public class StudentController {
 		return studentService.getAllStudents();
 	}
 	
-    @GetMapping("/{studentId}")
-    public Student getStudent(@PathVariable int studentId) {
-    	return studentService.getStudent(studentId);
+    @GetMapping("/get/{studentId}")
+    public ResponseEntity<Student> getStudent(@PathVariable int studentId) {
+    	if (!studentService.getStudent(studentId).isEmpty())
+    		return new ResponseEntity<>(studentService.getStudent(studentId).get(), HttpStatus.OK);
+    	else
+    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    
+    @GetMapping("/search/{studentName}")
+    public ResponseEntity<Student> getStudent(@PathVariable String studentName) {
+    	if (!studentService.getStudent(studentName).isEmpty())
+    		return new ResponseEntity<>(studentService.getStudent(studentName).get(), HttpStatus.OK);
+    	else
+    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 	
 	@PostMapping("/add")
@@ -43,7 +55,7 @@ public class StudentController {
 	}
 	
 	@DeleteMapping("/delete/{studentId}")
-	public ResponseEntity<String> deleteStudent(@PathVariable int studentId) {
+	public ResponseEntity<Student> deleteStudent(@PathVariable int studentId) {
 		studentService.deleteStudent(studentId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

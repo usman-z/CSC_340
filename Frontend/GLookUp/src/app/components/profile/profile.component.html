@@ -1,1 +1,9 @@
-<p>profile works!</p>
+<h1>Student Info</h1>
+<p *ngIf="studentData.id">{{ studentData.id }}</p>
+<p *ngIf="studentData.name">{{ studentData.name }}</p>
+<p *ngIf="studentData.email">{{ studentData.email }}</p>
+<p *ngIf="studentData.password">{{ studentData.password }}</p>
+<p *ngIf="studentData.rating">{{ studentData.rating }}</p>
+<p *ngIf="studentData.total_ratings">{{ studentData.total_ratings }}</p>
+<p *ngIf="studentData.total_collaborators">{{ studentData.total_collaborators }}</p>
+<p *ngIf="studentData.yes_collaborators">{{ studentData.yes_collaborators }}</p>

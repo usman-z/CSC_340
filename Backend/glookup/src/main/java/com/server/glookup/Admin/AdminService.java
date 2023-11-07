@@ -1,11 +1,9 @@
 package com.server.glookup.Admin;
 
 import java.util.List;
-
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.server.glookup.Student.Student;
 
 @Service
 public class AdminService {
@@ -17,16 +15,22 @@ public class AdminService {
 		return adminRepository.findAll();
 	}
 	
-	public Admin getAdmin(int id) {
-		return adminRepository.getReferenceById(id);
+	public Optional<Admin> getAdmin(int adminId) {
+		return adminRepository.findById(adminId);
 	}
 	
 	public void createAdmin(Admin admin) {
 		adminRepository.save(admin);
 	}
 	
-	public void updateAdmin(Admin admin) {
-		adminRepository.save(admin);
+	public void updateAdmin(Admin admin, int adminId) {
+    	Admin existingAdmin = getAdmin(adminId).get();
+    	if(existingAdmin != null) {
+	    	existingAdmin.setName(admin.getName());
+	    	existingAdmin.setEmail(admin.getEmail());
+	    	existingAdmin.setPassword(admin.getPassword());
+	    	adminRepository.save(existingAdmin);
+    	}
 	}
 	
 	public void deleteAdmin(int id) {

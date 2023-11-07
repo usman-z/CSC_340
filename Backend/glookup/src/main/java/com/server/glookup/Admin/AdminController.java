@@ -27,10 +27,14 @@ public class AdminController {
 		return adminService.getAllAdmins();
 	}
 	
-	@GetMapping("/get/{adminId}")
-	public ResponseEntity<Admin> getStudent(@PathVariable int adminId) {
-		return new ResponseEntity<>(adminService.getAdmin(adminId), HttpStatus.OK);
-	}
+    @GetMapping("/get/{adminId}")
+    public Admin getAdmin(@PathVariable int adminId) {
+    	Admin admin = adminService.getAdmin(adminId).get();
+    	if(admin != null) 
+    		return admin;
+    	else
+    		return null;
+    }
 	
 	@PostMapping("/add")
 	public ResponseEntity<Admin> addAdmin(@RequestBody Admin admin) {
@@ -38,10 +42,10 @@ public class AdminController {
 		return new ResponseEntity<>(admin,HttpStatus.CREATED);
 	}
 	
-	@PostMapping("/update")
-	public ResponseEntity<Admin> updateAdmin(@RequestBody Admin admin) {
-		adminService.updateAdmin(admin);
-		return new ResponseEntity<>(admin,HttpStatus.OK);
+	@PostMapping("/update/{adminId}")
+	public ResponseEntity<Admin> updateAdmin(@RequestBody Admin admin, int adminId) {
+		adminService.updateAdmin(admin, adminId);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/delete/{adminId}")

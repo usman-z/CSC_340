@@ -10,6 +10,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { CustomButtonComponent } from './components/custom-button/custom-button.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { MainViewComponent } from './pages/main-view/main-view.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { MainViewComponent } from './pages/main-view/main-view.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
