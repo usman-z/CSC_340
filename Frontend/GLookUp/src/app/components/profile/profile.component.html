@@ -1,9 +1,17 @@
-<h1>Student Info</h1>
-<p *ngIf="studentData.id">{{ studentData.id }}</p>
-<p *ngIf="studentData.name">{{ studentData.name }}</p>
-<p *ngIf="studentData.email">{{ studentData.email }}</p>
-<p *ngIf="studentData.password">{{ studentData.password }}</p>
-<p *ngIf="studentData.rating">{{ studentData.rating }}</p>
-<p *ngIf="studentData.total_ratings">{{ studentData.total_ratings }}</p>
-<p *ngIf="studentData.total_collaborators">{{ studentData.total_collaborators }}</p>
-<p *ngIf="studentData.yes_collaborators">{{ studentData.yes_collaborators }}</p>
+<app-custom-button buttonName="back" (click)="navigateTo()"></app-custom-button>
+<h3>Student Info</h3>
+<p *ngIf="studentData.name">Student Name: {{ studentData.name }}</p>
+<p *ngIf="studentData.rating">Rating: {{ studentData.rating }}</p>
+<p *ngIf="studentData.total_ratings">Based on {{ studentData.total_ratings }} ratings</p>
+<p *ngIf="studentData.total_collaborators && studentData.yes_collaborators">Would take again: {{ (studentData.yes_collaborators/studentData.total_collaborators)*100 }}%</p>
+<p>----------------------------------------------</p>
+<div *ngIf="githubUserData" class="githubContent">
+    <p>Public repos: {{ githubUserData.public_repos }}</p>
+</div>
+<p>----------------------------------------------</p>
+<button (click)="routeToGithub()">GitHub</button>
+<div *ngIf="githubRepositorys" class="githubContent">
+    <div *ngFor="let repo of githubRepositorys" class="repos">
+        <app-project projectName='{{ repo.name }}'></app-project>
+    </div>
+</div>

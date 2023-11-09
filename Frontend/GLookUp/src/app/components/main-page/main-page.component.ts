@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { StudentData } from 'src/app/models/Student/student.model';
-import { StudentService } from 'src/app/services/student.service';
+import { StudentService } from 'src/app/services/student/student.service';
 
 @Component({
   selector: 'app-main-page',

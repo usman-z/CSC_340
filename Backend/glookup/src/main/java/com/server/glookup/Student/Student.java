@@ -26,6 +26,9 @@ public class Student {
 	@JsonProperty("email")
 	private String email;
 	
+	@JsonProperty("githubId")
+	private String githubId;
+	
 	@JsonProperty("password")
 	private String password;
 	
@@ -73,6 +76,14 @@ public class Student {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getGithubId() {
+		return githubId;
+	}
+
+	public void setGithubId(String githubId) {
+		this.githubId = githubId;
 	}
 
 	public String getPassword() {

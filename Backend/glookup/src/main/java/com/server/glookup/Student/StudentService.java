@@ -32,6 +32,7 @@ public class StudentService {
 	    if (existingStudent != null) {
 	        existingStudent.setName(student.getName());
 	        existingStudent.setEmail(student.getEmail());
+	        existingStudent.setGithubId(student.getGithubId());
 	        existingStudent.setPassword(student.getPassword());
 	        existingStudent.setRating(student.getRating());
 	        existingStudent.setTotal_collaborators(student.getTotal_collaborators());

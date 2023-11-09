@@ -12,6 +12,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { MainViewComponent } from './pages/main-view/main-view.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ProjectComponent } from './components/project/project/project.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     BackButtonComponent,
     ProfileComponent,
     CustomButtonComponent,
-    MainViewComponent
+    MainViewComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,
