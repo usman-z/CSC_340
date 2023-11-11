@@ -1,0 +1,21 @@
+<app-back-button (click)="navigateTo()"></app-back-button>
+<div class="loginPage">
+  <div class="welcome">
+    <p class="lineOne">Welcome Back,</p>
+    <p class="lineTwo">Spartan!</p>
+  </div>
+  <div class="loginPrompt">
+    <form (ngSubmit)="login()">
+    <div class="emailDiv">
+      <input class="email" type="text" placeholder="Email" [(ngModel)]="username" name="username" required>
+    </div>
+    <div class="passwordDiv">
+      <input class="password" type="text" placeholder="Password" [(ngModel)]="password" name="password" required>
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+    </div>
+    <div class="loginbutton">
+      <app-custom-button buttonName="Log In"></app-custom-button>
+    </div>
+    </form>
+  </div>
+ </div>

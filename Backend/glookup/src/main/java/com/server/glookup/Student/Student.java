@@ -44,14 +44,19 @@ public class Student {
 	@JsonProperty("yes_collaborators")
 	private int yes_collaborators;
 	
-	public Student(String name, String email, String password, double rating, int total_ratings, int total_collaborators, int yes_collaborators) {
+	@JsonProperty("approved")
+	private boolean approved;
+	
+	public Student(String name, String email, String githubId, String password, double rating, int total_ratings, int total_collaborators, int yes_collaborators) {
 		this.name = name;
 		this.email = email;
+		this.githubId = githubId;
 		this.password = password;
 		this.rating = rating;
 		this.total_ratings = total_ratings;
 		this.total_collaborators = total_collaborators;
 		this.yes_collaborators = yes_collaborators;
+		this.approved = false;
 	}
 
 	public int getId() {
@@ -124,6 +129,14 @@ public class Student {
 
 	public void setYes_collaborators(int yes_collaborators) {
 		this.yes_collaborators = yes_collaborators;
+	}
+	
+	public boolean isApproved() {
+		return approved;
+	}
+
+	public void setApproved(boolean trueOrFalse) {
+		this.approved = trueOrFalse;
 	}
 	
 	

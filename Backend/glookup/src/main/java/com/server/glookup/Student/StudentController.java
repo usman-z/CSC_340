@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/student")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class StudentController {
 	
 	@Autowired
@@ -38,6 +38,15 @@ public class StudentController {
     public ResponseEntity<Student> getStudent(@PathVariable String studentName) {
     	if (!studentService.getStudent(studentName).isEmpty())
     		return new ResponseEntity<>(studentService.getStudent(studentName).get(), HttpStatus.OK);
+    	else
+    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    
+    @PostMapping("/search")
+    public ResponseEntity<Student> searchStudent(@RequestBody Student student) {
+    	Student searchStudent = studentService.searchStudent(student);
+    	if (searchStudent != null)
+    		return new ResponseEntity<>(searchStudent, HttpStatus.OK);
     	else
     		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

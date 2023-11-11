@@ -2,20 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GithubRepositorys, GithubUser } from 'src/app/models/Github/github.model';
 import { GithubService } from 'src/app/services/github/github.service';
+import { Location } from '@angular/common';
+
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  selector: 'app-profile-view',
+  templateUrl: './profile-view.component.html',
+  styleUrls: ['./profile-view.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileViewComponent {
   
   studentData: any; // Use 'any' type temporarily for debugging
   githubUserData?: GithubUser;
   githubRepositorys?: GithubRepositorys;
   githubId: string = ''
 
-  constructor(private route: ActivatedRoute, private githubService: GithubService, private router: Router) {}
+  constructor(private route: ActivatedRoute, private location: Location, private githubService: GithubService, private router: Router) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -61,11 +63,5 @@ export class ProfileComponent implements OnInit {
 
   routeToGithub() {
     window.open('https://github.com/'+this.githubId, '_blank');
-  }
-
-  navigateTo() {
-    this.router.navigate(['/']).catch(error => {
-      console.error('Navigation error:', error);
-    });
   }
 }

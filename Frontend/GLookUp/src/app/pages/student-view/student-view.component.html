@@ -1,10 +1,10 @@
 <div class="mainContainer">
     <div class="buttons">
         <div class="signUp">
-            <app-custom-button class="signUpButton" buttonName="Sign Up" (click)="signup()"></app-custom-button>
+            <button (click)="logOut()" class="profileButton"><img src="../../../assets/profile-icon.jpeg" alt="" ></button>
         </div>
         <div class="logIn">
-            <app-custom-button class="logInButton" buttonName="Log In" (click)="login()"></app-custom-button>
+            <app-custom-button buttonName="Log Out" (click)="logOut()"></app-custom-button>
         </div>
     </div>
     <div class="mainContent">

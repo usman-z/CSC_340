@@ -23,6 +23,14 @@ public class StudentService {
 		return studentRepository.findByName(studentName);
 	}
 	
+	public Student searchStudent(Student student) {
+	    Student existingStudent = studentRepository.findByUsernameAndPassword(student.getEmail(), student.getPassword());
+	    if (existingStudent != null) {
+	    		return existingStudent;
+	    }
+	    return null;
+	}
+	
 	public void createStudent(Student student) {
 		studentRepository.save(student);
 	}
@@ -38,6 +46,7 @@ public class StudentService {
 	        existingStudent.setTotal_collaborators(student.getTotal_collaborators());
 	        existingStudent.setTotal_ratings(student.getTotal_ratings());
 	        existingStudent.setYes_collaborators(student.getYes_collaborators());
+	        existingStudent.setApproved(student.isApproved());
 	        studentRepository.save(existingStudent);
 	    }
 	}

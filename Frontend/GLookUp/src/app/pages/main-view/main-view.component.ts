@@ -11,9 +11,14 @@ export class MainViewComponent {
 
   constructor(private router: Router) {}
 
-  navigateTo() {
-    console.log("route-to: LogIn page")
+  login() {
     this.router.navigate(['/login']).catch(error => {
+      console.error('Navigation error:', error);
+    });
+  }
+
+  signup() {
+    this.router.navigate(['/signup']).catch(error => {
       console.error('Navigation error:', error);
     });
   }

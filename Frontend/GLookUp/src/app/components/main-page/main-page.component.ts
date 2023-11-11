@@ -28,11 +28,16 @@ export class MainPageComponent {
     this.studentService.getStudentByName(name).subscribe({
       next: (response) => {
         this.student = response;
-        this.router.navigate(['/profile'], {
-          queryParams: { studentData: JSON.stringify(this.student) }
-        }).catch(error => {
-          console.error('Navigation error:', error);
-        });
+        if (!this.student.approved) {
+          this.errorMessage = 'No Student found with name of "'+name+'"';
+        }
+        else{
+          this.router.navigate(['/profile'], {
+            queryParams: { studentData: JSON.stringify(this.student) }
+          }).catch(error => {
+            console.error('Navigation error:', error);
+          });
+        }
       },
       error: (error) => {
         this.errorMessage = 'No Student found with name of "'+name+'"';

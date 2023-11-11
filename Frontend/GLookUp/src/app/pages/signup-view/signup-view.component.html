@@ -1,0 +1,31 @@
+<app-back-button></app-back-button>
+<div>
+    <label>
+      <input type="radio" name="userRole" value="student" [(ngModel)]="selectedRole" (change)="onRoleChange('student')"> Student
+    </label>
+    <label>
+      <input type="radio" name="userRole" value="admin" [(ngModel)]="selectedRole" (change)="onRoleChange('admin')"> Admin
+    </label>
+  </div>
+  
+  <div *ngIf="selectedRole === 'student'">
+    <p>Student Information</p>
+    <form (ngSubmit)="onSubmitStudent()" #userForm="ngForm">
+      <input type="text" placeholder="John Doe" [(ngModel)]="name" name="name" required>
+      <input type="email" placeholder="jdoe@uncg.edu" [(ngModel)]="email" name="email" required>
+      <input type="text" placeholder="j-doe" [(ngModel)]="github" name="github" required>
+      <input type="password" placeholder="********" [(ngModel)]="password" name="password" required>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  
+  <div *ngIf="selectedRole === 'admin'">
+    <p>Admin Information</p>
+    <form (ngSubmit)="onSubmitAdmin()" #userForm="ngForm">
+      <input type="text" placeholder="John Doe" [(ngModel)]="name" name="name" required>
+      <input type="email" placeholder="jdoe@uncg.edu" [(ngModel)]="email" name="email" required>
+      <input type="password" placeholder="********" [(ngModel)]="password" name="password" required>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  
