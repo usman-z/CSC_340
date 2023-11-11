@@ -9,9 +9,12 @@
     <p>Public repos: {{ githubUserData.public_repos }}</p>
 </div>
 <p>----------------------------------------------</p>
-<button (click)="routeToGithub()">GitHub</button>
+<app-custom-button (click)="routeToGithub()" buttonName="GitHub"></app-custom-button>
 <div *ngIf="githubRepositorys" class="githubContent">
     <div *ngFor="let repo of githubRepositorys" class="repos">
         <app-project projectName='{{ repo.name }}'></app-project>
     </div>
 </div>
+<app-custom-button (click)="rateStudent()" buttonName="Rate"></app-custom-button>
+<p>----------------------------------------------</p>
+<app-custom-button (click)="collaborate()" buttonName="Collaborate"></app-custom-button>

@@ -31,7 +31,7 @@ export class LoginViewComponent {
         next: (response) => {
           const student = response;
           this.router.navigate(['/studentView'], {
-            queryParams: { studentData: JSON.stringify(student) }
+            queryParams: { name: student.name }
           }).catch(error => {
             console.error('Navigation error:', error);
           });

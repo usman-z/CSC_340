@@ -6,6 +6,8 @@ import { LoginViewComponent } from './pages/login-view/login-view.component';
 import { ProfileViewComponent } from './pages/profile-view/profile-view.component';
 import { SignupViewComponent } from './pages/signup-view/signup-view.component';
 import { UserProfileViewComponent } from './pages/user-profile-view/user-profile-view.component';
+import { CollaborateViewComponent } from './pages/collaborate-view/collaborate-view.component';
+import { RateViewComponent } from './pages/rate-view/rate-view.component';
 
 const routes: Routes = [
   { path: '', component: MainViewComponent },
@@ -13,6 +15,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupViewComponent },
   { path: 'profile', component: ProfileViewComponent },
   { path: 'studentView', component: StudentViewComponent },
+  { path: 'rate', component: RateViewComponent },
+  { path: 'collaborate', component: CollaborateViewComponent },
   { path: 'user', component: UserProfileViewComponent }
 ];
 

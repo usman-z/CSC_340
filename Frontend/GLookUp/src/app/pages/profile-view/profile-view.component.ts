@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GithubRepositorys, GithubUser } from 'src/app/models/Github/github.model';
 import { GithubService } from 'src/app/services/github/github.service';
 import { Location } from '@angular/common';
+import { StudentService } from 'src/app/services/student/student.service';
 
 
 @Component({
@@ -10,31 +11,25 @@ import { Location } from '@angular/common';
   templateUrl: './profile-view.component.html',
   styleUrls: ['./profile-view.component.scss']
 })
-export class ProfileViewComponent {
+export class ProfileViewComponent{
   
-  studentData: any; // Use 'any' type temporarily for debugging
+  studentData: any = {};
   githubUserData?: GithubUser;
   githubRepositorys?: GithubRepositorys;
   githubId: string = ''
 
-  constructor(private route: ActivatedRoute, private location: Location, private githubService: GithubService, private router: Router) {}
+  constructor(private route: ActivatedRoute, private location: Location, private studentService: StudentService, private githubService: GithubService, private router: Router) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      const studentDataString = params['studentData'];
+      const name = params['name'];
 
-      if (studentDataString) {
-        try {
-          this.studentData = JSON.parse(studentDataString);
-          this.githubId = this.studentData.githubId;
-          this.getGithubAccount(this.studentData.githubId);
-        } catch (error) {
-          this.studentData = null;
+      this.studentService.getStudentByName(name).subscribe({
+        next: (response) => {
+          this.studentData = response;
+          this.getGithubAccount(this.studentData.githubId)
         }
-      }
-      else {
-        console.log("ERR! studentDataString")
-      }
+      });
     });
   }
 
@@ -63,5 +58,17 @@ export class ProfileViewComponent {
 
   routeToGithub() {
     window.open('https://github.com/'+this.githubId, '_blank');
+  }
+
+  rateStudent() {
+    this.router.navigate(['/rate']).catch(error => {
+      console.error('Navigation error:', error);
+    });
+  }
+
+  collaborate() {
+    this.router.navigate(['/collaborate']).catch(error => {
+      console.error('Navigation error:', error);
+    });
   }
 }

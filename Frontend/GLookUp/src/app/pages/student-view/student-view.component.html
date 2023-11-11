@@ -1,13 +1,13 @@
 <div class="mainContainer">
     <div class="buttons">
         <div class="signUp">
-            <button (click)="logOut()" class="profileButton"><img src="../../../assets/profile-icon.jpeg" alt="" ></button>
+            <button (click)="myProfile()" class="profileButton"><img src="../../../assets/profile-icon.jpeg" alt="" ></button>
         </div>
         <div class="logIn">
             <app-custom-button buttonName="Log Out" (click)="logOut()"></app-custom-button>
         </div>
     </div>
     <div class="mainContent">
-        <app-main-page></app-main-page>
+        <app-main-page [loggedIn]="true"></app-main-page>
     </div>
 </div>

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StudentData } from 'src/app/models/Student/student.model';
+import { StudentService } from 'src/app/services/student/student.service';
 
 @Component({
   selector: 'app-student-view',
@@ -8,24 +10,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class StudentViewComponent {
 
-  studentData: any;
+  studentLoggedIn?: StudentData;
+  studentLoggedInName: string = ''
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router, private studentService: StudentService) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      const studentDataString = params['studentData'];
+      const studentName = params['name'];
 
-      if (studentDataString) {
-        try {
-          this.studentData = JSON.parse(studentDataString);
-        } catch (error) {
-          this.studentData = null;
+      this.studentService.getStudentByName(studentName).subscribe({
+        next: (response) => {
+          this.studentLoggedIn = response;
+          this.studentLoggedInName = response.name;
         }
-      }
-      else {
-        console.log("ERR! studentDataString")
-      }
+      });
     });
   }
 
@@ -36,7 +35,9 @@ export class StudentViewComponent {
   }
 
   myProfile() {
-    this.router.navigate(['/user']).catch(error => {
+    this.router.navigate(['/user'], {
+      queryParams: { name: this.studentLoggedInName }
+    }).catch(error => {
       console.error('Navigation error:', error);
     });
   }

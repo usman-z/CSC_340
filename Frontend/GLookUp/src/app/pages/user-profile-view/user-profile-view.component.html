@@ -1,2 +1,15 @@
 <app-back-button></app-back-button>
-<p>user-profile-view works!</p>
+<h3>My Profile</h3>
+<p *ngIf="studentData.name">Name: {{ studentData.name }}</p>
+<p *ngIf="studentData.rating">Rating: {{ studentData.rating }}</p>
+<p *ngIf="studentData.total_ratings">Based on {{ studentData.total_ratings }} ratings</p>
+<p *ngIf="studentData.total_collaborators && studentData.yes_collaborators">Would take again: {{ (studentData.yes_collaborators/studentData.total_collaborators)*100 }}%</p>
+<div *ngIf="githubUserData" class="githubContent">
+    <p>Public repos: {{ githubUserData.public_repos }}</p>
+</div>
+<app-custom-button (click)="routeToGithub()" buttonName="GitHub"></app-custom-button>
+<div *ngIf="githubRepositorys" class="githubContent">
+    <div *ngFor="let repo of githubRepositorys" class="repos">
+        <app-project projectName='{{ repo.name }}'></app-project>
+    </div>
+</div>
