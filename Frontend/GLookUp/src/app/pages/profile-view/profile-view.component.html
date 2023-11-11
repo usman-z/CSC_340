@@ -16,5 +16,5 @@
     </div>
 </div>
 <app-custom-button (click)="rateStudent()" buttonName="Rate"></app-custom-button>
-<p>----------------------------------------------</p>
 <app-custom-button (click)="collaborate()" buttonName="Collaborate"></app-custom-button>
+<p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>

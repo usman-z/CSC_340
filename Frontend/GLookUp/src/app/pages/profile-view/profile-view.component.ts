@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GithubRepositorys, GithubUser } from 'src/app/models/Github/github.model';
 import { GithubService } from 'src/app/services/github/github.service';
 import { Location } from '@angular/common';
 import { StudentService } from 'src/app/services/student/student.service';
+import { AdminService } from 'src/app/services/admin/admin.service';
 
 
 @Component({
@@ -12,19 +13,22 @@ import { StudentService } from 'src/app/services/student/student.service';
   styleUrls: ['./profile-view.component.scss']
 })
 export class ProfileViewComponent{
-  
+
+  loggedInName: string = '';
   studentData: any = {};
   githubUserData?: GithubUser;
   githubRepositorys?: GithubRepositorys;
   githubId: string = ''
+  errorMessage: string = ''
 
-  constructor(private route: ActivatedRoute, private location: Location, private studentService: StudentService, private githubService: GithubService, private router: Router) {}
+  constructor(private route: ActivatedRoute, private location: Location, private studentService: StudentService, private adminService: AdminService, private githubService: GithubService, private router: Router) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      const name = params['name'];
+      const searchName = params['search'];
+      this.loggedInName = params['loggedIn'];
 
-      this.studentService.getStudentByName(name).subscribe({
+      this.studentService.getStudentByName(searchName).subscribe({
         next: (response) => {
           this.studentData = response;
           this.getGithubAccount(this.studentData.githubId)
@@ -39,7 +43,7 @@ export class ProfileViewComponent{
         this.githubUserData = response;
         this.getGithubRepositorys(githubId);
       },
-      error: (error) => {
+      error: () => {
         console.log("ERR! getGithubAccount failed")
       }
     });
@@ -50,7 +54,7 @@ export class ProfileViewComponent{
       next: (response) => {
         this.githubRepositorys = response;
       },
-      error: (error) => {
+      error: () => {
         console.log("ERR! githubRepositorys failed")
       }
     });
@@ -61,14 +65,32 @@ export class ProfileViewComponent{
   }
 
   rateStudent() {
-    this.router.navigate(['/rate']).catch(error => {
-      console.error('Navigation error:', error);
+    this.studentService.getStudentByName(this.loggedInName).subscribe({
+      next: (response) => {
+        if (response != null) {
+          this.router.navigate(['/rate']).catch(error => {
+            console.error('Navigation error:', error);
+          });
+        }
+      },
+      error: (error) => {
+        this.errorMessage = 'Must be logged in as a Student';
+      }
     });
   }
 
-  collaborate() {
-    this.router.navigate(['/collaborate']).catch(error => {
-      console.error('Navigation error:', error);
+   collaborate() {
+    this.studentService.getStudentByName(this.loggedInName).subscribe({
+      next: (response) => {
+        if (response != null) {
+          this.router.navigate(['/collaborate']).catch(error => {
+            console.error('Navigation error:', error);
+          });
+        }
+      },
+      error: (error) => {
+        this.errorMessage = 'Must be logged in as a Student';
+      }
     });
-  }
+   }
 }

@@ -11,7 +11,10 @@ import { StudentService } from 'src/app/services/student/student.service';
 export class StudentViewComponent {
 
   studentLoggedIn?: StudentData;
-  studentLoggedInName: string = ''
+  studentLoggedInName: string = '';
+  studentName: string = '';
+  student?: StudentData;
+  errorMessage: string = '';
 
   constructor(private route: ActivatedRoute, private router: Router, private studentService: StudentService) {}
 
@@ -25,6 +28,40 @@ export class StudentViewComponent {
           this.studentLoggedInName = response.name;
         }
       });
+    });
+  }
+
+  searchStudent() {
+    if (this.studentName.trim() !== '') {
+      this.getStudentByName(this.studentName);
+    }
+  }
+
+  private getStudentByName(name: string) {
+    this.studentService.getStudentByName(name).subscribe({
+      next: (response) => {
+        this.student = response;
+        if (!this.student.approved) {
+          this.errorMessage = 'No Student found with name of "'+name+'"';
+        }
+        else if(name == this.studentLoggedInName) {
+          this.router.navigate(['/user'], {
+            queryParams: { name: this.student.name }
+          }).catch(error => {
+            console.error('Navigation error:', error);
+          });
+        }
+        else{
+          this.router.navigate(['/profile'], {
+            queryParams: { search: this.student.name, loggedIn: this.studentLoggedInName }
+          }).catch(error => {
+            console.error('Navigation error:', error);
+          });
+        }
+      },
+      error: (error) => {
+        this.errorMessage = 'No Student found with name of "'+name+'"';
+      }
     });
   }
 

@@ -8,6 +8,30 @@
         </div>
     </div>
     <div class="mainContent">
-        <app-main-page [loggedIn]="true"></app-main-page>
+        <div class="mainContent">
+            <div class="mainPage">
+                <div class="topImage">
+                  <img src="../../../assets/uncg_spartan_logo.png" alt="UNCG logo"/>
+                </div>
+                <div class="searchDiv">
+                  <form class="formDiv" (submit)="searchStudent()">
+                    <input class="search" type="text" placeholder="Search the G..." [(ngModel)]="studentName" name="studentName">
+                    <button type="submit">Search</button>
+                    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+                  </form>
+                </div>
+              
+                <div class="section">
+                  <div class="information">
+                    <p class="lineOne">An app for</p>
+                    <p class="lineTwo">UNC Greensboro</p>
+                    <p class="lineThree">Department of Computer Science</p>
+                  </div>
+                  <div class="bottomImage">
+                    <img src="../../../assets/uncg.jpeg" alt="Image"/>
+                  </div>
+                </div>  
+              </div>
+        </div>       
     </div>
 </div>

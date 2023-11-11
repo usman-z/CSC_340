@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainPageComponent } from './components/main-page/main-page.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
 import { CustomButtonComponent } from './components/custom-button/custom-button.component';
 import { MainViewComponent } from './pages/main-view/main-view.component';
@@ -21,7 +20,6 @@ import { RateViewComponent } from './pages/rate-view/rate-view.component';
 @NgModule({
   declarations: [
     AppComponent,
-    MainPageComponent,
     LoginViewComponent,
     BackButtonComponent,
     ProfileViewComponent,
