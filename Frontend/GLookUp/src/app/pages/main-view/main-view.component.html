@@ -15,9 +15,9 @@
             <div class="searchDiv">
               <form class="formDiv" (submit)="searchStudent()">
                 <input class="search" type="text" placeholder="Search the G..." [(ngModel)]="studentName" name="studentName">
-                <button type="submit">Search</button>
-                <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+                <button type="submit" class="submitButton"><img src="../../../assets/search-icon.png" alt="" ></button>
               </form>
+              <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
             </div>
           
             <div class="section">

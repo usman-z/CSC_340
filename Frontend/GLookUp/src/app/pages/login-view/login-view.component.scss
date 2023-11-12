@@ -3,7 +3,7 @@ div{
 }
 
 .loginPage{
-    //border: 2px solid orange;
+    // border: 2px solid orange;
     width: 50vw;
     height: 80vh;
     margin: auto;
@@ -13,8 +13,8 @@ div{
     justify-content: center;
 
     .welcome{
-        //border: 2px solid green;
-        height: 40%;
+        // border: 1px solid green;
+        height: 60%;
         width: 100%;
 
         p {
@@ -33,12 +33,17 @@ div{
             font-weight: bold;
             color: #FFB71B;
         }
+
+        .spartan {
+            height: 50%;
+            margin-left: 35%;
+        }
         
     }
     .loginPrompt{
-        //border: 2px solid black;
+        // border: 1px solid black;
         width: 100%;
-        height: 60%;
+        height: 40%;
         //margin-top: -50%;
         display: flex;
         flex-direction: column;
@@ -63,6 +68,12 @@ div{
                 border-radius: 10px;
                 padding: 2%;
                 font-size: large;
+            }
+
+            .error-message {
+                color: red;
+                font-size: 16px;
+                width: auto;
             }
         }
         .loginbutton{

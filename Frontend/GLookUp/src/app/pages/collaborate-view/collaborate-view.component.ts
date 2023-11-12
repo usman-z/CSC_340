@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { StudentData } from 'src/app/models/Student/student.model';
+import { EmailService } from 'src/app/services/email/email.service';
+import { StudentService } from 'src/app/services/student/student.service';
 
 @Component({
   selector: 'app-collaborate-view',
@@ -7,4 +11,45 @@ import { Component } from '@angular/core';
 })
 export class CollaborateViewComponent {
 
+  loggedIn: string = ''
+  collaborateWith: string = ''
+  receiver?: StudentData
+  sender?: StudentData
+  info: string = "Sending Invitation to Collaborate..."
+
+  constructor(private route: ActivatedRoute, private emailService: EmailService, private studentService: StudentService, private router: Router) {}
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.collaborateWith = params['collaborate'];
+      this.loggedIn = params['loggedIn'];
+
+      this.studentService.getStudentByName(this.loggedIn).subscribe({
+        next: (response) => {
+          const sender = response;
+          this.studentService.getStudentByName(this.collaborateWith).subscribe({
+            next: (response) => {
+              const receiver = response;
+              this.emailService.sendEmail(receiver.name, receiver.email, sender.email, sender.email).subscribe({
+                next: (response) => {
+                  this.info = "Invitation to Collaborate is Sent!"
+                },
+                error: (error) => {
+                  console.log('ERROR');
+                }
+              });
+            }
+          });
+        }
+      });
+    });
+  }
+
+  goHome() {
+    this.router.navigate(['/studentView'], {
+      queryParams: { loggedIn: this.loggedIn }
+    }).catch(error => {
+      console.error('Navigation error:', error);
+    });
+  }
 }

@@ -31,13 +31,13 @@ export class LoginViewComponent {
         next: (response) => {
           const student = response;
           this.router.navigate(['/studentView'], {
-            queryParams: { name: student.name }
+            queryParams: { loggedIn: student.name }
           }).catch(error => {
             console.error('Navigation error:', error);
           });
         },
         error: (error) => {
-          this.errorMessage = 'Incorrect login credentials, try again';
+          this.errorMessage = 'Incorrect login credentials!';
         }
       });
     }

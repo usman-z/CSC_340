@@ -63,6 +63,12 @@ public class StudentController {
 		return new ResponseEntity<>(student, HttpStatus.OK);
 	}
 	
+	@PostMapping("/rate")
+	public ResponseEntity<Student> rateStudent(@RequestBody Student student) {
+		studentService.rateStudent(student);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
 	@DeleteMapping("/delete/{studentId}")
 	public ResponseEntity<Student> deleteStudent(@PathVariable int studentId) {
 		studentService.deleteStudent(studentId);

@@ -1,0 +1,38 @@
+.profile {
+    border: 1px solid red;
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+    app-back-button {
+        margin-left: -95%;
+    }
+
+    app-custom-button{
+        margin-top: -4%;
+        margin-right: -85%;
+    }
+
+    .profileContent {
+        border: 1px solid purple;
+        width: 40%;
+        .name {
+
+        }
+        .rating {
+
+        }
+    }
+    .githubContent {
+        border: 1px solid saddlebrown;
+        width: 40%;
+        .repos {
+
+        }
+    }
+}

@@ -20,7 +20,7 @@ export class StudentViewComponent {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      const studentName = params['name'];
+      const studentName = params['loggedIn'];
 
       this.studentService.getStudentByName(studentName).subscribe({
         next: (response) => {
@@ -42,7 +42,7 @@ export class StudentViewComponent {
       next: (response) => {
         this.student = response;
         if (!this.student.approved) {
-          this.errorMessage = 'No Student found with name of "'+name+'"';
+          this.errorMessage = 'No Student found: '+name;
         }
         else if(name == this.studentLoggedInName) {
           this.router.navigate(['/user'], {
@@ -60,7 +60,7 @@ export class StudentViewComponent {
         }
       },
       error: (error) => {
-        this.errorMessage = 'No Student found with name of "'+name+'"';
+        this.errorMessage = 'No Student found: '+name;
       }
     });
   }

@@ -51,6 +51,22 @@ public class StudentService {
 	    }
 	}
 	
+	public void rateStudent(Student student) {
+		double newRating = student.getRating();
+		Optional<Student> stu = getStudent(student.getName());
+		if(!stu.isEmpty()) {
+		    Student existingStudent = stu.get();
+		    if (existingStudent != null) {
+		        double prevRating = existingStudent.getRating();
+		        int totalRatings = existingStudent.getTotal_ratings()+1;
+		        existingStudent.setTotal_ratings(totalRatings);
+		        float updatedRating = (float)((prevRating * totalRatings) + (newRating)) / (totalRatings);
+		        existingStudent.setRating(updatedRating);
+		        updateStudent(existingStudent);
+		    }
+		}
+	}
+	
 	public void deleteStudent(int id) {
 		studentRepository.deleteById(id);
 	}

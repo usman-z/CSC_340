@@ -16,6 +16,7 @@ import { SignupViewComponent } from './pages/signup-view/signup-view.component';
 import { UserProfileViewComponent } from './pages/user-profile-view/user-profile-view.component';
 import { CollaborateViewComponent } from './pages/collaborate-view/collaborate-view.component';
 import { RateViewComponent } from './pages/rate-view/rate-view.component';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { RateViewComponent } from './pages/rate-view/rate-view.component';
     SignupViewComponent,
     UserProfileViewComponent,
     CollaborateViewComponent,
-    RateViewComponent
+    RateViewComponent,
+    StarRatingComponent
   ],
   imports: [
     BrowserModule,

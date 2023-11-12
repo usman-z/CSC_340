@@ -28,7 +28,7 @@ export class MainViewComponent {
       next: (response) => {
         this.student = response;
         if (!this.student.approved) {
-          this.errorMessage = 'No Student found with name of "'+name+'"';
+          this.errorMessage = 'No Student found: '+name;
         }
         else{
           this.router.navigate(['/profile'], {
@@ -39,7 +39,7 @@ export class MainViewComponent {
         }
       },
       error: (error) => {
-        this.errorMessage = 'No Student found with name of "'+name+'"';
+        this.errorMessage ='No Student found: '+name;
       }
     });
   }

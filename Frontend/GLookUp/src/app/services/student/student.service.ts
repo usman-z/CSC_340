@@ -51,4 +51,21 @@ export class StudentService {
     return this.http.post<StudentData>(url, requestData);
   }
 
+  rateStudent(name: string, rating: number) {
+    const url = 'http://localhost:8080/student/rate';
+
+    const requestData = {
+        "name": name,
+        "email": null,
+        "githubId": null,
+        "password": null,
+        "rating": rating,
+        "total_ratings": null,
+        "total_collaborators": null,
+        "yes_collaborators": null
+    };
+    
+    return this.http.post<StudentData>(url, requestData);
+  }
+
 }

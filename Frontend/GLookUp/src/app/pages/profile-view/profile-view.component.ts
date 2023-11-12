@@ -20,17 +20,19 @@ export class ProfileViewComponent{
   githubRepositorys?: GithubRepositorys;
   githubId: string = ''
   errorMessage: string = ''
+  searchName: string = ''
 
-  constructor(private route: ActivatedRoute, private location: Location, private studentService: StudentService, private adminService: AdminService, private githubService: GithubService, private router: Router) {}
+  constructor(private route: ActivatedRoute, private studentService: StudentService, private adminService: AdminService, private githubService: GithubService, private router: Router) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      const searchName = params['search'];
+      this.searchName = params['search'];
       this.loggedInName = params['loggedIn'];
 
-      this.studentService.getStudentByName(searchName).subscribe({
+      this.studentService.getStudentByName(this.searchName).subscribe({
         next: (response) => {
           this.studentData = response;
+          this.githubId = this.studentData.githubId;
           this.getGithubAccount(this.studentData.githubId)
         }
       });
@@ -38,15 +40,17 @@ export class ProfileViewComponent{
   }
 
   private getGithubAccount(githubId: string) {
-    this.githubService.getGithubUser(githubId).subscribe({
-      next: (response) => {
-        this.githubUserData = response;
-        this.getGithubRepositorys(githubId);
-      },
-      error: () => {
-        console.log("ERR! getGithubAccount failed")
-      }
-    });
+    if (githubId != null) {
+      this.githubService.getGithubUser(githubId).subscribe({
+        next: (response) => {
+          this.githubUserData = response;
+          this.getGithubRepositorys(githubId);
+        },
+        error: () => {
+          console.log("ERR! getGithubAccount failed")
+        }
+      });
+    }
   }
 
   private getGithubRepositorys(githubId: string) {
@@ -68,7 +72,9 @@ export class ProfileViewComponent{
     this.studentService.getStudentByName(this.loggedInName).subscribe({
       next: (response) => {
         if (response != null) {
-          this.router.navigate(['/rate']).catch(error => {
+          this.router.navigate(['/rate'], {
+            queryParams: { rate: this.searchName, loggedIn: this.loggedInName }
+          }).catch(error => {
             console.error('Navigation error:', error);
           });
         }
@@ -83,7 +89,9 @@ export class ProfileViewComponent{
     this.studentService.getStudentByName(this.loggedInName).subscribe({
       next: (response) => {
         if (response != null) {
-          this.router.navigate(['/collaborate']).catch(error => {
+          this.router.navigate(['/collaborate'], {
+            queryParams: { collaborate: this.searchName, loggedIn: this.loggedInName }
+          }).catch(error => {
             console.error('Navigation error:', error);
           });
         }
