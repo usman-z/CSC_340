@@ -1,8 +1,6 @@
-<!-- star-rating.component.html -->
 <div class="star-rating">
     <span *ngFor="let _ of [1, 2, 3, 4, 5]; let i = index" (click)="setRating(i)" class="star" [ngClass]="fillStars(i)">
-      &#9733; <!-- Unicode star character -->
+      &#9733;
     </span>
-    <button (click)="submitRating()">Submit</button>
   </div>
   

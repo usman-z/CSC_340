@@ -1,15 +1,35 @@
-<app-back-button></app-back-button>
-<h3>My Profile</h3>
-<p *ngIf="studentData.name">Name: {{ studentData.name }}</p>
-<p *ngIf="studentData.rating">Rating: {{ studentData.rating }}</p>
-<p *ngIf="studentData.total_ratings">Based on {{ studentData.total_ratings }} ratings</p>
-<p *ngIf="studentData.total_collaborators && studentData.yes_collaborators">Would take again: {{ (studentData.yes_collaborators/studentData.total_collaborators)*100 }}%</p>
-<div *ngIf="githubUserData" class="githubContent">
-    <p>Public repos: {{ githubUserData.public_repos }}</p>
-</div>
-<app-custom-button (click)="routeToGithub()" buttonName="GitHub"></app-custom-button>
-<div *ngIf="githubRepositorys" class="githubContent">
-    <div *ngFor="let repo of githubRepositorys" class="repos">
-        <app-project [repositoryName]="repo.name"></app-project>
+<div class="profile">
+    <div class="buttons">
+        <div class="backButton"><app-back-button></app-back-button></div>
+    </div>
+    <div class="profileContent">
+        <p class="userProfile">My Profile</p>
+        <div class="name">
+            <p *ngIf="studentData.name"  class="userName">{{ studentData.name }}</p>
+        </div>
+        <div class="rating">
+            <div class="rate">
+                <p class="numericalRating" *ngIf="studentData.rating">{{ studentData.rating | number:'1.1-1' }}/5</p>
+                <p class="basedRating" *ngIf="studentData.total_ratings">Based on {{ studentData.total_ratings }} ratings</p>
+            </div>
+            <div class="collab">
+                <p class="collabPercentage" *ngIf="studentData.total_collaborators && studentData.yes_collaborators">{{ (studentData.yes_collaborators/studentData.total_collaborators)*100 | number:'1.0-0' }}%</p>
+                <p class="collabText" *ngIf="studentData.total_collaborators">would collaborate again</p>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="githubUserData" class="githubContent">
+        <div class="githubInfo">
+            <div class="githubRepos"><p class="totalRepos">Public repos: <span>{{ githubUserData.public_repos }}</span></p></div>
+            <div class="githubLink"><app-custom-button class="githubButton" (click)="routeToGithub()" buttonName="GitHub"></app-custom-button></div>
+        </div>
+        <div class="repos">
+            <div *ngFor="let repo of githubRepositorys">
+                <app-project [repositoryName]="repo.name" [createdOn]="repo.created_at" [updatedOn]="repo.updated_at" [githubId]="githubId"></app-project>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!githubUserData" class="contentUnavailable">
+        <p>No GitHub account</p>
     </div>
 </div>

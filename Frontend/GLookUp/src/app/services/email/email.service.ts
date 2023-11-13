@@ -15,7 +15,7 @@ export class EmailService {
     const requestData = {
       "to": receiverEmail,
       "subject": "GLookUp | Request to Collaborate from "+senderName,
-      "body": "Hey "+receiverName+"! "+senderName+" would like to Collaborate with you on a project. If interested, you can contact them at "+senderEmail+". Thank you, and Happy collaboration."
+      "body": "Hey "+receiverName+",\n\n"+senderName+" would like to collaborate with you on a project through GLookUp. If interested in this collaboration, you can contact "+(senderName.split(' '))[0]+ " at "+senderEmail+". Thank you, and Happy collaboration!\n\nBest regards,\nGLookUp"
     };
     
     return this.http.post<StudentData>(url, requestData);

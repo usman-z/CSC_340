@@ -1,3 +1,36 @@
 .project {
-    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.2); /* Adjust the values as needed */
+    padding: 1em;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9); /* Adjust the values as needed */
+    margin: 1em;
+    border-radius: 15px;
+    .repository {
+        display: flex;
+        flex-direction: row;
+        .leftSide {
+            width: 70%;
+            .projectTitle {
+                display: inline-block;
+                font-size: x-large;
+                font-weight: bold;
+            }
+            .logo {
+                display: inline-block;
+                margin-left: 1em;
+                width: 1.5em;
+            }
+            p {
+                font-size: medium;
+            }
+        }
+        .rightSide {
+            width: 30%;
+            p {
+                font-size: large;
+            }
+            ul {
+                font-size: large;
+                font-style: italic;
+            }
+        }
+    }
 }

@@ -9,6 +9,8 @@ import { GithubService } from 'src/app/services/github/github.service';
 export class ProjectComponent implements OnInit{
 
   @Input() repositoryName: string = '';
+  @Input() createdOn: string = '';
+  @Input() updatedOn: string = '';
   @Input() githubId: string = '';
   languages: any
 

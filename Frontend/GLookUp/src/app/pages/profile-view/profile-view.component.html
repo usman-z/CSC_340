@@ -1,7 +1,7 @@
 <div class="profile">
     <div class="buttons">
-        <app-back-button></app-back-button>
-        <app-custom-button (click)="collaborate()" buttonName="Collaborate"></app-custom-button>
+        <div class="backButton"><app-back-button></app-back-button></div>
+        <div class="collaborateButton"><app-custom-button (click)="collaborate()" buttonName="Collaborate"></app-custom-button></div>
     </div>
     <div class="profileContent">
         <div class="name"><p *ngIf="studentData.name">{{ studentData.name }}</p></div>
@@ -11,7 +11,7 @@
                 <p class="basedRating" *ngIf="studentData.total_ratings">Based on {{ studentData.total_ratings }} ratings</p>
             </div>
             <div class="collab">
-                <p class="collabPercentage" *ngIf="studentData.total_collaborators && studentData.yes_collaborators">{{ (studentData.yes_collaborators/studentData.total_collaborators)*100 }}%</p>
+                <p class="collabPercentage" *ngIf="studentData.total_collaborators && studentData.yes_collaborators">{{ (studentData.yes_collaborators/studentData.total_collaborators)*100 | number:'1.0-0' }}%</p>
                 <p class="collabText" *ngIf="studentData.total_collaborators">would collaborate again</p>
             </div>
         </div>
@@ -20,16 +20,16 @@
     </div>
     <div *ngIf="githubUserData" class="githubContent">
         <div class="githubInfo">
-            <p class="totalRepos">Public repos: {{ githubUserData.public_repos }}</p>
-            <app-custom-button class="githubButton" (click)="routeToGithub()" buttonName="GitHub"></app-custom-button>
+            <div class="githubRepos"><p class="totalRepos">Public repos: <span>{{ githubUserData.public_repos }}</span></p></div>
+            <div class="githubLink"><app-custom-button class="githubButton" (click)="routeToGithub()" buttonName="GitHub"></app-custom-button></div>
         </div>
         <div class="repos">
             <div *ngFor="let repo of githubRepositorys">
-                <app-project [repositoryName]="repo.name" [githubId]="githubId"></app-project>
+                <app-project [repositoryName]="repo.name" [createdOn]="repo.created_at" [updatedOn]="repo.updated_at" [githubId]="githubId"></app-project>
             </div>
         </div>
     </div>
-    <div *ngIf="!githubUserData" class="githubContent">
+    <div *ngIf="!githubUserData" class="contentUnavailable">
         <p>No GitHub account</p>
     </div>
 </div>

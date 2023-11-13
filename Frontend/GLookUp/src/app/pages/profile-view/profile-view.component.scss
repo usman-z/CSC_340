@@ -1,36 +1,43 @@
 .profile {
-    border: 1px solid red;
     width: 50%;
     height: 50%;
     margin: auto;
     display: flex;
     flex-direction: column;
-    padding: 0;
+    padding: 1em;
 
     .buttons {
         display: flex;
-        flex-direction: row;
-
-        app-back-button {
-            display: flex;
-            width: fit-content;
-            border: 1px solid fuchsia;
+        justify-content: space-between;
+      
+        .backButton {
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          justify-content: baseline;
+          app-back-button {
+            height: 100%;
+          }
         }
-    
-        app-custom-button{
-            border: 1px solid fuchsia;
-            width: fit-content;
-            display: flex;
-            margin-left: 82%;
+      
+        .collaborateButton {
+          display: flex;
+          align-items: flex-end;
+          justify-content: baseline;
+          app-custom-button {
+            height: 100%;
+          }
         }
-    }
+      }
+      
 
     .profileContent {
-        border: 1px solid purple;
         display: flex;
         flex-direction: column;
         margin-top: 2em;
         width: 100%;
+        padding-bottom: 2em;
+        border-bottom: 1px solid black;
         .name {
             // border: 1px solid black;
             width: fit-content;
@@ -39,7 +46,7 @@
             margin-bottom: .5em;
             p {
                 font-weight: bold;
-                font-size: 2em;
+                font-size: 2.5em;
             }
         }
         .rating {
@@ -48,29 +55,29 @@
             margin: auto;
             flex-direction: row;
             .rate {
-                //border: 2px solid green;
                 margin-right: 1em;
                 .numericalRating {
-                    font-size: x-large;
+                    font-size: xx-large;
                     font-weight: bold;
                     width: fit-content;
                     margin: auto;
                 }
                 .basedRating {
                     // border: 1px solid seagreen;
-                    font-size: medium;
+                    font-size: large;
                 }
             }
             .collab {
-                // border: 2px solid fuchsia;
+                margin-top: .7px;
                 margin-left: 1em;
                 .collabPercentage {
-                    font-size: x-large;
+                    font-size: xx-large;
                     font-weight: bold;
                     width: fit-content;
                     margin: auto;
                 }
                 .collabText {
+                    font-size: large;
                     width: 10em;
                 }
             }
@@ -82,27 +89,46 @@
             margin-top: 1em;
             margin-bottom: 1em;
         }
+        .error-message {
+            color: red;
+            text-align: center;
+        }
     }
     .githubContent {
         display: flex;
         flex-direction: column;
         .githubInfo {
-            border: 3px solid purple;
             display: flex;
             flex-direction: row;
+            justify-content: space-between;
             margin-top: 1em;
             width: 100%;
-            .githubButton {
-                border: 1px solid fuchsia;
-                margin-left: 82%;
+            .githubRepos {
+                height: fit-content;
+                display: flex;
+                align-items: flex-start;
+                p {
+                    font-size: 1.1em;
+                    span {
+                        font-weight: bold;
+                        font-size: 1.15em;
+                    }
+                }
             }
-            .totalRepos  {
-                border: 1px solid fuchsia;
-                width: 15em;
+            .githubLink  {
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+                app-custom-button {
+                    margin-bottom: .7em;
+                }
             }
         }
-        .repos {
-            border: 1px solid goldenrod;
-        }
+    }
+    .contentUnavailable{
+        margin-top: 5em;
+        text-align: center;
+        font-size: x-large;
+        font-weight: 500;
     }
 }

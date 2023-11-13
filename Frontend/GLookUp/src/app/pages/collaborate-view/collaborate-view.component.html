@@ -1,2 +1,12 @@
-<h3>{{ info }}</h3>
-<app-custom-button (click)="goHome()" buttonName="Go Home"></app-custom-button>
+<div class="content">
+    <app-back-button></app-back-button>
+    <div class="img">
+        <img class="spartan" src="../../../assets/collaborate.jpeg" alt="">
+    </div>
+    <div class="message">
+        <p>Status: <span class="info">{{ info }}</span></p>
+    </div>
+    <div class="button">
+        <app-custom-button (click)="goHome()" buttonName="Go Home"></app-custom-button>
+    </div>
+</div>

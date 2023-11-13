@@ -23,8 +23,4 @@ export class StarRatingComponent {
     this.rating = index + 1;
     this.ratingChange.emit(this.rating);
   }
-
-  submitRating(): void {
-    this.submit.emit(this.rating);
-  }
 }

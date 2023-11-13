@@ -58,10 +58,15 @@ public class StudentService {
 		    Student existingStudent = stu.get();
 		    if (existingStudent != null) {
 		        double prevRating = existingStudent.getRating();
-		        int totalRatings = existingStudent.getTotal_ratings()+1;
+		        int totalRatings = existingStudent.getTotal_ratings();
 		        existingStudent.setTotal_ratings(totalRatings);
-		        float updatedRating = (float)((prevRating * totalRatings) + (newRating)) / (totalRatings);
+		        double updatedRating = (prevRating * totalRatings + newRating) / (totalRatings+1);
 		        existingStudent.setRating(updatedRating);
+		        int collaborateAgain = student.getYes_collaborators(); 
+		        if(collaborateAgain == 1)
+		        	existingStudent.setYes_collaborators(existingStudent.getYes_collaborators()+1);
+		        existingStudent.setTotal_collaborators(existingStudent.getTotal_collaborators()+1);
+		        existingStudent.setTotal_ratings(existingStudent.getTotal_ratings()+1);
 		        updateStudent(existingStudent);
 		    }
 		}

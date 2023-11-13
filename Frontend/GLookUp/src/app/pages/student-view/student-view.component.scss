@@ -1,9 +1,17 @@
 .mainContainer {
+    width: 50%;
+    margin: auto;
     .buttons{
-        // border: 1px solid red;
         display: flex;
-        align-items: flex-end;
-        justify-content:flex-end;
+        flex-direction: row;
+        justify-content: space-between;
+        .profile {
+            align-items: flex-start;
+        }
+        .logOut {
+            align-items: flex-end;
+            margin-top: .9em;
+        }
     }
 
     .mainContent{

@@ -1,0 +1,135 @@
+.profile {
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+      
+        .backButton {
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          justify-content: baseline;
+          app-back-button {
+            height: 100%;
+          }
+        }
+      
+        .collaborateButton {
+          display: flex;
+          align-items: flex-end;
+          justify-content: baseline;
+          app-custom-button {
+            height: 100%;
+          }
+        }
+      }
+      
+
+    .profileContent {
+        display: flex;
+        flex-direction: column;
+        margin-top: 2em;
+        width: 100%;
+        padding-bottom: 2em;
+        border-bottom: 1px solid black;
+        .userProfile {
+            margin-bottom: 0;
+            text-align: center;
+            font-size: large;
+        }
+        .name {
+            // border: 1px solid black;
+            width: fit-content;
+            margin: auto;
+            display: flex;
+            margin-bottom: .5em;
+            .userName {
+                font-weight: bold;
+                font-size: 2.5em;
+            }
+        }
+        .rating {
+            display: flex;
+            width: fit-content;
+            margin: auto;
+            flex-direction: row;
+            .rate {
+                margin-right: 1em;
+                .numericalRating {
+                    font-size: xx-large;
+                    font-weight: bold;
+                    width: fit-content;
+                    margin: auto;
+                }
+                .basedRating {
+                    // border: 1px solid seagreen;
+                    font-size: large;
+                }
+            }
+            .collab {
+                margin-top: .7px;
+                margin-left: 1em;
+                .collabPercentage {
+                    font-size: xx-large;
+                    font-weight: bold;
+                    width: fit-content;
+                    margin: auto;
+                }
+                .collabText {
+                    font-size: large;
+                    width: 10em;
+                }
+            }
+        }
+        .rateButton {
+            width: fit-content;
+            margin: auto;
+            //border: 1px solid firebrick;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+    }
+    .githubContent {
+        display: flex;
+        flex-direction: column;
+        .githubInfo {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 1em;
+            width: 100%;
+            .githubRepos {
+                height: fit-content;
+                display: flex;
+                align-items: flex-start;
+                p {
+                    font-size: 1.1em;
+                    span {
+                        font-weight: bold;
+                        font-size: 1.15em;
+                    }
+                }
+            }
+            .githubLink  {
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+                app-custom-button {
+                    margin-bottom: .7em;
+                }
+            }
+        }
+    }
+    .contentUnavailable{
+        margin-top: 5em;
+        text-align: center;
+        font-size: x-large;
+        font-weight: 500;
+    }
+}

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GithubRepositorys, GithubUser } from 'src/app/models/Github/github.model';
 import { GithubService } from 'src/app/services/github/github.service';
-import { Location } from '@angular/common';
 import { StudentService } from 'src/app/services/student/student.service';
 
 
@@ -13,12 +12,16 @@ import { StudentService } from 'src/app/services/student/student.service';
 })
 export class UserProfileViewComponent {
   
+
+  loggedInName: string = '';
   studentData: any = {};
   githubUserData?: GithubUser;
   githubRepositorys?: GithubRepositorys;
   githubId: string = ''
+  errorMessage: string = ''
+  searchName: string = ''
 
-  constructor(private route: ActivatedRoute, private location: Location, private studentService: StudentService, private githubService: GithubService, private router: Router) {}
+  constructor(private route: ActivatedRoute, private studentService: StudentService, private githubService: GithubService, private router: Router) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -27,22 +30,25 @@ export class UserProfileViewComponent {
       this.studentService.getStudentByName(name).subscribe({
         next: (response) => {
           this.studentData = response;
-          this.getGithubAccount(this.studentData.githubId)
+          this.githubId = this.studentData.githubId;
+          this.getGithubAccount(this.studentData.githubId);
         }
       });
     });
   }
 
   private getGithubAccount(githubId: string) {
-    this.githubService.getGithubUser(githubId).subscribe({
-      next: (response) => {
-        this.githubUserData = response;
-        this.getGithubRepositorys(githubId);
-      },
-      error: (error) => {
-        console.log("ERR! getGithubAccount failed")
-      }
-    });
+    if (githubId != null) {
+      this.githubService.getGithubUser(githubId).subscribe({
+        next: (response) => {
+          this.githubUserData = response;
+          this.getGithubRepositorys(githubId);
+        },
+        error: () => {
+          console.log("ERR! getGithubAccount failed")
+        }
+      });
+    }
   }
 
   private getGithubRepositorys(githubId: string) {
@@ -50,7 +56,7 @@ export class UserProfileViewComponent {
       next: (response) => {
         this.githubRepositorys = response;
       },
-      error: (error) => {
+      error: () => {
         console.log("ERR! githubRepositorys failed")
       }
     });
@@ -58,17 +64,5 @@ export class UserProfileViewComponent {
 
   routeToGithub() {
     window.open('https://github.com/'+this.githubId, '_blank');
-  }
-
-  rateStudent() {
-    this.router.navigate(['/rate']).catch(error => {
-      console.error('Navigation error:', error);
-    });
-  }
-
-  collaborate() {
-    this.router.navigate(['/collaborate']).catch(error => {
-      console.error('Navigation error:', error);
-    });
   }
 }

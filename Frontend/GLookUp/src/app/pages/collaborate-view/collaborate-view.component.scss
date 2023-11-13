@@ -1,0 +1,30 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    .img {
+        margin-top: 5em;
+        height: 50%;
+        img {
+            width: 100%;
+        }
+    }
+    .message {
+        height: 30%;
+        p {
+            text-align: center;
+            font-size: x-large;
+        }
+        span {
+            font-weight: 800;
+        }
+    }
+    .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 20%;
+    }
+}

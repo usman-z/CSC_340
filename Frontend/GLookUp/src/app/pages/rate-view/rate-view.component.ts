@@ -12,6 +12,7 @@ export class RateViewComponent {
   rateStudent: string = ''
   loggedIn: string = ''
   userRating: number = 0;
+  collaborateAgain: string = '';
 
   constructor(private route: ActivatedRoute, private studentService: StudentService,  private router: Router) {}
 
@@ -22,8 +23,8 @@ export class RateViewComponent {
     });
   }
 
-  submitRating(selectedRating: number): void {
-    this.studentService.rateStudent(this.rateStudent, this.userRating).subscribe(
+  submitRating(): void {
+    this.studentService.rateStudent(this.rateStudent, this.userRating, this.collaborateAgain).subscribe(
       response => {
         this.router.navigate(['/studentView'], {
           queryParams: { loggedIn: this.loggedIn }
@@ -32,5 +33,9 @@ export class RateViewComponent {
         });
       }
     );
+  }
+
+  onCollaborateAgain(collaborateAgain: string) {
+    this.collaborateAgain = collaborateAgain;
   }
 }

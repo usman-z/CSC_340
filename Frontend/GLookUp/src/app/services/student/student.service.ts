@@ -51,8 +51,13 @@ export class StudentService {
     return this.http.post<StudentData>(url, requestData);
   }
 
-  rateStudent(name: string, rating: number) {
+  rateStudent(name: string, rating: number, collaborateAgain: string) {
     const url = 'http://localhost:8080/student/rate';
+    
+    let collab = 0
+    if(collaborateAgain == 'Yes') {
+      collab = 1
+    }
 
     const requestData = {
         "name": name,
@@ -62,7 +67,7 @@ export class StudentService {
         "rating": rating,
         "total_ratings": null,
         "total_collaborators": null,
-        "yes_collaborators": null
+        "yes_collaborators": collab
     };
     
     return this.http.post<StudentData>(url, requestData);

@@ -1,11 +1,20 @@
 <div class="project">
-    <h3>{{ repositoryName }}</h3>
-    <div *ngIf="languages">
+  <div class="repository">
+    <div class="leftSide">
+      <p class="projectTitle">{{ repositoryName }}</p>
+      <img class="logo" src="../../../assets/github-logo.svg" alt="">
+      <p>Last Updated: {{ (updatedOn.split('T'))[0] }}</p>
+      <p>Created On: {{ (createdOn.split('T'))[0] }}</p>
+    </div>
+    <div class="rightSide">
+      <div *ngIf="languages">
         <p>Languages:</p>
         <ul>
           <li *ngFor="let language of languages | keyvalue">
-            {{ language.key }} {{ language.value }} lines
+            {{ language.key }}
           </li>
         </ul>
       </div>
+    </div>
+  </div>
 </div>
