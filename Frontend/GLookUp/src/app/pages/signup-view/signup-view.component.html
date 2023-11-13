@@ -1,5 +1,10 @@
-<app-back-button></app-back-button>
-<div>
+<div class="mainContainer">
+  <div class="backButton"><app-back-button></app-back-button></div>
+  <div class="signUp">
+    <img class="spartan" src="../../../assets/glookup-announce.png" alt="">
+  </div>
+  <div class="questions">
+    <p>Are you a Student or an Admin?</p>
     <label>
       <input type="radio" name="userRole" value="student" [(ngModel)]="selectedRole" (change)="onRoleChange('student')"> Student
     </label>
@@ -7,25 +12,23 @@
       <input type="radio" name="userRole" value="admin" [(ngModel)]="selectedRole" (change)="onRoleChange('admin')"> Admin
     </label>
   </div>
-  
-  <div *ngIf="selectedRole === 'student'">
+  <div *ngIf="selectedRole === 'student'" class="questionaire">
     <p>Student Information</p>
     <form (ngSubmit)="onSubmitStudent()" #userForm="ngForm">
-      <input type="text" placeholder="John Doe" [(ngModel)]="name" name="name" required>
-      <input type="email" placeholder="jdoe@uncg.edu" [(ngModel)]="email" name="email" required>
-      <input type="text" placeholder="j-doe" [(ngModel)]="github" name="github" required>
-      <input type="password" placeholder="********" [(ngModel)]="password" name="password" required>
-      <button type="submit">Submit</button>
+      <input type="text" placeholder="Full Name" [(ngModel)]="name" name="name" required>
+      <input type="email" placeholder="Uncg Email" [(ngModel)]="email" name="email" required>
+      <input type="text" placeholder="Github Id" [(ngModel)]="github" name="github" required>
+      <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
+      <app-custom-button type="submit" buttonName="Sign Up"></app-custom-button>
     </form>
   </div>
-  
-  <div *ngIf="selectedRole === 'admin'">
+  <div *ngIf="selectedRole === 'admin'" class="questionaire">
     <p>Admin Information</p>
     <form (ngSubmit)="onSubmitAdmin()" #userForm="ngForm">
-      <input type="text" placeholder="John Doe" [(ngModel)]="name" name="name" required>
-      <input type="email" placeholder="jdoe@uncg.edu" [(ngModel)]="email" name="email" required>
-      <input type="password" placeholder="********" [(ngModel)]="password" name="password" required>
-      <button type="submit">Submit</button>
+      <input type="text" placeholder="Full Name" [(ngModel)]="name" name="name" required>
+      <input type="email" placeholder="Uncg Email" [(ngModel)]="email" name="email" required>
+      <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
+      <app-custom-button type="submit" buttonName="Sign Up"></app-custom-button>
     </form>
   </div>
-  
+</div>

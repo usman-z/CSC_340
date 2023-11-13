@@ -20,7 +20,7 @@
     </div>
     <div *ngIf="githubUserData" class="githubContent">
         <div class="githubInfo">
-            <div class="githubRepos"><p class="totalRepos">Public repos: <span>{{ githubUserData.public_repos }}</span></p></div>
+            <div class="githubRepos"><p class="totalRepos">Public repositories: <span>{{ githubUserData.public_repos }}</span></p></div>
             <div class="githubLink"><app-custom-button class="githubButton" (click)="routeToGithub()" buttonName="GitHub"></app-custom-button></div>
         </div>
         <div class="repos">

@@ -1,11 +1,60 @@
-form {
+.mainContainer {
+    margin: auto;
+    width: 50%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    max-width: 300px;
-    margin: auto;
-  }
-  
-  input, button {
-    margin-bottom: 10px;
+
+    .backButton {
+      height: 10%;
+    }
+    .signUp {
+      margin-left: 38%;
+      width: fit-content;
+      height: 30%;
+      img {
+        width: 10em;
+      }
+    }
+    .questions {
+      height: 30%;
+
+      p {
+        text-align: center;
+        font-size: large;
+      }
+
+      label {
+          display: flex;
+          width: fit-content;
+          margin-left: 34%;
+          font-size: large;
+          margin-bottom: .3em;
+      }
+
+    }
+    .questionaire {
+      height: 30%;
+      p {
+        text-align: center;
+        font-size: x-large;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin: auto;
+        input {
+          font-size: medium;
+          margin-bottom: .5em;
+        }
+        app-custom-button{
+          margin-top: 1.5em;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
   }
   
