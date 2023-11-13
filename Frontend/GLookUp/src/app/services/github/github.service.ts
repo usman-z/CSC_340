@@ -34,15 +34,16 @@ export class GithubService {
     return this.https.get<GithubRepositorys>(apiUrl, { headers });
   }
 
-  getGithubRepoLanguages(id: string) {
+  getGithubRepoLanguages(githubId: string, githubRepository: string) {
     // Set up the authorization header with the bearer token
     const headers = new HttpHeaders({
       'Authorization': 'Bearer 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'
     });
 
-    const repo = '/CSC_340_Static_Web_App'
-    const url = '/languages'
-    const apiUrl = `${this.githubApi}${id}${repo}${url}`;
-    return this.https.get<GithubRepositorys>(apiUrl, { headers });
+    const baseUrl = 'https://api.github.com/repos/'
+    const repo = '/'+githubRepository;
+    const url = '/languages';
+    const apiUrl = `${baseUrl}${githubId}${repo}${url}`;
+    return this.https.get(apiUrl, { headers });
   }
 }

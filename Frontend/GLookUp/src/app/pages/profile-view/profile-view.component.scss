@@ -5,34 +5,104 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     padding: 0;
 
-    app-back-button {
-        margin-left: -95%;
-    }
+    .buttons {
+        display: flex;
+        flex-direction: row;
 
-    app-custom-button{
-        margin-top: -4%;
-        margin-right: -85%;
+        app-back-button {
+            display: flex;
+            width: fit-content;
+            border: 1px solid fuchsia;
+        }
+    
+        app-custom-button{
+            border: 1px solid fuchsia;
+            width: fit-content;
+            display: flex;
+            margin-left: 82%;
+        }
     }
 
     .profileContent {
         border: 1px solid purple;
-        width: 40%;
+        display: flex;
+        flex-direction: column;
+        margin-top: 2em;
+        width: 100%;
         .name {
-
+            // border: 1px solid black;
+            width: fit-content;
+            margin: auto;
+            display: flex;
+            margin-bottom: .5em;
+            p {
+                font-weight: bold;
+                font-size: 2em;
+            }
         }
         .rating {
-
+            display: flex;
+            width: fit-content;
+            margin: auto;
+            flex-direction: row;
+            .rate {
+                //border: 2px solid green;
+                margin-right: 1em;
+                .numericalRating {
+                    font-size: x-large;
+                    font-weight: bold;
+                    width: fit-content;
+                    margin: auto;
+                }
+                .basedRating {
+                    // border: 1px solid seagreen;
+                    font-size: medium;
+                }
+            }
+            .collab {
+                // border: 2px solid fuchsia;
+                margin-left: 1em;
+                .collabPercentage {
+                    font-size: x-large;
+                    font-weight: bold;
+                    width: fit-content;
+                    margin: auto;
+                }
+                .collabText {
+                    width: 10em;
+                }
+            }
+        }
+        .rateButton {
+            width: fit-content;
+            margin: auto;
+            //border: 1px solid firebrick;
+            margin-top: 1em;
+            margin-bottom: 1em;
         }
     }
     .githubContent {
-        border: 1px solid saddlebrown;
-        width: 40%;
+        display: flex;
+        flex-direction: column;
+        .githubInfo {
+            border: 3px solid purple;
+            display: flex;
+            flex-direction: row;
+            margin-top: 1em;
+            width: 100%;
+            .githubButton {
+                border: 1px solid fuchsia;
+                margin-left: 82%;
+            }
+            .totalRepos  {
+                border: 1px solid fuchsia;
+                width: 15em;
+            }
+        }
         .repos {
-
+            border: 1px solid goldenrod;
         }
     }
 }

@@ -1,26 +1,32 @@
 <div class="profile">
-    <app-back-button></app-back-button>
-    <app-custom-button (click)="collaborate()" buttonName="Collaborate"></app-custom-button>
+    <div class="buttons">
+        <app-back-button></app-back-button>
+        <app-custom-button (click)="collaborate()" buttonName="Collaborate"></app-custom-button>
+    </div>
     <div class="profileContent">
         <div class="name"><p *ngIf="studentData.name">{{ studentData.name }}</p></div>
         <div class="rating">
             <div class="rate">
-                <p *ngIf="studentData.rating">Rating: {{ studentData.rating | number:'1.1-1' }}</p>
-                <p *ngIf="studentData.total_ratings">Based on {{ studentData.total_ratings }} ratings</p>
+                <p class="numericalRating" *ngIf="studentData.rating">{{ studentData.rating | number:'1.1-1' }}/5</p>
+                <p class="basedRating" *ngIf="studentData.total_ratings">Based on {{ studentData.total_ratings }} ratings</p>
             </div>
             <div class="collab">
-                <p *ngIf="studentData.total_collaborators && studentData.yes_collaborators">Would take again: {{ (studentData.yes_collaborators/studentData.total_collaborators)*100 }}%</p>
-                <p *ngIf="studentData.total_collaborators">Based on {{ studentData.total_collaborators }} ratings</p>
+                <p class="collabPercentage" *ngIf="studentData.total_collaborators && studentData.yes_collaborators">{{ (studentData.yes_collaborators/studentData.total_collaborators)*100 }}%</p>
+                <p class="collabText" *ngIf="studentData.total_collaborators">would collaborate again</p>
             </div>
-            <app-custom-button (click)="rateStudent()" buttonName="Rate"></app-custom-button>
         </div>
+        <app-custom-button class="rateButton" (click)="rateStudent()" buttonName="Rate"></app-custom-button>
         <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
     </div>
     <div *ngIf="githubUserData" class="githubContent">
-        <app-custom-button (click)="routeToGithub()" buttonName="GitHub"></app-custom-button>
-        <p>Public repos: {{ githubUserData.public_repos }}</p>
-        <div *ngFor="let repo of githubRepositorys" class="repos">
-            <app-project projectName='{{ repo.name }}'></app-project>
+        <div class="githubInfo">
+            <p class="totalRepos">Public repos: {{ githubUserData.public_repos }}</p>
+            <app-custom-button class="githubButton" (click)="routeToGithub()" buttonName="GitHub"></app-custom-button>
+        </div>
+        <div class="repos">
+            <div *ngFor="let repo of githubRepositorys">
+                <app-project [repositoryName]="repo.name" [githubId]="githubId"></app-project>
+            </div>
         </div>
     </div>
     <div *ngIf="!githubUserData" class="githubContent">

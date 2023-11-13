@@ -1,1 +1,11 @@
-<p>{{ projectName }}</p>
+<div class="project">
+    <h3>{{ repositoryName }}</h3>
+    <div *ngIf="languages">
+        <p>Languages:</p>
+        <ul>
+          <li *ngFor="let language of languages | keyvalue">
+            {{ language.key }} {{ language.value }} lines
+          </li>
+        </ul>
+      </div>
+</div>
