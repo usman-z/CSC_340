@@ -43,7 +43,7 @@ export class SignupViewComponent {
   }
 
   onSubmitStudent() {
-    if (this.name != '' && this.github != '' && this.password != ''){
+    if (this.name != '' && this.github != '' && this.password != '' && this.email != ''){
       this.studentService.addStudent(this.name, this.email, this.password, this.github).subscribe(
         response => {
           this.router.navigate(['/']).catch(error => {
