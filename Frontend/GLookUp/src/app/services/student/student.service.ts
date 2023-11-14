@@ -52,26 +52,16 @@ export class StudentService {
     return this.http.post<StudentData>(url, requestData);
   }
 
-  rateStudent(name: string, rating: number, collaborateAgain: string) {
+  rateStudent(name: string, rating: number, collaborateAgain: boolean) {
     const url = 'http://localhost:8080/student/rate';
-    
-    let collab = 0
-    if(collaborateAgain == 'Yes') {
-      collab = 1
-    }
 
-    const requestData = {
-        "name": name,
-        "email": null,
-        "githubId": null,
-        "password": null,
-        "rating": rating,
-        "total_ratings": null,
-        "total_collaborators": null,
-        "yes_collaborators": collab
+    const ratingData = {
+      "name": name,
+      "rating": rating,
+      "collaborate": collaborateAgain
     };
     
-    return this.http.post<StudentData>(url, requestData);
+    return this.http.post<StudentData>(url, ratingData);
   }
 
   getAllStudent(){

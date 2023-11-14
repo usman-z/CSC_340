@@ -24,7 +24,11 @@ export class RateViewComponent {
   }
 
   submitRating(): void {
-    this.studentService.rateStudent(this.rateStudent, this.userRating, this.collaborateAgain).subscribe(
+    let collaborate = false;
+    if (this.collaborateAgain == 'Yes'){
+      collaborate = true
+    }
+    this.studentService.rateStudent(this.rateStudent, this.userRating, collaborate).subscribe(
       response => {
         this.router.navigate(['/feedback'], {
           queryParams: { loggedIn: this.loggedIn, response: "Rating submitted" }

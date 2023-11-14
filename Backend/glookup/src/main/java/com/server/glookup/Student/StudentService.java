@@ -62,9 +62,9 @@ public class StudentService {
             }
 	}
 	
-	public void rateStudent(Student student) {
-		double newRating = student.getRating();
-		Optional<Student> stu = getStudent(student.getName());
+	public void rateStudent(Rating rating) {
+		double newRating = rating.getRating();
+		Optional<Student> stu = getStudent(rating.getName());
 		if(!stu.isEmpty()) {
 		    Student existingStudent = stu.get();
 		    if (existingStudent != null) {
@@ -73,8 +73,8 @@ public class StudentService {
 		        existingStudent.setTotal_ratings(totalRatings);
 		        double updatedRating = (prevRating * totalRatings + newRating) / (totalRatings+1);
 		        existingStudent.setRating(updatedRating);
-		        int collaborateAgain = student.getYes_collaborators(); 
-		        if(collaborateAgain == 1)
+		        boolean collaborateAgain = rating.getCollaborateAgain(); 
+		        if(collaborateAgain)
 		        	existingStudent.setYes_collaborators(existingStudent.getYes_collaborators()+1);
 		        existingStudent.setTotal_collaborators(existingStudent.getTotal_collaborators()+1);
 		        existingStudent.setTotal_ratings(existingStudent.getTotal_ratings()+1);

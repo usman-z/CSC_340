@@ -70,8 +70,8 @@ public class StudentController {
 	}
 	
 	@PostMapping("/rate")
-	public ResponseEntity<Student> rateStudent(@RequestBody Student student) {
-		studentService.rateStudent(student);
+	public ResponseEntity<Student> rateStudent(@RequestBody Rating rating) {
+		studentService.rateStudent(rating);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
