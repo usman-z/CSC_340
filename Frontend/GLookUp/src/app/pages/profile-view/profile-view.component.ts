@@ -103,6 +103,19 @@ export class ProfileViewComponent{
    }
 
    deleteStudent() {
-    
+    this.studentService.deleteStudent(this.studentData,this.studentData.id).subscribe(
+      () => {
+        console.log(`Student with ID ${this.studentData.id} rejected successfully.`);
+      },
+      (error) => {
+        console.error(`Error rejecting student with ID ${this.studentData.id}: ${error}`);
+      }
+    );
+
+    this.router.navigate(['/feedback'], {
+      queryParams: { loggedIn: "Admin", response: "success" }
+    }).catch(error => {
+      console.error('Navigation error:', error);
+    });
    }
 }

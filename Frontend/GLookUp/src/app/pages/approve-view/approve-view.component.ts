@@ -37,6 +37,7 @@ export class ApproveViewComponent {
     //  iterate over the selected admins
     for (const admin of selectedAdmins) {
       const adminId = admin.id;
+      //call the function from the admin service
       this.adminService.updateAdminApprovalStatus(admin,adminId).subscribe(
         () => {
           console.log(`Admin with ID ${adminId} approved successfully.`);
@@ -52,6 +53,7 @@ export class ApproveViewComponent {
       const studentName = student.name;
       const studentId = student.id;
       const studentEmail = student.email;
+      //call the approve function in the studeent service
       this.studentService.updateStudentApprovalStatus(studentId).subscribe(
         () => {
           console.log(`Student with ID ${studentId} approved successfully.`);
@@ -60,7 +62,7 @@ export class ApproveViewComponent {
           console.error(`Error approving student with ID ${studentId}: ${error}`);
         }
       );
-
+      //call send email function
       this.studentService.sendStudentEmail(studentName,studentEmail).subscribe(
         () => {
           console.log(`Student with ID ${studentId} emailed successfully.`);
