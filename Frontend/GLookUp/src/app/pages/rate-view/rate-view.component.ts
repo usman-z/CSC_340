@@ -26,8 +26,8 @@ export class RateViewComponent {
   submitRating(): void {
     this.studentService.rateStudent(this.rateStudent, this.userRating, this.collaborateAgain).subscribe(
       response => {
-        this.router.navigate(['/studentView'], {
-          queryParams: { loggedIn: this.loggedIn }
+        this.router.navigate(['/feedback'], {
+          queryParams: { loggedIn: this.loggedIn, response: "success" }
         }).catch(error => {
           console.error('Navigation error:', error);
         });
