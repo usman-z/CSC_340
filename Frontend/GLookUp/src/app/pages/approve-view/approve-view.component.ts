@@ -78,7 +78,7 @@ export class ApproveViewComponent {
     this.student.forEach(student => (student.selected = false));
 
     this.router.navigate(['/feedback'], {
-      queryParams: { loggedIn: "Admin", response: "success" }
+      queryParams: { loggedIn: "Admin", response: "Approved successfully" }
     }).catch(error => {
       console.error('Navigation error:', error);
     });
@@ -117,7 +117,7 @@ export class ApproveViewComponent {
     this.student.forEach(student => (student.selected = false));
 
     this.router.navigate(['/feedback'], {
-      queryParams: { loggedIn: "Admin", response: "success" }
+      queryParams: { loggedIn: "Admin", response: "Deleted successfully" }
     }).catch(error => {
       console.error('Navigation error:', error);
     });

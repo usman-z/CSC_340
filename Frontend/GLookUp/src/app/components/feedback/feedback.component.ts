@@ -8,7 +8,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class FeedbackComponent {
 
-  message: string = '';
   response: string = '';
   loggedIn: string = '';
 
@@ -18,18 +17,18 @@ export class FeedbackComponent {
     this.route.queryParams.subscribe(params => {
       this.response = params['response'];
       this.loggedIn = params['loggedIn'];
-
-      if (this.response == 'success') {
-        this.message = 'Success!'
-      }
-      else {
-        this.message = 'Failed!'
-      }
     });
   }
   
   goHome() {
-    if (this.loggedIn == 'Admin') {
+    if (this.loggedIn == '') {
+      this.router.navigate(['/'], {
+        queryParams: {  }
+      }).catch(error => {
+        console.error('Navigation error:', error);
+      });
+    }
+    else if (this.loggedIn == 'Admin') {
       this.router.navigate(['/adminView'], {
         queryParams: { loggedIn: this.loggedIn }
       }).catch(error => {

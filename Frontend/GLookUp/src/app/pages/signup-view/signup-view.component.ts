@@ -25,13 +25,19 @@ export class SignupViewComponent {
 
   onRoleChange(role: string) {
     this.selectedRole = role;
+    this.name = ''
+    this.email = ''
+    this.password = ''
+    this.github = ''
   }
 
   onSubmitAdmin() {
     if (this.name != '' && this.email != '' && this.password != ''){
       this.adminService.addAdmin(this.name, this.email, this.password).subscribe(
         response => {
-          this.router.navigate(['/']).catch(error => {
+          this.router.navigate(['/feedback'], {
+            queryParams: { loggedIn: '', response: "Awaiting account approval" }
+          }).catch(error => {
             console.error('Navigation error:', error);
           });
         }
@@ -43,10 +49,12 @@ export class SignupViewComponent {
   }
 
   onSubmitStudent() {
-    if (this.name != '' && this.github != '' && this.password != '' && this.email != ''){
+    if (this.name != '' && this.github != '' && this.password != ''){
       this.studentService.addStudent(this.name, this.email, this.password, this.github).subscribe(
         response => {
-          this.router.navigate(['/']).catch(error => {
+          this.router.navigate(['/feedback'], {
+            queryParams: { loggedIn: '', response: "Awaiting account approval" }
+          }).catch(error => {
             console.error('Navigation error:', error);
           });
         }

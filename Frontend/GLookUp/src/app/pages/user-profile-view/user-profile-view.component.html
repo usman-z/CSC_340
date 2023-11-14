@@ -11,10 +11,12 @@
             <div class="rate">
                 <p class="numericalRating" *ngIf="studentData.rating">{{ studentData.rating | number:'1.1-1' }}/5</p>
                 <p class="basedRating" *ngIf="studentData.total_ratings">Based on {{ studentData.total_ratings }} ratings</p>
+                <p class="basedRating" *ngIf="!studentData.rating && !studentData.total_ratings">No ratings</p>
             </div>
             <div class="collab">
                 <p class="collabPercentage" *ngIf="studentData.total_collaborators && studentData.yes_collaborators">{{ (studentData.yes_collaborators/studentData.total_collaborators)*100 | number:'1.0-0' }}%</p>
                 <p class="collabText" *ngIf="studentData.total_collaborators">would collaborate again</p>
+                <p class="collabText" *ngIf="!studentData.total_collaborators && !studentData.yes_collaborators">No collaborations</p>
             </div>
         </div>
     </div>

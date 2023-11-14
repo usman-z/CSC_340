@@ -80,7 +80,7 @@ export class ProfileViewComponent{
         }
       },
       error: (error) => {
-        this.errorMessage = 'Must be logged in as a Student';
+        this.errorMessage = 'Must be logged in as a Student to rate';
       }
     });
   }
@@ -97,7 +97,7 @@ export class ProfileViewComponent{
         }
       },
       error: (error) => {
-        this.errorMessage = 'Must be logged in as a Student';
+        this.errorMessage = 'Must be logged in as a Student to collaborate';
       }
     });
    }
@@ -113,7 +113,7 @@ export class ProfileViewComponent{
     );
 
     this.router.navigate(['/feedback'], {
-      queryParams: { loggedIn: "Admin", response: "success" }
+      queryParams: { loggedIn: "Admin", response: "Deleted successfully" }
     }).catch(error => {
       console.error('Navigation error:', error);
     });

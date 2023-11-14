@@ -30,11 +30,17 @@ export class LoginViewComponent {
       this.studentService.searchStudent(this.username, this.password).subscribe({
         next: (response) => {
           const student = response;
-          this.router.navigate(['/studentView'], {
-            queryParams: { loggedIn: student.name }
-          }).catch(error => {
-            console.error('Navigation error:', error);
-          });
+          if (student.approved == true) {
+            this.router.navigate(['/studentView'], {
+              queryParams: { loggedIn: student.name }
+            }).catch(error => {
+              console.error('Navigation error:', error);
+            });
+            return;
+          }
+          else {
+            this.errorMessage = 'Incorrect login credentials!';
+          }
         },
         error: (error) => {
           this.errorMessage = 'Incorrect login credentials!';
@@ -44,11 +50,16 @@ export class LoginViewComponent {
       this.adminService.searchAdmin(this.username, this.password).subscribe({
         next: (response) => {
           const admin = response;
-          this.router.navigate(['/adminView'], {
-            queryParams: { loggedIn: admin.name }
-          }).catch(error => {
-            console.error('Navigation error:', error);
-          });
+          if (admin.approved == true) {
+            this.router.navigate(['/adminView'], {
+              queryParams: { loggedIn: admin.name }
+            }).catch(error => {
+              console.error('Navigation error:', error);
+            });
+          }
+          else {
+            this.errorMessage = 'Incorrect login credentials!';
+          }
         },
         error: (error) => {
           this.errorMessage = 'Incorrect login credentials!';
