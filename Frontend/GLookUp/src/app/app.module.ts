@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ProjectComponent } from './components/project/project.component';
 import { StudentViewComponent } from './pages/student-view/student-view.component';
+import { AdminViewComponent } from './pages/admin-view/admin-view.component';
 import { ProfileViewComponent } from './pages/profile-view/profile-view.component';
 import { LoginViewComponent } from './pages/login-view/login-view.component';
 import { SignupViewComponent } from './pages/signup-view/signup-view.component';
@@ -17,6 +18,7 @@ import { UserProfileViewComponent } from './pages/user-profile-view/user-profile
 import { CollaborateViewComponent } from './pages/collaborate-view/collaborate-view.component';
 import { RateViewComponent } from './pages/rate-view/rate-view.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { ApproveViewComponent } from './pages/approve-view/approve-view.component';
 
 @NgModule({
   declarations: [
@@ -28,13 +30,15 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
     MainViewComponent,
     ProjectComponent,
     StudentViewComponent,
+    AdminViewComponent,
     ProfileViewComponent,
     LoginViewComponent,
     SignupViewComponent,
     UserProfileViewComponent,
     CollaborateViewComponent,
     RateViewComponent,
-    StarRatingComponent
+    StarRatingComponent,
+    ApproveViewComponent
   ],
   imports: [
     BrowserModule,

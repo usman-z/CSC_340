@@ -43,6 +43,15 @@ public class AdminController {
 		adminService.createAdmin(admin);
 		return new ResponseEntity<>(admin,HttpStatus.CREATED);
 	}
+        
+         @PostMapping("/search")
+        public ResponseEntity<Admin> searchAdmin(@RequestBody Admin admin) {
+    	Admin searchAdmin = adminService.searchAdmin(admin);
+    	if (searchAdmin != null)
+    		return new ResponseEntity<>(searchAdmin, HttpStatus.OK);
+    	else
+    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 	
 	@PostMapping("/update/{adminId}")
 	public ResponseEntity<Admin> updateAdmin(@RequestBody Admin admin, int adminId) {

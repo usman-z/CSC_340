@@ -15,4 +15,35 @@ export class AdminService {
 
     return this.http.get<AdminData>(url);
   }
+
+  addAdmin(name: string, email: string, password: string ) {
+    const url = 'http://localhost:8080/admin/add';
+
+    const requestData = {
+        "name": name,
+        "email": email,
+        "password": password
+    };
+    
+    return this.http.post(url, requestData);
+  }
+
+  searchAdmin(username: string, password: string) {
+    const url = 'http://localhost:8080/admin/search';
+
+    const requestData = {
+        "id": null,
+        "name": null,
+        "email": username,
+        "password": password,
+    };
+    
+    return this.http.post<AdminData>(url, requestData);
+  }
+
+  getAllAdmin(){
+    const url = 'http://localhost:8080/admin/all';
+    return this.http.get('http://localhost:8080/admin/all');
+  }
+
 }

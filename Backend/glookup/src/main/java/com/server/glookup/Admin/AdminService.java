@@ -18,6 +18,14 @@ public class AdminService {
 	public Optional<Admin> getAdmin(int adminId) {
 		return adminRepository.findById(adminId);
 	}
+        
+        public Admin searchAdmin(Admin admin) {
+	    Admin existingAdmin = adminRepository.findByUsernameAndPassword(admin.getEmail(), admin.getPassword());
+	    if (existingAdmin != null) {
+	    		return existingAdmin;
+	    }
+	    return null;
+	}
 	
 	public void createAdmin(Admin admin) {
 		adminRepository.save(admin);

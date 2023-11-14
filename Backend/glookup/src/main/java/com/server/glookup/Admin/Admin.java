@@ -28,12 +28,24 @@ public class Admin {
 	
 	@JsonProperty("password")
 	private String password;
+        
+        @JsonProperty("approved")
+	private boolean approved;
 	
 	public Admin(String name, String email, String password) {
 		this.email = email;
 		this.name = name;
 		this.password = password;
+                this.approved = false;
 	}
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
 
 	public int getId() {
 		return id;

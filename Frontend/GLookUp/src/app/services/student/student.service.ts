@@ -73,4 +73,9 @@ export class StudentService {
     return this.http.post<StudentData>(url, requestData);
   }
 
+  getAllStudent(){
+    const url = 'http://localhost:8080/student/all';
+    return this.http.get('http://localhost:8080/student/all');
+  }
+
 }

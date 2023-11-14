@@ -40,6 +40,20 @@ export class LoginViewComponent {
           this.errorMessage = 'Incorrect login credentials!';
         }
       });
+
+      this.adminService.searchAdmin(this.username, this.password).subscribe({
+        next: (response) => {
+          const admin = response;
+          this.router.navigate(['/adminView'], {
+            queryParams: { loggedIn: admin.name }
+          }).catch(error => {
+            console.error('Navigation error:', error);
+          });
+        },
+        error: (error) => {
+          this.errorMessage = 'Incorrect login credentials!';
+        }
+      });
     }
   }
 

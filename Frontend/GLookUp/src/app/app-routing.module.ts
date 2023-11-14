@@ -8,6 +8,8 @@ import { SignupViewComponent } from './pages/signup-view/signup-view.component';
 import { UserProfileViewComponent } from './pages/user-profile-view/user-profile-view.component';
 import { CollaborateViewComponent } from './pages/collaborate-view/collaborate-view.component';
 import { RateViewComponent } from './pages/rate-view/rate-view.component';
+import { AdminViewComponent } from './pages/admin-view/admin-view.component';
+import { ApproveViewComponent } from './pages/approve-view/approve-view.component';
 
 const routes: Routes = [
   { path: '', component: MainViewComponent },
@@ -15,9 +17,11 @@ const routes: Routes = [
   { path: 'signup', component: SignupViewComponent },
   { path: 'profile', component: ProfileViewComponent },
   { path: 'studentView', component: StudentViewComponent },
+  { path: 'adminView', component: AdminViewComponent},
   { path: 'rate', component: RateViewComponent },
   { path: 'collaborate', component: CollaborateViewComponent },
-  { path: 'user', component: UserProfileViewComponent }
+  { path: 'user', component: UserProfileViewComponent },
+  { path: 'approve', component: ApproveViewComponent }
 ];
 
 @NgModule({

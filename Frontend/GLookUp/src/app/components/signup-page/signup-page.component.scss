@@ -1,0 +1,87 @@
+div{
+    margin: 0;
+}
+
+.signupPage{
+    //border: 2px solid orange;
+    width: 50vw;
+    height: 80vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .questionaire{
+        //border: 2px solid green;
+        height: 40%;
+        width: 100%;
+
+        p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lineOne{
+            font-size: x-large;
+        }
+        
+    }
+    .signupPrompt{
+        //border: 2px solid black;
+        width: 100%;
+        height: 60%;
+        //margin-top: -50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .nameDiv{
+            //border: 1px solid blue;
+            margin-top: -30%;
+            margin-bottom: 2%;
+            .name {
+                padding: 2%;
+                border-radius: 10px;
+                font-size: large;
+            }
+        }   
+        .emailDiv{
+            //border: 1px solid blue;
+            margin-top: -30%;
+            margin-bottom: 2%;
+            .email {
+                padding: 2%;
+                border-radius: 10px;
+                font-size: large;
+            }
+        }
+
+        .idDiv{
+            //border: 1px solid blue;
+            margin-top: -30%;
+            margin-bottom: 2%;
+            .id {
+                padding: 2%;
+                border-radius: 10px;
+                font-size: large;
+            }
+        }
+
+        .passwordDiv{
+            //border: 1px solid red;
+            margin-bottom: 5%;
+            .password {
+                // border: 1px solid red;
+                border-radius: 10px;
+                padding: 2%;
+                font-size: large;
+            }
+        }
+        .signupbutton{
+            border-radius: 15px;
+        }
+    }
+}
