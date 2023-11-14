@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, switchMap } from 'rxjs';
 import { StudentData } from '../../models/Student/student.model';
 
 @Injectable({
@@ -76,6 +77,26 @@ export class StudentService {
   getAllStudent(){
     const url = 'http://localhost:8080/student/all';
     return this.http.get('http://localhost:8080/student/all');
+  }
+
+  updateStudentApprovalStatus(studentId: number,): Observable<any> {
+    const url = `http://localhost:8080/student/updates/${studentId}`;
+
+    // Fetch the existing student data first
+    return this.getStudentById(studentId).pipe(
+      switchMap((existingStudent: StudentData) => {
+        // Update the approval status
+        existingStudent.approved = true;
+
+        // Send the updated Student object to the server
+        return this.http.post(url, existingStudent);
+      })
+    );
+  }
+
+  private getStudentById(studentId: number): Observable<StudentData> {
+    const url = `http://localhost:8080/student/get/${studentId}`;
+    return this.http.get<StudentData>(url);
   }
 
 }

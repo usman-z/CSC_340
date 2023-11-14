@@ -50,6 +50,17 @@ public class StudentService {
 	        studentRepository.save(existingStudent);
 	    }
 	}
+        
+        public void updatesStudent(Student student, int studentId) {
+            Student existingStudent = getStudent(studentId).get();
+            if(existingStudent != null) {
+	    	existingStudent.setName(student.getName());
+	    	existingStudent.setEmail(student.getEmail());
+	    	existingStudent.setPassword(student.getPassword());
+                existingStudent.setApproved(student.isApproved());
+	    	studentRepository.save(existingStudent);
+            }
+	}
 	
 	public void rateStudent(Student student) {
 		double newRating = student.getRating();

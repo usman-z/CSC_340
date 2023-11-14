@@ -54,7 +54,7 @@ public class AdminController {
     }
 	
 	@PostMapping("/update/{adminId}")
-	public ResponseEntity<Admin> updateAdmin(@RequestBody Admin admin, int adminId) {
+	public ResponseEntity<Admin> updateAdmin(@RequestBody Admin admin, @PathVariable int adminId) {
 		adminService.updateAdmin(admin, adminId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

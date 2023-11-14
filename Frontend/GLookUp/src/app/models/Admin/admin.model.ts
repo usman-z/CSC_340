@@ -3,4 +3,5 @@ export interface AdminData {
     name: string
     email: string
     password: string
+    approved: boolean
 }

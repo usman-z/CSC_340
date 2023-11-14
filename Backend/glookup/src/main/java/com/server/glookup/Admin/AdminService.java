@@ -32,13 +32,14 @@ public class AdminService {
 	}
 	
 	public void updateAdmin(Admin admin, int adminId) {
-    	Admin existingAdmin = getAdmin(adminId).get();
-    	if(existingAdmin != null) {
+            Admin existingAdmin = getAdmin(adminId).get();
+            if(existingAdmin != null) {
 	    	existingAdmin.setName(admin.getName());
 	    	existingAdmin.setEmail(admin.getEmail());
 	    	existingAdmin.setPassword(admin.getPassword());
+                existingAdmin.setApproved(admin.isApproved());
 	    	adminRepository.save(existingAdmin);
-    	}
+            }
 	}
 	
 	public void deleteAdmin(int id) {
