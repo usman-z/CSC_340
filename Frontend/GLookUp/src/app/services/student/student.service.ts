@@ -104,4 +104,17 @@ export class StudentService {
         return this.http.delete(url);
   }
 
+  sendStudentEmail(receiverName: string, receiverEmail: string) {
+    const url = 'http://localhost:8080/email/send';
+
+    const requestData = {
+      "to": receiverEmail,
+      "subject": "GLookUp | Approved Account ",
+      "body": "Hey "+receiverName+",\n\n"+"Your account Was approved. We would like to invite you to collaborate on a project and your rate fellow classmates through GLookUp. Thank you, and Happy collaborating and rating!\n\nBest regards,\nGLookUp"
+    };
+    
+    return this.http.post<StudentData>(url, requestData);
+
+  }
+
 }

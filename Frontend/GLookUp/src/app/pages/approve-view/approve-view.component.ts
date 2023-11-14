@@ -13,6 +13,7 @@ export class ApproveViewComponent {
   admins: any[] = [];
   student: any[] = [];
 
+
   constructor(private studentService: StudentService, private adminService: AdminService, private router: Router) {}
 
   ngOnInit() {
@@ -42,20 +43,30 @@ export class ApproveViewComponent {
         },
         (error) => {
           console.error(`Error approving admin with ID ${adminId}: ${error}`);
-          // Handle error as needed.
         }
       );
     }
 
     //  iterate over the selected students
     for (const student of selectedStudents) {
+      const studentName = student.name;
       const studentId = student.id;
+      const studentEmail = student.email;
       this.studentService.updateStudentApprovalStatus(studentId).subscribe(
         () => {
           console.log(`Student with ID ${studentId} approved successfully.`);
         },
         (error) => {
           console.error(`Error approving student with ID ${studentId}: ${error}`);
+        }
+      );
+
+      this.studentService.sendStudentEmail(studentName,studentEmail).subscribe(
+        () => {
+          console.log(`Student with ID ${studentId} emailed successfully.`);
+        },
+        (error) => {
+          console.error(`Error emailing student with ID ${studentId}: ${error}`);
         }
       );
     }
@@ -83,12 +94,10 @@ export class ApproveViewComponent {
         },
         (error) => {
           console.error(`Error rejecting admin with ID ${adminId}: ${error}`);
-          // Handle error as needed.
         }
       );
     }
 
-    //  iterate over the selected students
     for (const student of selectedStudents) {
       const studentId = student.id;
       this.studentService.deleteStudent(student,studentId).subscribe(
