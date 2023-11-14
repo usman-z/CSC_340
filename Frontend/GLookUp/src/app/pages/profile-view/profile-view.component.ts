@@ -101,4 +101,8 @@ export class ProfileViewComponent{
       }
     });
    }
+
+   deleteStudent() {
+    
+   }
 }

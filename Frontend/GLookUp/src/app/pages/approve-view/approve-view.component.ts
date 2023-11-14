@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin/admin.service';
 import { StudentService } from 'src/app/services/student/student.service';
 
@@ -12,7 +13,7 @@ export class ApproveViewComponent {
   admins: any[] = [];
   student: any[] = [];
 
-  constructor(private studentService: StudentService, private adminService: AdminService) {}
+  constructor(private studentService: StudentService, private adminService: AdminService, private router: Router) {}
 
   ngOnInit() {
     this.adminService.getAllAdmin().subscribe(
@@ -62,6 +63,12 @@ export class ApproveViewComponent {
     // Reset selection after approval
     this.admins.forEach(admin => (admin.selected = false));
     this.student.forEach(student => (student.selected = false));
+
+    this.router.navigate(['/feedback'], {
+      queryParams: { loggedIn: "Admin", response: "success" }
+    }).catch(error => {
+      console.error('Navigation error:', error);
+    });
   }
 
   reject(): void {
@@ -97,5 +104,11 @@ export class ApproveViewComponent {
     // Reset selection after approval
     this.admins.forEach(admin => (admin.selected = false));
     this.student.forEach(student => (student.selected = false));
+
+    this.router.navigate(['/feedback'], {
+      queryParams: { loggedIn: "Admin", response: "success" }
+    }).catch(error => {
+      console.error('Navigation error:', error);
+    });
   }
 }

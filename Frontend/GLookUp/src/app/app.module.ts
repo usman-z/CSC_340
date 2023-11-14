@@ -19,6 +19,7 @@ import { CollaborateViewComponent } from './pages/collaborate-view/collaborate-v
 import { RateViewComponent } from './pages/rate-view/rate-view.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { ApproveViewComponent } from './pages/approve-view/approve-view.component';
+import { FeedbackComponent } from './components/feedback/feedback.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ApproveViewComponent } from './pages/approve-view/approve-view.componen
     CollaborateViewComponent,
     RateViewComponent,
     StarRatingComponent,
-    ApproveViewComponent
+    ApproveViewComponent,
+    FeedbackComponent
   ],
   imports: [
     BrowserModule,

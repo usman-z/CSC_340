@@ -16,7 +16,7 @@ export class CollaborateViewComponent {
   receiver?: StudentData
   sender?: StudentData
   info: string = "Sending Invitation to Collaborate..."
-  private lastSentTimeKey = 'lastSentTime';
+  requestSent: string = 'False';
 
   constructor(private route: ActivatedRoute, private emailService: EmailService, private studentService: StudentService, private router: Router) {}
 
@@ -26,21 +26,16 @@ export class CollaborateViewComponent {
       this.loggedIn = params['loggedIn'];
     });
 
-    const lastSentTime = localStorage.getItem(this.lastSentTimeKey);
+    const sent = localStorage.getItem(this.requestSent);
 
-    if (lastSentTime) {
-      const currentTime = new Date().getTime();
-      const timeSinceLastSent = currentTime - parseInt(lastSentTime, 10);
-      
-      if (timeSinceLastSent < 24 * 60 * 60 * 1000) {
+    if (sent == 'False') {
         this.info = 'Collaboration request pending';
         return;
-      }
     }
 
     this.sendEmail();
 
-    localStorage.setItem(this.lastSentTimeKey, new Date().getTime().toString());
+    localStorage.setItem(this.requestSent, 'True');
   }
 
   private sendEmail() {

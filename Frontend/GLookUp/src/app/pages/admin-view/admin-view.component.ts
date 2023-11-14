@@ -62,7 +62,7 @@ export class AdminViewComponent {
         }
         else{
           this.router.navigate(['/profile'], {
-            queryParams: { search: this.student.name, loggedIn: this.studentLoggedInName }
+            queryParams: { search: this.student.name, loggedIn: "Admin" }
           }).catch(error => {
             console.error('Navigation error:', error);
           });
@@ -81,9 +81,7 @@ export class AdminViewComponent {
   }
 
   approve() {
-    this.router.navigate(['/approve'], {
-      queryParams: { name: this.adminLoggedInName }
-    }).catch(error => {
+    this.router.navigate(['/approve'], {}).catch(error => {
       console.error('Navigation error:', error);
     });
   }

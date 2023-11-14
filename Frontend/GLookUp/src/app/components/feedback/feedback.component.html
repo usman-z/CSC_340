@@ -1,0 +1,12 @@
+<div class="content">
+    <div class="img">
+        <img *ngIf="response == 'success'" class="spartan" src="../../../assets/check-mark.jpeg" alt="">
+        <img *ngIf="response != 'success'" class="spartan" src="../../../assets/error.png" alt="">
+    </div>
+    <div class="message">
+        <p>Status: <span class="info">{{ message }}</span></p>
+    </div>
+    <div class="button">
+        <app-custom-button (click)="goHome()" buttonName="Go Home"></app-custom-button>
+    </div>
+</div>
