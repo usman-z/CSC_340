@@ -17,6 +17,7 @@ export class SignupViewComponent {
   email: string = ''
   github: string = ''
   password: string = ''
+  error: string = ''
 
   constructor(private adminService: AdminService, private studentService: StudentService, private router: Router) {}
 
@@ -27,17 +28,22 @@ export class SignupViewComponent {
   }
 
   onSubmitAdmin() {
-    console.log("admin")
-    this.adminService.addAdmin(this.name, this.email, this.password).subscribe(
-      response => {
-        this.router.navigate(['/']).catch(error => {
-          console.error('Navigation error:', error);
-        });
-      }
-    );
+    if (this.name != '' && this.email != '' && this.password != ''){
+      this.adminService.addAdmin(this.name, this.email, this.password).subscribe(
+        response => {
+          this.router.navigate(['/']).catch(error => {
+            console.error('Navigation error:', error);
+          });
+        }
+      );
+    }
+    else {
+      this.error = 'All information is Required!'
+    }
   }
 
   onSubmitStudent() {
+    if (this.name != '' && this.github != '' && this.password != ''){
       this.studentService.addStudent(this.name, this.email, this.password, this.github).subscribe(
         response => {
           this.router.navigate(['/']).catch(error => {
@@ -45,6 +51,10 @@ export class SignupViewComponent {
           });
         }
       );
+    }
+    else {
+      this.error = 'All information is Required!'
+    }
   }
 
 }
