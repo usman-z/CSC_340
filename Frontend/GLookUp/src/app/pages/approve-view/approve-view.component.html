@@ -2,8 +2,9 @@
     <div class="backButton">
         <app-back-button></app-back-button>
     </div>
-    
-    <!-- Display Admins -->
+
+    <h3>New Students</h3>
+
     <h2>Admins</h2>
     <ul>
         <li *ngFor="let admin of admins">
@@ -11,13 +12,15 @@
         </li>
     </ul>
 
-    <!-- Display Students -->
     <h2>Students</h2>
     <ul>
         <li *ngFor="let student of student">
-            <input type="checkbox" [(ngModel)]="student.selected" /> {{ student.name }} - {{ student.email }}
+            <input type="checkbox" [(ngModel)]="student.selected" /> {{ student.name }} - {{ student.email }} - {{ student.github }}
         </li>
     </ul>
 
-    <button (click)="approve()">Approve</button>
+    <div class="button-container">
+        <button class="approve" (click)="approve()">Approve</button>
+        <button class="reject" (click)="reject()">Reject</button>
+    </div>
 </div>

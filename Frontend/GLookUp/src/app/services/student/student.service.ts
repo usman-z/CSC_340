@@ -99,4 +99,9 @@ export class StudentService {
     return this.http.get<StudentData>(url);
   }
 
+  deleteStudent(student: StudentData,studentId: number): Observable<any> {
+    const url = `http://localhost:8080/student/delete/${studentId}`;
+        return this.http.delete(url);
+  }
+
 }

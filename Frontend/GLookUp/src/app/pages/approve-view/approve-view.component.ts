@@ -17,13 +17,13 @@ export class ApproveViewComponent {
   ngOnInit() {
     this.adminService.getAllAdmin().subscribe(
       (response: any) => {
-        this.admins = response.map((admin: any) => ({ ...admin, selected: false }));
+        this.admins = response.filter((admin: { approved: any; }) => !admin.approved);
       }
     );
 
     this.studentService.getAllStudent().subscribe(
       (response: any) => {
-        this.student = response.map((student: any) => ({ ...student, selected: false }));
+        this.student = response.filter((student: { approved: any; }) => !student.approved);
       }
     );
   }
@@ -32,7 +32,7 @@ export class ApproveViewComponent {
     const selectedAdmins = this.admins.filter(admin => admin.selected);
     const selectedStudents = this.student.filter(student => student.selected);
 
-    // backend supports batch updates, you can iterate over the selected admins
+    //  iterate over the selected admins
     for (const admin of selectedAdmins) {
       const adminId = admin.id;
       this.adminService.updateAdminApprovalStatus(admin,adminId).subscribe(
@@ -46,6 +46,7 @@ export class ApproveViewComponent {
       );
     }
 
+    //  iterate over the selected students
     for (const student of selectedStudents) {
       const studentId = student.id;
       this.studentService.updateStudentApprovalStatus(studentId).subscribe(
@@ -57,5 +58,44 @@ export class ApproveViewComponent {
         }
       );
     }
+
+    // Reset selection after approval
+    this.admins.forEach(admin => (admin.selected = false));
+    this.student.forEach(student => (student.selected = false));
+  }
+
+  reject(): void {
+    const selectedAdmins = this.admins.filter(admin => admin.selected);
+    const selectedStudents = this.student.filter(student => student.selected);
+
+    for (const admin of selectedAdmins) {
+      const adminId = admin.id;
+      this.adminService.deleteAdmin(admin,adminId).subscribe(
+        () => {
+          console.log(`Admin with ID ${adminId} rejected successfully.`);
+        },
+        (error) => {
+          console.error(`Error rejecting admin with ID ${adminId}: ${error}`);
+          // Handle error as needed.
+        }
+      );
+    }
+
+    //  iterate over the selected students
+    for (const student of selectedStudents) {
+      const studentId = student.id;
+      this.studentService.deleteStudent(student,studentId).subscribe(
+        () => {
+          console.log(`Student with ID ${studentId} rejected successfully.`);
+        },
+        (error) => {
+          console.error(`Error rejecting student with ID ${studentId}: ${error}`);
+        }
+      );
+    }
+
+    // Reset selection after approval
+    this.admins.forEach(admin => (admin.selected = false));
+    this.student.forEach(student => (student.selected = false));
   }
 }

@@ -68,4 +68,9 @@ export class AdminService {
     return this.http.get<AdminData>(url);
   }
 
+  deleteAdmin(admin: AdminData,adminId: number): Observable<any> {
+    const url = `http://localhost:8080/admin/delete/${adminId}`;
+        return this.http.delete(url);
+  }
+
 }
