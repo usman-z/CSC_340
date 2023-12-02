@@ -13,6 +13,7 @@ export class ListViewComponent {
   studentData?: StudentData[]; 
   searchName: string = ''
   loggedIn: string = ''
+  resultsFound: boolean = false
 
   constructor(private route: ActivatedRoute, private router: Router, private studentService: StudentService) {}
 
@@ -24,6 +25,11 @@ export class ListViewComponent {
       this.studentService.getStudentsByName(this.searchName).subscribe({
         next: (response) => {
           this.studentData = response;
+          for (let student of response) {
+            if(student.approved == true){
+              this.resultsFound = true
+            }
+          }
         }
       });
     });

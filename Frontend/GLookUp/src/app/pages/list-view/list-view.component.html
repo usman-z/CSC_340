@@ -1,9 +1,12 @@
 <div class="content">
   <app-back-button></app-back-button>
   <h3>Search results</h3>
-  <div *ngIf="studentData">
+  <div *ngIf="resultsFound">
     <div class="content" *ngFor="let student of studentData">
-      <app-list [studentId]="student.id" [loggedIn]="loggedIn"></app-list>
+      <app-list *ngIf="student.approved" [studentId]="student.id" [loggedIn]="loggedIn"></app-list>
     </div>
+  </div>
+  <div class="noStudentData" *ngIf="!resultsFound">
+    <p>No results found for "{{searchName}}"</p>
   </div>
 </div>

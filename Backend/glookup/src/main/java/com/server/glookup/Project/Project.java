@@ -24,6 +24,14 @@ public class Project {
 	@JsonProperty("collaboratorA")
 	private int collaborator_a;
 	
+	public int getPrimaryKey() {
+		return primaryKey;
+	}
+
+	public void setPrimaryKey(int primaryKey) {
+		this.primaryKey = primaryKey;
+	}
+
 	@JsonProperty("collaboratorB")
 	private int collaborator_b;
 	

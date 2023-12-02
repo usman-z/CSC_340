@@ -102,7 +102,18 @@ export class StudentService {
     };
     
     return this.http.post<StudentData>(url, requestData);
+  }
 
+  newAccountEmail(receiverName: string, receiverEmail: string) {
+    const url = 'http://localhost:8080/email/send';
+
+    const requestData = {
+      "to": receiverEmail,
+      "subject": "GLookUp | Account Approval Pending",
+      "body": "Hey "+receiverName+",\n\n"+"Thank you for creating an account with GLookUp, your account is currently pending approval and will shortly be approved by our admins. Upon account approval, you will receive an account approved email from us.\n\nBest regards,\nGLookUp"
+    };
+    
+    return this.http.post<StudentData>(url, requestData);
   }
 
 }

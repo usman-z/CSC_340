@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GithubRepositorys, GithubUser } from 'src/app/models/Github/github.model';
 import { GithubService } from 'src/app/services/github/github.service';
-import { Location } from '@angular/common';
 import { StudentService } from 'src/app/services/student/student.service';
 import { AdminService } from 'src/app/services/admin/admin.service';
+import { ProjectService } from 'src/app/services/project/project.service';
+import { StudentData } from 'src/app/models/Student/student.model';
 
 
 @Component({
@@ -21,8 +22,11 @@ export class ProfileViewComponent{
   githubId: string = ''
   errorMessage: string = ''
   searchId: number = 0
+  numberOfCollaborators: number = 0
+  collaboratorNames: string[] = []
+  isCollaboratorListVisible = false;
 
-  constructor(private route: ActivatedRoute, private studentService: StudentService, private adminService: AdminService, private githubService: GithubService, private router: Router) {}
+  constructor(private route: ActivatedRoute, private studentService: StudentService, private adminService: AdminService, private githubService: GithubService, private router: Router, private projectService: ProjectService) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -37,6 +41,27 @@ export class ProfileViewComponent{
         }
       });
     });
+
+    this.projectService.getCollaborators(this.searchId).subscribe({
+      next: (response) => {
+        this.numberOfCollaborators = response.length
+        for(let studentId of response) {
+          this.studentService.getStudentById(studentId).subscribe({
+            next: (response) => {
+              this.collaboratorNames.push(response.name);
+            }
+          });
+        }
+      }
+    });
+  }
+
+  showCollaboratorList() {
+    this.isCollaboratorListVisible = true;
+  }
+
+  hideCollaboratorList() {
+    this.isCollaboratorListVisible = false;
   }
 
   private getGithubAccount(githubId: string) {

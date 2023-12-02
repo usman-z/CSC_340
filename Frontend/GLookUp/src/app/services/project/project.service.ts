@@ -28,4 +28,14 @@ export class ProjectService {
     
         return this.http.post(url, requestData);
     }
+
+    markDone(projectId: number) {
+        const url = `${this.baseUrl}/done/${projectId}`;
+        return this.http.get<Project>(url);
+    }
+
+    getCollaborators(studentId: number) {
+        const url = `${this.baseUrl}/collaborators/${studentId}`;
+        return this.http.get<number[]>(url);
+    }
 }

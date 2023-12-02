@@ -19,6 +19,19 @@
         </div>
         <app-custom-button *ngIf="loggedIn != 'Admin'" class="rateButton" (click)="rateStudent()" buttonName="Rate"></app-custom-button>
         <app-custom-button *ngIf="loggedIn == 'Admin'" class="deleteButton" (click)="deleteStudent()" buttonName="Delete"></app-custom-button>
+        <div *ngIf="numberOfCollaborators!=0 && loggedIn != 'Admin'" class="collaboratorImages">
+            <img src="../../../assets/profile-icon.jpeg" alt="">
+            <p (mouseenter)="showCollaboratorList()" (mouseleave)="hideCollaboratorList()">+{{ numberOfCollaborators }} collaborators</p>
+            <div class="collaboratorNamesOverlay" *ngIf="isCollaboratorListVisible" (mouseleave)="hideCollaboratorList()">
+              <div class="collaboratorNames">
+                <p *ngFor="let collaboratorName of collaboratorNames">{{ collaboratorName }}</p>
+              </div>
+            </div>
+        </div>
+        <div *ngIf="numberOfCollaborators==0 && loggedIn != 'Admin'" class="collaboratorImages">
+            <img src="../../../assets/profile-icon.jpeg" alt="">
+            <p>No Collaborators</p>
+        </div>
         <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
     </div>
     <div *ngIf="githubUserData" class="githubContent">

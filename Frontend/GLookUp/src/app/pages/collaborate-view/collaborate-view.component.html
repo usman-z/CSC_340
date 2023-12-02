@@ -1,29 +1,36 @@
 <div class="content">
     <app-back-button></app-back-button>
-    <h2>Start a New Collaborations</h2>
-    <div class="questionaire">
-        <p>New Project Information</p>
-        <form (ngSubmit)="onSubmit()" #userForm="ngForm" class="project">
-          <input class="projectName" type="text" placeholder="Project Name" [(ngModel)]="projectName" name="projectName" required>
-          <input class="projectDescription" type="text" placeholder="Breif description" [(ngModel)]="projectDescription" name="projectDescription" required>
-          <input class="projectMessage" type="text" placeholder="Optional message" [(ngModel)]="projectMessage" name="projectMessage" required>
-          <app-custom-button type="submit" buttonName="Send Invite"></app-custom-button>
-        </form>
-      </div>
-    <h2>Peniding Collaborations</h2>
-    <div *ngFor="let project of pendingProjects">
-        <div>
-          <p>Project Name: {{ project.projectName }}</p>
-          <p>Status: {{ project.status }}</p>
-          <p>Project Collaborator: {{ project.collaborator }}</p>
-          <label><input type="radio" name="done" value="done">Done</label>
-        </div>
+    <div class="addProject">
+        <h2>Start a New Collaboration</h2>
+        <div class="questionaire">
+            <p>New Project Information</p>
+            <form (ngSubmit)="onSubmit()" #userForm="ngForm" class="project">
+              <input class="projectName" type="text" placeholder="Project Name" [(ngModel)]="projectName" name="projectName" required>
+              <input class="projectDescription" type="text" placeholder="Breif description" [(ngModel)]="projectDescription" name="projectDescription" required>
+              <input class="projectMessage" type="text" placeholder="Optional message" [(ngModel)]="projectMessage" name="projectMessage" required>
+              <app-custom-button type="submit" buttonName="Send Invite"></app-custom-button>
+            </form>
+          </div>
     </div>
-    <h2>Previous Collaborations</h2>
-    <div *ngFor="let project of completedProjects">
-        <div>
-          <p>Project Name: {{ project.projectName }}</p>
-          <p>Project Collaborator: {{ project.collaborator }}</p>
-        </div>
+    <div class="pendingProjects">
+        <h2>Peniding Collaborations</h2>
+        <ul>
+            <li *ngFor="let project of pendingProjects">
+              <div class="project">
+                <p class="projectName">Project Name: {{ project.projectName }}</p>
+                <label><input  class="checkBox" type="checkbox" (change)="onCheckboxChange(project.projectId)">Mark Complete</label>
+              </div>
+            </li>
+          </ul>
+    </div>
+    <div class="doneProjects">
+        <h2>Previous Collaborations</h2>
+        <ul>
+          <li *ngFor="let project of completedProjects">
+            <div class="project">
+              <p class="projectName">Project Name: {{ project.projectName }}</p>
+            </div>
+          </li>
+        </ul>
     </div>
 </div>

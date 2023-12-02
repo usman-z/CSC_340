@@ -7,6 +7,17 @@ import lombok.NoArgsConstructor;
 
 public class Collaborator {
 	
+	@JsonProperty("projectId")
+	private int projectId;
+	
+	public int getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
+	}
+
 	@JsonProperty("collaborator")
 	private int collaborator;
 	
@@ -20,7 +31,8 @@ public class Collaborator {
 		
 	}
 
-	public Collaborator(int collaborator, String projectName, String status) {
+	public Collaborator(int projectId, int collaborator, String projectName, String status) {
+		this.projectId = projectId;
 		this.collaborator = collaborator;
 		this.projectName = projectName;
 		this.status = status;

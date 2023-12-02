@@ -17,8 +17,8 @@ export class CollaborateViewComponent {
   collaborateWith: number = 0
   receiver?: StudentData
   sender?: StudentData
-  pendingProjects?: Project[]
-  completedProjects?: Project[]
+  pendingProjects: Project[] = []
+  completedProjects: Project[] = []
 
   projectName: string = ''
   projectDescription: string = ''
@@ -38,8 +38,11 @@ export class CollaborateViewComponent {
         }
       });
     });
+  }
 
-
+  onCheckboxChange(projectId: number): void {
+    this.projectService.markDone(projectId).subscribe();
+    location.reload();
   }
 
   onSubmit() {
@@ -55,10 +58,13 @@ export class CollaborateViewComponent {
       }
     });
 
-    this.projectService.newProject(this.loggedIn, this.collaborateWith, this.projectName, 'pending').subscribe({
-      next: (response) => {
+    this.projectService.newProject(this.loggedIn, this.collaborateWith, this.projectName, 'pending').subscribe();
+    location.reload();
+  }
 
-      }
+  viewProfile(collaboratorId: number) {
+    this.router.navigate(['/profile'], {
+      queryParams: { search: collaboratorId, loggedIn: this.loggedIn }
     });
   }
 

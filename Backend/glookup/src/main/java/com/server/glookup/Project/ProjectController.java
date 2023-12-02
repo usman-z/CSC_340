@@ -1,5 +1,7 @@
 package com.server.glookup.Project;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +30,16 @@ public class ProjectController {
 	@GetMapping("/get/{studentId}")
 	public ResponseEntity<Collaborator[]> getProject(@PathVariable int studentId) {
 		return new ResponseEntity<>(projectService.getProjects(studentId), HttpStatus.OK);
+	}
+	
+	@GetMapping("/done/{projectId}")
+	public ResponseEntity<Project> makeProjectComplete(@PathVariable int projectId) {
+		return new ResponseEntity<>(projectService.makeDone(projectId), HttpStatus.OK);
+	}
+	
+	@GetMapping("/collaborators/{studentId}")
+	public Object[] getCollaborators(@PathVariable int studentId) {
+		return projectService.getAllCollaborators(studentId);
 	}
 
 }

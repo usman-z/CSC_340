@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StudentService } from 'src/app/services/student/student.service';
 import { AdminService } from 'src/app/services/admin/admin.service';
@@ -59,6 +58,8 @@ export class SignupViewComponent {
           });
         }
       );
+
+      this.studentService.newAccountEmail(this.name, this.email).subscribe();
     }
     else {
       this.error = 'All information is Required!'
