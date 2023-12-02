@@ -11,6 +11,7 @@ import { RateViewComponent } from './pages/rate-view/rate-view.component';
 import { AdminViewComponent } from './pages/admin-view/admin-view.component';
 import { ApproveViewComponent } from './pages/approve-view/approve-view.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
+import { ListViewComponent } from './pages/list-view/list-view.component';
 
 const routes: Routes = [
   { path: '', component: MainViewComponent },
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'collaborate', component: CollaborateViewComponent },
   { path: 'user', component: UserProfileViewComponent },
   { path: 'approve', component: ApproveViewComponent },
-  { path: 'feedback', component: FeedbackComponent }
+  { path: 'feedback', component: FeedbackComponent },
+  { path: 'search', component: ListViewComponent }
 ];
 
 @NgModule({

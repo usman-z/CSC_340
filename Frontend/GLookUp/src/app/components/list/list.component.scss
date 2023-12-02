@@ -1,0 +1,70 @@
+.box {
+    border: 1px solid antiquewhite;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); 
+    cursor: pointer;
+    .left {
+        width: 25%;
+        padding-top: .5em;
+        border-right: 1px solid black;
+        img {
+            width: 5em;
+            display: flex;
+            margin: auto;
+        }
+    }
+    .right {
+        width: 75%;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: .5em;
+        p {
+            text-align: center;
+        }
+        .name {
+            display: flex;
+            width: fit-content;
+            height: fit-content;
+            padding: 0;
+            margin: auto;
+            margin-bottom: 1em;
+            p {
+                font-weight: bold;
+                font-size: xx-large;
+                padding: 0;
+                margin: 0;
+            }
+        }
+        .innerRight {
+            display: flex;
+            flex-direction: row;
+            .innerRightLeft {
+                width: 50%;
+                border-right: 1px solid black;
+                .numericalRating {
+                    font-size: large;
+                    font-weight: bold;
+                    margin: 0;
+                }
+                .basedRating {
+                    font-size: medium;
+                    margin: 0;
+                }
+            }
+            .innerRightRight {
+                width: 50%;
+                margin-left: 1em;
+                .collabPercentage {
+                    font-size: large;
+                    font-weight: bold;
+                    margin: 0;
+                }
+                .collabText {
+                    font-size: medium;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}  

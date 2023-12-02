@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Project } from 'src/app/models/Project/project.model';
 import { StudentData } from 'src/app/models/Student/student.model';
 import { EmailService } from 'src/app/services/email/email.service';
+import { ProjectService } from 'src/app/services/project/project.service';
 import { StudentService } from 'src/app/services/student/student.service';
 
 @Component({
@@ -11,50 +13,51 @@ import { StudentService } from 'src/app/services/student/student.service';
 })
 export class CollaborateViewComponent {
 
-  loggedIn: string = ''
-  collaborateWith: string = ''
+  loggedIn: number = 0
+  collaborateWith: number = 0
   receiver?: StudentData
   sender?: StudentData
-  info: string = "Sending Invitation to Collaborate..."
-  requestSent: string = 'False';
+  pendingProjects?: Project[]
+  completedProjects?: Project[]
 
-  constructor(private route: ActivatedRoute, private emailService: EmailService, private studentService: StudentService, private router: Router) {}
+  projectName: string = ''
+  projectDescription: string = ''
+  projectMessage: string = ''
+
+  constructor(private route: ActivatedRoute, private emailService: EmailService, private studentService: StudentService, private router: Router, private projectService: ProjectService) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.collaborateWith = params['collaborate'];
       this.loggedIn = params['loggedIn'];
+
+      this.projectService.getProjects(this.loggedIn).subscribe({
+        next: (response) => {
+          this.pendingProjects = response.filter(project => project.status === 'pending');
+          this.completedProjects = response.filter(project => project.status === 'done');
+        }
+      });
     });
 
-    const sent = localStorage.getItem(this.requestSent);
 
-    if (sent == 'False') {
-        this.info = 'Collaboration request pending';
-        return;
-    }
-
-    this.sendEmail();
-
-    localStorage.setItem(this.requestSent, 'True');
   }
 
-  private sendEmail() {
-    this.studentService.getStudentByName(this.loggedIn).subscribe({
+  onSubmit() {
+    this.studentService.getStudentById(this.loggedIn).subscribe({
       next: (response) => {
         const sender = response;
-        this.studentService.getStudentByName(this.collaborateWith).subscribe({
+        this.studentService.getStudentById(this.collaborateWith).subscribe({
           next: (response) => {
             const receiver = response;
-            this.emailService.sendEmail(receiver.name, receiver.email, sender.name, sender.email).subscribe({
-              next: (response) => {
-                this.info = 'Collaboration request sent';
-              },
-              error: (error) => {
-                console.log('ERROR');
-              }
-            });
+            // this.emailService.sendEmail(receiver.name, receiver.email, sender.name, sender.email, this.projectName, this.projectDescription, this.projectMessage).subscribe();
           }
         });
+      }
+    });
+
+    this.projectService.newProject(this.loggedIn, this.collaborateWith, this.projectName, 'pending').subscribe({
+      next: (response) => {
+
       }
     });
   }

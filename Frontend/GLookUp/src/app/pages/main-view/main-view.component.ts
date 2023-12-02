@@ -11,7 +11,7 @@ import { StudentService } from 'src/app/services/student/student.service';
 export class MainViewComponent {
 
   title = 'GLookUp';
-  student?: StudentData;
+  student?: StudentData[];
   studentName: string = '';
   errorMessage: string = ''
 
@@ -19,29 +19,12 @@ export class MainViewComponent {
 
   searchStudent() {
     if (this.studentName.trim() !== '') {
-      this.getStudentByName(this.studentName);
+      this.router.navigate(['/search'], {
+        queryParams: { search: this.studentName, loggedIn: '' }
+      }).catch(error => {
+        console.error('Navigation error:', error);
+      });
     }
-  }
-
-  private getStudentByName(name: string) {
-    this.studentService.getStudentByName(name).subscribe({
-      next: (response) => {
-        this.student = response;
-        if (!this.student.approved) {
-          this.errorMessage = 'No Student found: '+name;
-        }
-        else{
-          this.router.navigate(['/profile'], {
-            queryParams: { search: this.student.name, loggedIn: '' }
-          }).catch(error => {
-            console.error('Navigation error:', error);
-          });
-        }
-      },
-      error: (error) => {
-        this.errorMessage ='No Student found: '+name;
-      }
-    });
   }
 
   login() {

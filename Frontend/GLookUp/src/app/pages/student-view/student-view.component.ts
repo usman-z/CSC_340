@@ -11,7 +11,8 @@ import { StudentService } from 'src/app/services/student/student.service';
 export class StudentViewComponent {
 
   studentLoggedIn?: StudentData;
-  studentLoggedInName: string = '';
+  studentLoggedInId: number = 0;
+  studentId: number = 0
   studentName: string = '';
   student?: StudentData;
   errorMessage: string = '';
@@ -20,12 +21,12 @@ export class StudentViewComponent {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      const studentName = params['loggedIn'];
+      this.studentId = params['loggedIn'];
 
-      this.studentService.getStudentByName(studentName).subscribe({
+      this.studentService.getStudentById(this.studentId).subscribe({
         next: (response) => {
           this.studentLoggedIn = response;
-          this.studentLoggedInName = response.name;
+          this.studentLoggedInId = response.id;
         }
       });
     });
@@ -33,36 +34,12 @@ export class StudentViewComponent {
 
   searchStudent() {
     if (this.studentName.trim() !== '') {
-      this.getStudentByName(this.studentName);
+      this.router.navigate(['/search'], {
+        queryParams: { search: this.studentName, loggedIn: this.studentId }
+      }).catch(error => {
+        console.error('Navigation error:', error);
+      });
     }
-  }
-
-  private getStudentByName(name: string) {
-    this.studentService.getStudentByName(name).subscribe({
-      next: (response) => {
-        this.student = response;
-        if (!this.student.approved) {
-          this.errorMessage = 'No Student found: '+name;
-        }
-        else if(name == this.studentLoggedInName) {
-          this.router.navigate(['/user'], {
-            queryParams: { name: this.student.name }
-          }).catch(error => {
-            console.error('Navigation error:', error);
-          });
-        }
-        else{
-          this.router.navigate(['/profile'], {
-            queryParams: { search: this.student.name, loggedIn: this.studentLoggedInName }
-          }).catch(error => {
-            console.error('Navigation error:', error);
-          });
-        }
-      },
-      error: (error) => {
-        this.errorMessage = 'No Student found: '+name;
-      }
-    });
   }
 
   logOut() {
@@ -73,7 +50,7 @@ export class StudentViewComponent {
 
   myProfile() {
     this.router.navigate(['/user'], {
-      queryParams: { name: this.studentLoggedInName }
+      queryParams: { studentId: this.studentLoggedInId }
     }).catch(error => {
       console.error('Navigation error:', error);
     });

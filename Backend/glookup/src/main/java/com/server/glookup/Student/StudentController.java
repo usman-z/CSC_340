@@ -34,12 +34,15 @@ public class StudentController {
     		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     
-    @GetMapping("/search/{studentName}")
-    public ResponseEntity<Student> getStudent(@PathVariable String studentName) {
-    	if (!studentService.getStudent(studentName).isEmpty())
-    		return new ResponseEntity<>(studentService.getStudent(studentName).get(), HttpStatus.OK);
-    	else
-    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @GetMapping("/searchStudents/{studentName}")
+    public ResponseEntity<List<Student>> getStudents(@PathVariable String studentName) {
+        List<Student> students = studentService.getStudents(studentName);
+
+        if (!students.isEmpty()) {
+            return ResponseEntity.ok(students);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
     
     @PostMapping("/search")

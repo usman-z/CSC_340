@@ -1,0 +1,20 @@
+<div class="box" (click)="openProfile()" *ngIf="student">
+    <div class="left">
+        <img src="../../../assets/profile-icon.jpeg" alt="image">
+    </div>
+    <div class="right">
+        <div class="name"><p *ngIf="student.name">{{ student.name }}</p></div>
+        <div class="innerRight">
+            <div class="innerRightLeft">
+                <p class="numericalRating" *ngIf="student.rating">{{ student.rating | number:'1.1-1' }}/5</p>
+                <p class="basedRating" *ngIf="student.total_ratings">Based on {{ student.total_ratings }} ratings</p>
+                <p class="basedRating" *ngIf="!student.rating && !student.total_ratings">No ratings</p>
+            </div>
+            <div class="innerRightRight">
+                <p class="collabPercentage" *ngIf="student.total_collaborators && student.yes_collaborators">{{ (student.yes_collaborators/student.total_collaborators)*100 | number:'1.0-0' }}%</p>
+                <p class="collabText" *ngIf="student.total_collaborators">would collaborate again</p>
+                <p class="collabText" *ngIf="!student.total_collaborators && !student.yes_collaborators">No collaborations</p>
+            </div>
+        </div>
+    </div>
+</div>

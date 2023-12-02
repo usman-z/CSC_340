@@ -1,12 +1,29 @@
 <div class="content">
     <app-back-button></app-back-button>
-    <div class="img">
-        <img class="spartan" src="../../../assets/collaborate.jpeg" alt="">
+    <h2>Start a New Collaborations</h2>
+    <div class="questionaire">
+        <p>New Project Information</p>
+        <form (ngSubmit)="onSubmit()" #userForm="ngForm" class="project">
+          <input class="projectName" type="text" placeholder="Project Name" [(ngModel)]="projectName" name="projectName" required>
+          <input class="projectDescription" type="text" placeholder="Breif description" [(ngModel)]="projectDescription" name="projectDescription" required>
+          <input class="projectMessage" type="text" placeholder="Optional message" [(ngModel)]="projectMessage" name="projectMessage" required>
+          <app-custom-button type="submit" buttonName="Send Invite"></app-custom-button>
+        </form>
+      </div>
+    <h2>Peniding Collaborations</h2>
+    <div *ngFor="let project of pendingProjects">
+        <div>
+          <p>Project Name: {{ project.projectName }}</p>
+          <p>Status: {{ project.status }}</p>
+          <p>Project Collaborator: {{ project.collaborator }}</p>
+          <label><input type="radio" name="done" value="done">Done</label>
+        </div>
     </div>
-    <div class="message">
-        <p>Status: <span class="info">{{ info }}</span></p>
-    </div>
-    <div class="button">
-        <app-custom-button (click)="goHome()" buttonName="Go Home"></app-custom-button>
+    <h2>Previous Collaborations</h2>
+    <div *ngFor="let project of completedProjects">
+        <div>
+          <p>Project Name: {{ project.projectName }}</p>
+          <p>Project Collaborator: {{ project.collaborator }}</p>
+        </div>
     </div>
 </div>

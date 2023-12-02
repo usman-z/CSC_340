@@ -21,7 +21,7 @@ export class AdminViewComponent {
 
   studentLoggedIn?: StudentData;
   studentLoggedInName: string = '';
-  student?: StudentData;
+  students?: StudentData[];
   errorMessage: string = '';
 
 
@@ -46,31 +46,11 @@ export class AdminViewComponent {
     }
   }
 
-  private getStudentByName(name: string) {
-    this.studentService.getStudentByName(name).subscribe({
-      next: (response) => {
-        this.student = response;
-        if (!this.student.approved) {
-          this.errorMessage = 'No Student found: '+name;
-        }
-        else if(name == this.studentLoggedInName) {
-          this.router.navigate(['/user'], {
-            queryParams: { name: this.student.name }
-          }).catch(error => {
-            console.error('Navigation error:', error);
-          });
-        }
-        else{
-          this.router.navigate(['/profile'], {
-            queryParams: { search: this.student.name, loggedIn: "Admin" }
-          }).catch(error => {
-            console.error('Navigation error:', error);
-          });
-        }
-      },
-      error: (error) => {
-        this.errorMessage = 'No Student found: '+name;
-      }
+  getStudentByName(name: string) {
+    this.router.navigate(['/search'], {
+      queryParams: { search: name, loggedIn: 'admin' }
+    }).catch(error => {
+      console.error('Navigation error:', error);
     });
   }
 

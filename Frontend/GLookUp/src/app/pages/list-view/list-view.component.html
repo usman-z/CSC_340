@@ -1,0 +1,9 @@
+<div class="content">
+  <app-back-button></app-back-button>
+  <h3>Search results</h3>
+  <div *ngIf="studentData">
+    <div class="content" *ngFor="let student of studentData">
+      <app-list [studentId]="student.id" [loggedIn]="loggedIn"></app-list>
+    </div>
+  </div>
+</div>

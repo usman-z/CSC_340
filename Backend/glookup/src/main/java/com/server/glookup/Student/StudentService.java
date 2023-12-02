@@ -23,6 +23,10 @@ public class StudentService {
 		return studentRepository.findByName(studentName);
 	}
 	
+	public List<Student> getStudents(String studentName) {
+		return studentRepository.findAllByName(studentName);
+	}
+	
 	public Student searchStudent(Student student) {
 	    Student existingStudent = studentRepository.findByUsernameAndPassword(student.getEmail(), student.getPassword());
 	    if (existingStudent != null) {

@@ -10,14 +10,7 @@ export class StudentService {
 
   constructor(private http: HttpClient) {}
 
-  getStudentByName(name: string) {
-    const apiUrl = 'http://localhost:8080/student/search/';
-    const url = `${apiUrl}${name}`;
-
-    return this.http.get<StudentData>(url);
-  }
-
-  searchStudent(username: string, password: string) {
+  searchStudent(username: string, password: string) { // by Username and Password
     const url = 'http://localhost:8080/student/search';
 
     const requestData = {
@@ -84,7 +77,12 @@ export class StudentService {
     );
   }
 
-  private getStudentById(studentId: number): Observable<StudentData> {
+  getStudentsByName(studentName: string) {
+    const url = `http://localhost:8080/student/searchStudents/${studentName}`;
+    return this.http.get<StudentData[]>(url);
+  }
+
+  getStudentById(studentId: number): Observable<StudentData> {
     const url = `http://localhost:8080/student/get/${studentId}`;
     return this.http.get<StudentData>(url);
   }

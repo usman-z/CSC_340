@@ -25,9 +25,9 @@ export class UserProfileViewComponent {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      const name = params['name'];
+      const studentId = params['studentId'];
 
-      this.studentService.getStudentByName(name).subscribe({
+      this.studentService.getStudentById(studentId).subscribe({
         next: (response) => {
           this.studentData = response;
           this.githubId = this.studentData.githubId;

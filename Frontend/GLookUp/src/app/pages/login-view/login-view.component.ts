@@ -32,7 +32,7 @@ export class LoginViewComponent {
           const student = response;
           if (student.approved == true) {
             this.router.navigate(['/studentView'], {
-              queryParams: { loggedIn: student.name }
+              queryParams: { loggedIn: student.id }
             }).catch(error => {
               console.error('Navigation error:', error);
             });
@@ -52,7 +52,7 @@ export class LoginViewComponent {
           const admin = response;
           if (admin.approved == true) {
             this.router.navigate(['/adminView'], {
-              queryParams: { loggedIn: admin.name }
+              queryParams: { loggedIn: 'admin' }
             }).catch(error => {
               console.error('Navigation error:', error);
             });

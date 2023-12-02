@@ -20,6 +20,8 @@ import { RateViewComponent } from './pages/rate-view/rate-view.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { ApproveViewComponent } from './pages/approve-view/approve-view.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
+import { ListViewComponent } from './pages/list-view/list-view.component';
+import { ListComponent } from './components/list/list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
     RateViewComponent,
     StarRatingComponent,
     ApproveViewComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    ListViewComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
