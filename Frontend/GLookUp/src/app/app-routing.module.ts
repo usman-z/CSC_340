@@ -12,6 +12,7 @@ import { AdminViewComponent } from './pages/admin-view/admin-view.component';
 import { ApproveViewComponent } from './pages/approve-view/approve-view.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { ListViewComponent } from './pages/list-view/list-view.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
 
 const routes: Routes = [
   { path: '', component: MainViewComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path: 'user', component: UserProfileViewComponent },
   { path: 'approve', component: ApproveViewComponent },
   { path: 'feedback', component: FeedbackComponent },
-  { path: 'search', component: ListViewComponent }
+  { path: 'search', component: ListViewComponent },
+  { path: 'notifications', component: NotificationsComponent }
 ];
 
 @NgModule({

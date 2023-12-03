@@ -1,0 +1,15 @@
+<div class="content">
+  <div class="backButton"><app-back-button></app-back-button></div>
+  <div class="pendingProjects">
+    <h1>All Notifications</h1>
+    <h3>Pending Collaborations</h3>
+    <ul>
+        <li *ngFor="let project of pendingProjects">
+          <div class="project">
+            <p class="projectName">Project Name: {{ project.projectName }}</p>
+            <label><input  class="checkBox" type="checkbox" (change)="onCheckboxChange(project.projectId)">Mark Complete</label>
+          </div>
+        </li>
+      </ul>
+  </div>
+</div>

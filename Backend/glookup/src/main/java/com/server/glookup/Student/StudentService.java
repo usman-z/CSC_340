@@ -68,7 +68,7 @@ public class StudentService {
 	
 	public void rateStudent(Rating rating) {
 		double newRating = rating.getRating();
-		Optional<Student> stu = getStudent(rating.getName());
+		Optional<Student> stu = getStudent(rating.getStudentId());
 		if(!stu.isEmpty()) {
 		    Student existingStudent = stu.get();
 		    if (existingStudent != null) {

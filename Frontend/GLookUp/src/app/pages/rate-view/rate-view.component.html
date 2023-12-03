@@ -1,11 +1,11 @@
 <div class="content">
     <div class="backButton"><app-back-button></app-back-button></div>
     <div class="rate">
-        <p>How would you rate your collaboration with {{rateStudent}}?</p>
+        <p>How would you rate your collaboration with {{studentBeingRated?.name}}?</p>
         <app-star-rating [(rating)]="userRating"></app-star-rating>
     </div>
     <div class="collaborate">
-        <p>Would you collaborate again with  {{rateStudent}}?</p>
+        <p>Would you collaborate again with  {{studentBeingRated?.name}}?</p>
         <label class="labelYes"><input type="radio" value="Yes" name="collaborateAgain" [(ngModel)]="collaborateAgain" (change)="onCollaborateAgain('Yes')">Yes</label>
         <label class="labelNo"><input type="radio" value="No" name="collaborateAgain" [(ngModel)]="collaborateAgain" (change)="onCollaborateAgain('No')">No</label>
     </div>

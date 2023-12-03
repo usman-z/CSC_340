@@ -16,8 +16,21 @@
             <div class="collab">
                 <p class="collabPercentage" *ngIf="studentData.total_collaborators && studentData.yes_collaborators">{{ (studentData.yes_collaborators/studentData.total_collaborators)*100 | number:'1.0-0' }}%</p>
                 <p class="collabText" *ngIf="studentData.total_collaborators">would collaborate again</p>
-                <p class="collabText" *ngIf="!studentData.total_collaborators && !studentData.yes_collaborators">No collaborations</p>
+                <p class="collabText" *ngIf="!studentData.total_collaborators && !studentData.yes_collaborators">No ratings</p>
             </div>
+        </div>
+        <div *ngIf="numberOfCollaborators!=0" class="collaboratorImages">
+            <img src="../../../assets/profile-icon.jpeg" alt="">
+            <p (mouseenter)="showCollaboratorList()" (mouseleave)="hideCollaboratorList()">+{{ numberOfCollaborators }} collaborators</p>
+            <div class="collaboratorNamesOverlay" *ngIf="isCollaboratorListVisible" (mouseleave)="hideCollaboratorList()">
+              <div class="collaboratorNames">
+                <p *ngFor="let collaboratorName of collaboratorNames">{{ collaboratorName }}</p>
+              </div>
+            </div>
+        </div>
+        <div *ngIf="numberOfCollaborators==0" class="collaboratorImages">
+            <img src="../../../assets/profile-icon.jpeg" alt="">
+            <p>No Collaborators</p>
         </div>
     </div>
     <div *ngIf="githubUserData" class="githubContent">

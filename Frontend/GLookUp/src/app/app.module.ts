@@ -22,6 +22,7 @@ import { ApproveViewComponent } from './pages/approve-view/approve-view.componen
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { ListViewComponent } from './pages/list-view/list-view.component';
 import { ListComponent } from './components/list/list.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ListComponent } from './components/list/list.component';
     ApproveViewComponent,
     FeedbackComponent,
     ListViewComponent,
-    ListComponent
+    ListComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,

@@ -41,21 +41,21 @@
           }
     }
     .pendingProjects, .doneProjects{
-        margin-bottom: 5em;
+      margin-bottom: 5em;
 
         h2{
             margin-bottom: 1.5em;
         }
 
         .project{
-            width: 85%;
+            width: 82%;
+            margin: auto;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
             p {
                 font-size: large;
-                font-weight:600;
                 font-style: italic;
                 display: inline-block;
             }

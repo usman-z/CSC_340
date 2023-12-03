@@ -1,6 +1,7 @@
-<div class="box" (click)="openProfile()" *ngIf="student">
+<div [ngClass]="{'ratingGreen': (student.rating > 3.5 && student.rating <= 5), 'ratingYellow': (student.rating > 2.5 && student.rating <= 3.5), 'ratingRed': (student.rating <= 2.5),'noRating': (!student.rating), 'box': true}" (click)="openProfile()" *ngIf="student">
     <div class="left">
-        <img src="../../../assets/profile-icon.jpeg" alt="image">
+        <div class="rating" *ngIf="student.rating"><p>{{ student.rating | number:'1.1-1' }}/5</p></div>
+        <div class="rating" *ngIf="!student.rating"><p>N/A</p></div>
     </div>
     <div class="right">
         <div class="name"><p *ngIf="student.name">{{ student.name }}</p></div>
@@ -12,8 +13,9 @@
             </div>
             <div class="innerRightRight">
                 <p class="collabPercentage" *ngIf="student.total_collaborators && student.yes_collaborators">{{ (student.yes_collaborators/student.total_collaborators)*100 | number:'1.0-0' }}%</p>
+                <p class="collabPercentage" *ngIf="student.total_collaborators && !student.yes_collaborators">0%</p>
                 <p class="collabText" *ngIf="student.total_collaborators">would collaborate again</p>
-                <p class="collabText" *ngIf="!student.total_collaborators && !student.yes_collaborators">No collaborations</p>
+                <p class="collabText" *ngIf="!student.total_collaborators && !student.yes_collaborators">No ratings</p>
             </div>
         </div>
     </div>

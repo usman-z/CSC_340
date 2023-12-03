@@ -1,0 +1,41 @@
+.content {
+    width: 50%;
+    margin: auto;
+    
+    h1 {
+        margin-top: 1em;
+        text-align: center;
+        margin-bottom: 2em;
+    }
+
+    h3 {
+        margin-top: 5em;
+        text-align: center;
+        margin-bottom: 2em;
+    }
+
+    .pendingProjects {
+        margin-bottom: 5em;
+
+        h2{
+            margin-bottom: 1.5em;
+        }
+
+        .project{
+            width: 82%;
+            margin: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            p {
+                font-size: large;
+                font-style: italic;
+                display: inline-block;
+            }
+            .checkBox{
+                
+            }
+        }
+    }
+}

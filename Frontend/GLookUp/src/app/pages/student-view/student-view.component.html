@@ -1,10 +1,11 @@
 <div class="mainContainer">
     <div class="buttons">
-        <div class="profile">
-            <button (click)="myProfile()" class="profileButton"><img src="../../../assets/profile-icon.jpeg" alt="" ></button>
+        <div class="left">
+          <button (click)="myProfile()" class="profileButton"><img src="../../../assets/profile-icon.jpeg" alt="" ></button>
         </div>
-        <div class="logOut">
-            <app-custom-button buttonName="Log Out" (click)="logOut()"></app-custom-button>
+        <div class="right">
+          <div class="notify"><button (click)="showNotifications()" [ngClass]="{'pendingProjects': (pendingProjects), 'notifyButton': true}"><img src="../../../assets/notify.png" alt="" ></button></div>
+          <div class="logO"><app-custom-button buttonName="Log Out" (click)="logOut()"></app-custom-button></div>
         </div>
     </div>
     <div class="mainContent">
@@ -17,7 +18,6 @@
                 <input class="search" type="text" placeholder="Search the G..." [(ngModel)]="studentName" name="studentName">
                 <button type="submit" class="submitButton"><img src="../../../assets/search-icon.png" alt="" ></button>
               </form>
-              <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
             </div>
           
             <div class="section">

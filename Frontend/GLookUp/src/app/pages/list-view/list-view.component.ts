@@ -22,16 +22,30 @@ export class ListViewComponent {
       this.searchName = params['search'];
       this.loggedIn = params['loggedIn'];
 
-      this.studentService.getStudentsByName(this.searchName).subscribe({
-        next: (response) => {
-          this.studentData = response;
-          for (let student of response) {
-            if(student.approved == true){
-              this.resultsFound = true
+      if (this.searchName == 'all') {
+        this.studentService.getAllStudent().subscribe({
+          next: (response) => {
+            this.studentData = response;
+            for (let student of response) {
+              if(student.approved == true){
+                this.resultsFound = true
+              }
             }
           }
-        }
-      });
+        });
+      }
+      else {
+        this.studentService.getStudentsByName(this.searchName).subscribe({
+          next: (response) => {
+            this.studentData = response;
+            for (let student of response) {
+              if(student.approved == true){
+                this.resultsFound = true
+              }
+            }
+          }
+        });
+      }
     });
   }
 

@@ -13,12 +13,11 @@
           </div>
     </div>
     <div class="pendingProjects">
-        <h2>Peniding Collaborations</h2>
+        <h2>Pending Collaborations</h2>
         <ul>
             <li *ngFor="let project of pendingProjects">
               <div class="project">
                 <p class="projectName">Project Name: {{ project.projectName }}</p>
-                <label><input  class="checkBox" type="checkbox" (change)="onCheckboxChange(project.projectId)">Mark Complete</label>
               </div>
             </li>
           </ul>

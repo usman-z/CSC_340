@@ -16,7 +16,18 @@ export class CollaborateViewComponent {
   loggedIn: number = 0
   collaborateWith: number = 0
   receiver?: StudentData
-  sender?: StudentData
+  sender: StudentData = {
+    id: 0,
+    name: '',
+    email: '',
+    github: '',
+    password: '',
+    rating: 0,
+    total_ratings: 0,
+    total_collaborators: 0,
+    yes_collaborators: 0,
+    approved: false
+  };
   pendingProjects: Project[] = []
   completedProjects: Project[] = []
 
@@ -37,24 +48,22 @@ export class CollaborateViewComponent {
           this.completedProjects = response.filter(project => project.status === 'done');
         }
       });
+      
+      this.studentService.getStudentById(this.loggedIn).subscribe({
+        next: (senderResponse) => {
+          this.sender = senderResponse;
+        }
+      });
     });
   }
 
-  onCheckboxChange(projectId: number): void {
-    this.projectService.markDone(projectId).subscribe();
-    location.reload();
-  }
-
   onSubmit() {
-    this.studentService.getStudentById(this.loggedIn).subscribe({
-      next: (response) => {
-        const sender = response;
-        this.studentService.getStudentById(this.collaborateWith).subscribe({
-          next: (response) => {
-            const receiver = response;
-            // this.emailService.sendEmail(receiver.name, receiver.email, sender.name, sender.email, this.projectName, this.projectDescription, this.projectMessage).subscribe();
-          }
-        });
+    this.studentService.getStudentById(this.collaborateWith).subscribe({
+      next: (receiverResponse) => {
+        let receiver = receiverResponse;
+        console.log(receiver)
+
+        this.emailService.sendEmail(receiver.name, receiver.email, this.sender.name, this.sender.email, this.projectName, this.projectDescription, this.projectMessage).subscribe();
       }
     });
 

@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Project } from 'src/app/models/Project/project.model';
 import { StudentData } from 'src/app/models/Student/student.model';
+import { ProjectService } from 'src/app/services/project/project.service';
 import { StudentService } from 'src/app/services/student/student.service';
 
 @Component({
@@ -16,8 +18,9 @@ export class StudentViewComponent {
   studentName: string = '';
   student?: StudentData;
   errorMessage: string = '';
+  pendingProjects: boolean = false;
 
-  constructor(private route: ActivatedRoute, private router: Router, private studentService: StudentService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private studentService: StudentService, private projectService: ProjectService) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -30,6 +33,15 @@ export class StudentViewComponent {
         }
       });
     });
+
+    this.projectService.getProjects(this.studentId).subscribe({
+      next: (response) => {
+        let projects = response.filter(project => project.status === 'pending');
+        if (projects.length > 0){
+          this.pendingProjects = true;
+        }
+      }
+    });
   }
 
   searchStudent() {
@@ -40,6 +52,17 @@ export class StudentViewComponent {
         console.error('Navigation error:', error);
       });
     }
+    else {
+      this.router.navigate(['/search'], {
+        queryParams: { search: 'all', loggedIn: '' }
+      });
+    }
+  }
+
+  showNotifications() {
+    this.router.navigate(['/notifications'], {
+      queryParams: { loggedIn: this.studentId }
+    });
   }
 
   logOut() {

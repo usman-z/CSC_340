@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Rating {
 	
-	@JsonProperty("name")
-	private String name;
+	@JsonProperty("studentId")
+	private int studentId;
 	
 	@JsonProperty("rating")
 	private double rating;
@@ -17,18 +17,18 @@ public class Rating {
 		
 	}
 	
-	public Rating(String name, double rating, boolean collaborateAgain) {
-		this.name = name;
+	public Rating(int studentId, double rating, boolean collaborateAgain) {
+		this.studentId = studentId;
 		this.rating = rating;
 		this.collaborateAgain = collaborateAgain;
 	}
 
-	public String getName() {
-		return name;
+	public int getStudentId() {
+		return studentId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
 	}
 
 	public double getRating() {

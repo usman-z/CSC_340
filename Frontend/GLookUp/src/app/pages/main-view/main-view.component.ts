@@ -25,6 +25,11 @@ export class MainViewComponent {
         console.error('Navigation error:', error);
       });
     }
+    else {
+      this.router.navigate(['/search'], {
+        queryParams: { search: 'all', loggedIn: '' }
+      });
+    }
   }
 
   login() {

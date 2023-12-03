@@ -1,17 +1,24 @@
 .box {
-    border: 1px solid antiquewhite;
     display: flex;
     flex-direction: row;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); 
     cursor: pointer;
     .left {
         width: 25%;
-        padding-top: .5em;
+        padding: 0;
+        margin: 0;
         border-right: 1px solid black;
-        img {
-            width: 5em;
+
+        .rating {
+            height: 100%;
             display: flex;
-            margin: auto;
+            p{ 
+                border: none;
+                font-size: xx-large;
+                font-weight: bold;
+                width: fit-content;
+                margin: auto;
+                height: fit-content;
+            }
         }
     }
     .right {
@@ -46,6 +53,7 @@
                     font-size: large;
                     font-weight: bold;
                     margin: 0;
+                    margin-bottom: .5px;
                 }
                 .basedRating {
                     font-size: medium;
@@ -59,6 +67,7 @@
                     font-size: large;
                     font-weight: bold;
                     margin: 0;
+                    margin-bottom: 1px;
                 }
                 .collabText {
                     font-size: medium;
@@ -67,4 +76,16 @@
             }
         }
     }
+}
+.ratingGreen {
+    box-shadow: 0 0 5px 8px rgba(124, 252, 0, 0.2);
 }  
+.ratingYellow{
+    box-shadow: 0 0 5px 8px rgba(255, 255, 0, 0.2);
+}  
+.ratingRed {
+    box-shadow: 0 0 5px 8px rgba(238, 75, 43, 0.2);
+}
+.noRating {
+    box-shadow: 0 0 5px 8px rgba(0, 0, 0, 0.05);
+}

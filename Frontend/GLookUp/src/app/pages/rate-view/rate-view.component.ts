@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StudentData } from 'src/app/models/Student/student.model';
 import { StudentService } from 'src/app/services/student/student.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { StudentService } from 'src/app/services/student/student.service';
 })
 export class RateViewComponent {
 
-  rateStudent: string = ''
+  studentBeingRated?: StudentData
+  rateStudent: number = 0
   loggedIn: string = ''
   userRating: number = 0;
   collaborateAgain: string = '';
@@ -21,6 +23,12 @@ export class RateViewComponent {
       this.rateStudent = params['rate'];
       this.loggedIn = params['loggedIn'];
     });
+
+    this.studentService.getStudentById(this.rateStudent).subscribe(
+      response => {
+        this.studentBeingRated = response
+      }
+    );
   }
 
   submitRating(): void {

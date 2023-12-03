@@ -25,11 +25,18 @@ export class ListComponent {
   }
 
   openProfile() {
-    this.router.navigate(['/profile'], {
-      queryParams: { search: this.studentId, loggedIn: this.loggedIn }
-    }).catch(error => {
-      console.error('Navigation error:', error);
-    });
+    if (this.studentId == (Number)(this.loggedIn)) {
+      this.router.navigate(['/user'], {
+        queryParams: { studentId: this.studentId }
+      });
+    }
+    else {
+      this.router.navigate(['/profile'], {
+        queryParams: { search: this.studentId, loggedIn: this.loggedIn }
+      }).catch(error => {
+        console.error('Navigation error:', error);
+      });
+    }
   }
 
 }

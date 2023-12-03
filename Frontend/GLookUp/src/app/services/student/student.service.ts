@@ -45,11 +45,11 @@ export class StudentService {
     return this.http.post<StudentData>(url, requestData);
   }
 
-  rateStudent(name: string, rating: number, collaborateAgain: boolean) {
+  rateStudent(studentId: number, rating: number, collaborateAgain: boolean) {
     const url = 'http://localhost:8080/student/rate';
 
     const ratingData = {
-      "name": name,
+      "studentId": studentId,
       "rating": rating,
       "collaborate": collaborateAgain
     };
@@ -59,7 +59,7 @@ export class StudentService {
 
   getAllStudent(){
     const url = 'http://localhost:8080/student/all';
-    return this.http.get('http://localhost:8080/student/all');
+    return this.http.get<StudentData[]>('http://localhost:8080/student/all');
   }
 
   updateStudentApprovalStatus(studentId: number,): Observable<any> {

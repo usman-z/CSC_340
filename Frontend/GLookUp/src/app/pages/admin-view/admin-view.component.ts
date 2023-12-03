@@ -44,6 +44,11 @@ export class AdminViewComponent {
     if (this.studentName.trim() !== '') {
       this.getStudentByName(this.studentName);
     }
+    else {
+      this.router.navigate(['/search'], {
+        queryParams: { search: 'all', loggedIn: '' }
+      });
+    }
   }
 
   getStudentByName(name: string) {

@@ -50,10 +50,12 @@ public class ProjectService {
 
 		for (Object o: projects) {
 			Project p = ((Project)o);
-			if (p.getCollaborator_a() != studentId) 
-				set.add(p.getCollaborator_a());
-			else
-				set.add(p.getCollaborator_b());
+			if(p.getStatus().equals("done")) {
+				if (p.getCollaborator_a() != studentId) 
+					set.add(p.getCollaborator_a());
+				else
+					set.add(p.getCollaborator_b());
+			}
 		}
 		
 		
