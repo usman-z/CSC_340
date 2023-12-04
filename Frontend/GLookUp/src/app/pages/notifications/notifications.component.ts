@@ -31,7 +31,7 @@ export class NotificationsComponent {
 
     this.projectService.getProjects(this.studentId).subscribe({
       next: (response) => {
-        this.pendingProjects = response.filter(project => project.status === 'pending');
+        this.pendingProjects = response.filter(project => project.status === 'pending' && this.studentId != project.creatorId);
       }
     });
   }

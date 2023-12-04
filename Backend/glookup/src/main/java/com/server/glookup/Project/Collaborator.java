@@ -10,13 +10,8 @@ public class Collaborator {
 	@JsonProperty("projectId")
 	private int projectId;
 	
-	public int getProjectId() {
-		return projectId;
-	}
-
-	public void setProjectId(int projectId) {
-		this.projectId = projectId;
-	}
+	@JsonProperty("creatorId")
+	private int creatorId;
 
 	@JsonProperty("collaborator")
 	private int collaborator;
@@ -31,11 +26,28 @@ public class Collaborator {
 		
 	}
 
-	public Collaborator(int projectId, int collaborator, String projectName, String status) {
+	public Collaborator(int projectId, int collaborator, int creatorId, String projectName, String status) {
 		this.projectId = projectId;
 		this.collaborator = collaborator;
+		this.creatorId = creatorId;
 		this.projectName = projectName;
 		this.status = status;
+	}
+	
+	public int getProjectId() {
+		return projectId;
+	}
+
+	public int getCreatorId() {
+		return creatorId;
+	}
+
+	public void setCreatorId(int creatorId) {
+		this.creatorId = creatorId;
+	}
+
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
 	}
 
 	public int getCollaborator() {

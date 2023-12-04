@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EmailInformation } from 'src/app/models/EmailInfo/EmailInfomation.model';
 import { Project } from 'src/app/models/Project/project.model';
 import { StudentData } from 'src/app/models/Student/student.model';
 import { EmailService } from 'src/app/services/email/email.service';
@@ -16,18 +17,6 @@ export class CollaborateViewComponent {
   loggedIn: number = 0
   collaborateWith: number = 0
   receiver?: StudentData
-  sender: StudentData = {
-    id: 0,
-    name: '',
-    email: '',
-    github: '',
-    password: '',
-    rating: 0,
-    total_ratings: 0,
-    total_collaborators: 0,
-    yes_collaborators: 0,
-    approved: false
-  };
   pendingProjects: Project[] = []
   completedProjects: Project[] = []
 
@@ -48,26 +37,19 @@ export class CollaborateViewComponent {
           this.completedProjects = response.filter(project => project.status === 'done');
         }
       });
-      
-      this.studentService.getStudentById(this.loggedIn).subscribe({
-        next: (senderResponse) => {
-          this.sender = senderResponse;
-        }
-      });
     });
   }
 
   onSubmit() {
-    this.studentService.getStudentById(this.collaborateWith).subscribe({
-      next: (receiverResponse) => {
-        let receiver = receiverResponse;
-        console.log(receiver)
-
-        this.emailService.sendEmail(receiver.name, receiver.email, this.sender.name, this.sender.email, this.projectName, this.projectDescription, this.projectMessage).subscribe();
+    this.studentService.getEmailInfo(this.loggedIn, this.collaborateWith).subscribe({
+      next: (response: EmailInformation) => {
+        const info = response;
+        console.log(info)
+        this.emailService.sendEmail(info.receiverName, info.receiverEmail, info.senderName, info.senderEmail, this.projectName, this.projectDescription, this.projectMessage).subscribe();
       }
     });
 
-    this.projectService.newProject(this.loggedIn, this.collaborateWith, this.projectName, 'pending').subscribe();
+    this.projectService.newProject(this.loggedIn, this.collaborateWith,this.loggedIn, this.projectName, 'pending').subscribe();
     location.reload();
   }
 

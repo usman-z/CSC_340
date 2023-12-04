@@ -16,10 +16,11 @@ export class ProjectService {
         return this.http.get<Project[]>(url);
     }
 
-    newProject(studentA: number, studentB: number, projectName: string, projectStatus: string) {
+    newProject(studentA: number, studentB: number, creatorId: number, projectName: string, projectStatus: string) {
         const url = `${this.baseUrl}/add`;
     
         const requestData = {
+            "creatorId": creatorId,
             "collaboratorA": studentA,
             "collaboratorB": studentB,
             "projectName": projectName,

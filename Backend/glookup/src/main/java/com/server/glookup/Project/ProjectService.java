@@ -25,9 +25,9 @@ public class ProjectService {
 		for (Object o: projects) {
 			Project project = ((Project)o);
 			if (project.getCollaborator_b() == studentId) 
-				response[index++] = new Collaborator(project.getPrimaryKey(), project.getCollaborator_a(), project.getProject_name(), project.getStatus());
+				response[index++] = new Collaborator(project.getPrimaryKey(), project.getCollaborator_a(), project.getCreatorId(), project.getProject_name(), project.getStatus());
 			else 
-				response[index++] = new Collaborator(project.getPrimaryKey(), project.getCollaborator_b(), project.getProject_name(), project.getStatus());
+				response[index++] = new Collaborator(project.getPrimaryKey(), project.getCollaborator_b(), project.getCreatorId(), project.getProject_name(), project.getStatus());
 		}
 		
 		return response;

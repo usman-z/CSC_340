@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class StudentService {
@@ -13,6 +14,21 @@ public class StudentService {
 	
 	public List<Student> getAllStudents() {
 		return studentRepository.findAll();
+	}
+	
+	public Email getEmailInfo(int senderId, int receiverId) {
+		Optional<Student> senderObj = getStudent(senderId);
+		Optional<Student> receiverObj = getStudent(receiverId);
+		
+		Student sender = senderObj.get();
+		Student receiver = receiverObj.get();
+		
+		if(sender != null && receiver != null) {
+			Email emailInfo = new Email(sender.getName(), sender.getEmail(), receiver.getName(), receiver.getEmail());
+			return emailInfo;
+		}
+		
+		return null;
 	}
 	
 	public Optional<Student> getStudent(int studentId) {

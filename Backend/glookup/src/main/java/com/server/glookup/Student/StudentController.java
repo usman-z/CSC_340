@@ -34,6 +34,11 @@ public class StudentController {
     		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     
+    @GetMapping("/emailInfo/{senderId}/{receiverId}")
+    public ResponseEntity<Email> getStudent(@PathVariable int senderId, @PathVariable int receiverId) {
+    	return new ResponseEntity<>(studentService.getEmailInfo(senderId, receiverId), HttpStatus.OK);
+    }
+    
     @GetMapping("/searchStudents/{studentName}")
     public ResponseEntity<List<Student>> getStudents(@PathVariable String studentName) {
         List<Student> students = studentService.getStudents(studentName);

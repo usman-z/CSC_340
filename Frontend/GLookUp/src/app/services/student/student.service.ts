@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, switchMap } from 'rxjs';
 import { StudentData } from '../../models/Student/student.model';
+import { EmailInformation } from 'src/app/models/EmailInfo/EmailInfomation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +61,11 @@ export class StudentService {
   getAllStudent(){
     const url = 'http://localhost:8080/student/all';
     return this.http.get<StudentData[]>('http://localhost:8080/student/all');
+  }
+
+  getEmailInfo(senderId: number, receiverId: number){
+    const url = `http://localhost:8080/student/emailInfo/${senderId}/${receiverId}`;
+    return this.http.get<EmailInformation>(url);
   }
 
   updateStudentApprovalStatus(studentId: number,): Observable<any> {

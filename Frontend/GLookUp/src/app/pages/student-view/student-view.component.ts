@@ -36,7 +36,7 @@ export class StudentViewComponent {
 
     this.projectService.getProjects(this.studentId).subscribe({
       next: (response) => {
-        let projects = response.filter(project => project.status === 'pending');
+        let projects = response.filter(project => project.status === 'pending' && this.studentId != project.creatorId);
         if (projects.length > 0){
           this.pendingProjects = true;
         }

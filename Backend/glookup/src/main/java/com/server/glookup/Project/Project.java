@@ -21,16 +21,11 @@ public class Project {
 	@JsonProperty("primaryKey")
 	private int primaryKey;
 	
+	@JsonProperty("creatorId")
+	private int creatorId;
+
 	@JsonProperty("collaboratorA")
 	private int collaborator_a;
-	
-	public int getPrimaryKey() {
-		return primaryKey;
-	}
-
-	public void setPrimaryKey(int primaryKey) {
-		this.primaryKey = primaryKey;
-	}
 
 	@JsonProperty("collaboratorB")
 	private int collaborator_b;
@@ -40,6 +35,23 @@ public class Project {
 	
 	@JsonProperty("status")
 	private String status;
+
+	
+	public int getCreatorId() {
+		return creatorId;
+	}
+
+	public void setCreatorId(int creatorId) {
+		this.creatorId = creatorId;
+	}
+
+	public int getPrimaryKey() {
+		return primaryKey;
+	}
+
+	public void setPrimaryKey(int primaryKey) {
+		this.primaryKey = primaryKey;
+	}
 	
 	public int getCollaborator_a() {
 		return collaborator_a;
