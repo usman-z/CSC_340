@@ -54,7 +54,7 @@ export class StudentViewComponent {
     }
     else {
       this.router.navigate(['/search'], {
-        queryParams: { search: 'all', loggedIn: '' }
+        queryParams: { search: 'all', loggedIn: this.studentId }
       });
     }
   }

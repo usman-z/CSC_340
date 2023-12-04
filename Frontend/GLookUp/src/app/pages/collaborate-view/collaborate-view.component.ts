@@ -33,8 +33,8 @@ export class CollaborateViewComponent {
 
       this.projectService.getProjects(this.loggedIn).subscribe({
         next: (response) => {
-          this.pendingProjects = response.filter(project => project.status === 'pending');
-          this.completedProjects = response.filter(project => project.status === 'done');
+          this.pendingProjects = response.filter(project => project.status === 'pending' && this.collaborateWith == project.collaborator);
+          this.completedProjects = response.filter(project => project.status === 'done' && this.collaborateWith == project.collaborator);
         }
       });
     });

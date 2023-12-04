@@ -46,7 +46,7 @@ export class AdminViewComponent {
     }
     else {
       this.router.navigate(['/search'], {
-        queryParams: { search: 'all', loggedIn: '' }
+        queryParams: { search: 'all', loggedIn: 'admin' }
       });
     }
   }

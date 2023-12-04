@@ -1,7 +1,7 @@
 <div class="profile">
     <div class="buttons">
         <div class="backButton"><app-back-button></app-back-button></div>
-        <div *ngIf="loggedIn != 'Admin'"class="collaborateButton"><app-custom-button (click)="collaborate()" buttonName="Collaborate"></app-custom-button></div>
+        <div *ngIf="loggedIn != 'admin' && loggedIn != 'Admin'" class="collaborateButton"><app-custom-button (click)="collaborate()" buttonName="Collaborate"></app-custom-button></div>
     </div>
     <div class="profileContent">
         <div class="name"><p *ngIf="studentData.name">{{ studentData.name }}</p></div>
@@ -17,8 +17,8 @@
                 <p class="collabText" *ngIf="!studentData.total_collaborators && !studentData.yes_collaborators">No ratings</p>
             </div>
         </div>
-        <app-custom-button *ngIf="loggedIn != 'Admin'" class="rateButton" (click)="rateStudent()" buttonName="Rate"></app-custom-button>
-        <app-custom-button *ngIf="loggedIn == 'Admin'" class="deleteButton" (click)="deleteStudent()" buttonName="Delete"></app-custom-button>
+        <app-custom-button *ngIf="loggedIn != 'admin' && loggedIn != 'Admin'" class="rateButton" (click)="rateStudent()" buttonName="Rate"></app-custom-button>
+        <app-custom-button *ngIf="loggedIn == 'admin' || loggedIn == 'Admin'" class="deleteButton" (click)="deleteStudent()" buttonName="Delete"></app-custom-button>
         <div *ngIf="numberOfCollaborators!=0 && loggedIn != 'Admin'" class="collaboratorImages">
             <img src="../../../assets/profile-icon.jpeg" alt="">
             <p (mouseenter)="showCollaboratorList()" (mouseleave)="hideCollaboratorList()">+{{ numberOfCollaborators }} collaborators</p>

@@ -15,6 +15,7 @@ export class NotificationsComponent {
   studentId: number = 0
   studentLoggedIn?: StudentData
   pendingProjects: Project[] = []
+  names: String[] = []
 
   constructor(private route: ActivatedRoute, private router: Router, private studentService: StudentService, private projectService: ProjectService) {}
 
@@ -39,5 +40,13 @@ export class NotificationsComponent {
   onCheckboxChange(projectId: number): void {
     this.projectService.markDone(projectId).subscribe();
     location.reload();
+  }
+
+  findCollaborator(collaboratorId: number) {
+    this.router.navigate(['/profile'], {
+      queryParams: { search: collaboratorId, loggedIn: this.studentId }
+    }).catch(error => {
+      console.error('Navigation error:', error);
+    });
   }
 }
