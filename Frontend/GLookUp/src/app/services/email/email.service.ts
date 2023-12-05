@@ -40,4 +40,24 @@ export class EmailService {
     
     return this.http.post<StudentData>(this.url, requestData);
   }
+
+  sendApprovalEmail(receiverName: string, receiverEmail: string) {
+    const requestData = {
+      "to": receiverEmail,
+      "subject": "GLookUp | Approved Account ",
+      "body": "Hey "+receiverName+",\n\n"+"Your account Was approved. We would like to invite you to collaborate on a project and your rate fellow classmates through GLookUp. Thank you, and Happy collaborating and rating!\n\nBest regards,\nGLookUp"
+    };
+
+    return this.http.post(this.url, requestData);
+  }
+
+  sendDeleteEmail(receiverName: string, receiverEmail: string) {
+    const requestData = {
+      "to": receiverEmail,
+      "subject": "GLookUp | Account Deleted ",
+      "body": "Hey "+receiverName+",\n\n"+"Your account Was Deleted. We would like to thank you for all the ratings and collaborations through GLookUp. Thank you, Goodluck in your future!\n\nBest regards,\nGLookUp"
+    };
+
+    return this.http.post(this.url, requestData);
+  }
 }

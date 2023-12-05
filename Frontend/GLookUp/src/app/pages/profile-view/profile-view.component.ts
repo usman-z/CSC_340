@@ -6,6 +6,7 @@ import { StudentService } from 'src/app/services/student/student.service';
 import { AdminService } from 'src/app/services/admin/admin.service';
 import { ProjectService } from 'src/app/services/project/project.service';
 import { StudentData } from 'src/app/models/Student/student.model';
+import { EmailService } from 'src/app/services/email/email.service';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class ProfileViewComponent{
   collaboratorNames: string[] = []
   isCollaboratorListVisible = false;
 
-  constructor(private route: ActivatedRoute, private studentService: StudentService, private adminService: AdminService, private githubService: GithubService, private router: Router, private projectService: ProjectService) {}
+  constructor(private emailService: EmailService, private route: ActivatedRoute, private studentService: StudentService, private adminService: AdminService, private githubService: GithubService, private router: Router, private projectService: ProjectService) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -144,6 +145,14 @@ export class ProfileViewComponent{
       },
       (error) => {
         console.error(`Error rejecting student with ID ${this.studentData.id}: ${error}`);
+      }
+    );
+    this.emailService.sendDeleteEmail(this.studentData.name,this.studentData.email).subscribe(
+      () => {
+        console.log(`Student with ID ${this.studentData.id} emailed successfully.`);
+      },
+      (error) => {
+        console.error(`Error emailing student with ID ${this.studentData.id}: ${error}`);
       }
     );
 

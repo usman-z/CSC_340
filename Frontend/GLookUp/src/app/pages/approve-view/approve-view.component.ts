@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin/admin.service';
 import { StudentService } from 'src/app/services/student/student.service';
+import { EmailService } from 'src/app/services/email/email.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class ApproveViewComponent {
   student: any[] = [];
 
 
-  constructor(private studentService: StudentService, private adminService: AdminService, private router: Router) {}
+  constructor(private emailService: EmailService, private studentService: StudentService, private adminService: AdminService, private router: Router) {}
 
   ngOnInit() {
     this.adminService.getAllAdmin().subscribe(
@@ -63,7 +64,7 @@ export class ApproveViewComponent {
         }
       );
       //call send email function
-      this.studentService.sendStudentEmail(studentName,studentEmail).subscribe(
+      this.emailService.sendApprovalEmail(studentName,studentEmail).subscribe(
         () => {
           console.log(`Student with ID ${studentId} emailed successfully.`);
         },
