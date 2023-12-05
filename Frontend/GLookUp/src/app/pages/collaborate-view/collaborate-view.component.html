@@ -6,7 +6,6 @@
             <p>New Project Information</p>
             <form (ngSubmit)="onSubmit()" #userForm="ngForm" class="project">
               <input class="projectName" type="text" placeholder="Project Name" [(ngModel)]="projectName" name="projectName" required>
-              <input class="projectMessage" type="text" placeholder="Optional message" [(ngModel)]="projectMessage" name="projectMessage" required>
               <app-custom-button type="submit" buttonName="Send Invite"></app-custom-button>
             </form>
           </div>

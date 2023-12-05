@@ -20,6 +20,7 @@ export class NotificationsComponent {
   names: String[] = []
   activeProjects: Project[] = []
   pastProjects: Project[] = []
+  emails: String[] = []
 
   constructor(private route: ActivatedRoute, private router: Router, private studentService: StudentService, private projectService: ProjectService, private emailService: EmailService) {}
 
@@ -41,6 +42,14 @@ export class NotificationsComponent {
         this.pastProjects = response.filter(project => project.status === 'done');
       }
     });
+
+    for(let p of this.activeProjects) {
+      this.studentService.getStudentById(p.collaborator).subscribe({
+        next: (response) => {
+          this.emails[p.collaborator] = response.email;
+        }
+      });
+    }
   }
 
   onAcceptCollaboration(projectId: number, collaboratorId: number, projectName: string): void {
