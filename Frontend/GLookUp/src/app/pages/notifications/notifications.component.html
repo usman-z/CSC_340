@@ -6,9 +6,10 @@
     <ul>
         <li *ngFor="let project of pendingProjects">
           <div class="project">
+            <button (click)="goProfile(project.creatorId)" class="profileButton"><img src="../../../assets/profile-icon.jpeg" alt="" ></button>
             <p class="projectName">Project Name: {{ project.projectName }}</p>
-            <p (click)="findCollaborator(project.collaborator)">CollaboratorId: {{ project.collaborator }}</p>
-            <label><input  class="checkBox" type="checkbox" (change)="onCheckboxChange(project.projectId)">Mark Complete</label>
+            <label><input class="acceptCollaboration" type="checkbox" (change)="onAcceptCollaboration(project.projectId)">Accept</label>
+            <label><input class="rejectCollaboration" type="checkbox" (change)="onRejectCollaboration(project.projectId)">Reject</label>
           </div>
         </li>
       </ul>

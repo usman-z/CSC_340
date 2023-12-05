@@ -37,6 +37,12 @@ public class ProjectController {
 		return new ResponseEntity<>(projectService.makeDone(projectId), HttpStatus.OK);
 	}
 	
+	@GetMapping("/delete/{projectId}")
+	public ResponseEntity<Project> deleteProject(@PathVariable int projectId) {
+		projectService.deleteProject(projectId);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
 	@GetMapping("/collaborators/{studentId}")
 	public Object[] getCollaborators(@PathVariable int studentId) {
 		return projectService.getAllCollaborators(studentId);

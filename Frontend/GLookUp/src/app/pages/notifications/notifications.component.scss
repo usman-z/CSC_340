@@ -14,27 +14,22 @@
         margin-bottom: 2em;
     }
 
-    .pendingProjects {
-        margin-bottom: 5em;
+    ul {
+        li {
+            div {
 
-        h2{
-            margin-bottom: 1.5em;
-        }
-
-        .project{
-            width: 82%;
-            margin: auto;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            p {
-                font-size: large;
-                font-style: italic;
-                display: inline-block;
             }
-            .checkBox{
-                
+            button {
+
+            }
+            p {
+
+            }
+            .acceptCollaboration {
+
+            }
+            .rejectCollaboration {
+
             }
         }
     }

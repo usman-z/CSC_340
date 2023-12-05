@@ -35,6 +35,11 @@ export class ProjectService {
         return this.http.get<Project>(url);
     }
 
+    deleteProject(projectId: number) {
+        const url = `${this.baseUrl}/delete/${projectId}`;
+        return this.http.get(url);
+    }
+
     getCollaborators(studentId: number) {
         const url = `${this.baseUrl}/collaborators/${studentId}`;
         return this.http.get<number[]>(url);

@@ -61,5 +61,9 @@ public class ProjectService {
 		
 		return set.toArray();
 	}
+	
+	public void deleteProject(int projectId) {
+		projectRepository.deleteById(projectId);
+	}
 
 }

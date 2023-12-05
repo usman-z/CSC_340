@@ -21,7 +21,6 @@ export class CollaborateViewComponent {
   completedProjects: Project[] = []
 
   projectName: string = ''
-  projectDescription: string = ''
   projectMessage: string = ''
 
   constructor(private route: ActivatedRoute, private emailService: EmailService, private studentService: StudentService, private router: Router, private projectService: ProjectService) {}
@@ -45,7 +44,7 @@ export class CollaborateViewComponent {
       next: (response: EmailInformation) => {
         const info = response;
         console.log(info)
-        this.emailService.sendEmail(info.receiverName, info.receiverEmail, info.senderName, info.senderEmail, this.projectName, this.projectDescription, this.projectMessage).subscribe();
+        this.emailService.sendCollaborationEmail(info.receiverName, info.receiverEmail, info.senderName, info.senderEmail, this.projectName, this.projectMessage).subscribe();
       }
     });
 

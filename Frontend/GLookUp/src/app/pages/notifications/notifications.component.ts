@@ -37,12 +37,17 @@ export class NotificationsComponent {
     });
   }
 
-  onCheckboxChange(projectId: number): void {
+  onAcceptCollaboration(projectId: number): void {
     this.projectService.markDone(projectId).subscribe();
     location.reload();
   }
 
-  findCollaborator(collaboratorId: number) {
+  onRejectCollaboration(projectId: number): void {
+    this.projectService.deleteProject(projectId).subscribe();
+    location.reload();
+  }
+
+  goProfile(collaboratorId: number) {
     this.router.navigate(['/profile'], {
       queryParams: { search: collaboratorId, loggedIn: this.studentId }
     }).catch(error => {
