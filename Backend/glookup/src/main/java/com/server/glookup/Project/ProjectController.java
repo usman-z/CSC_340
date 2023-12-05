@@ -37,6 +37,11 @@ public class ProjectController {
 		return new ResponseEntity<>(projectService.makeDone(projectId), HttpStatus.OK);
 	}
 	
+	@GetMapping("/active/{projectId}")
+	public ResponseEntity<Project> makeProjectActive(@PathVariable int projectId) {
+		return new ResponseEntity<>(projectService.makeActive(projectId), HttpStatus.OK);
+	}
+	
 	@GetMapping("/delete/{projectId}")
 	public ResponseEntity<Project> deleteProject(@PathVariable int projectId) {
 		projectService.deleteProject(projectId);

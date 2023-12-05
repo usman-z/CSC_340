@@ -1,16 +1,39 @@
 <div class="content">
   <div class="backButton"><app-back-button></app-back-button></div>
-  <div class="pendingProjects">
-    <h1>New Collaborations</h1>
-    <div class="projects" *ngFor="let project of pendingProjects">
-      <div class="project">
-        <button (click)="goProfile(project.creatorId)"><img src="../../../assets/profile-icon.jpeg" alt="" ></button>
-        <p>Project Name: {{ project.projectName }}</p>
-        <div class="checkBoxes">
-          <label><input class="acceptCollaboration" type="checkbox" (change)="onAcceptCollaboration(project.projectId, project.collaborator, project.projectName)">Accept</label>
-          <label><input class="rejectCollaboration" type="checkbox" (change)="onRejectCollaboration(project.projectId, project.collaborator, project.projectName)">Reject</label>
+    <h1>All Collaborations</h1>
+    <div class="container">
+      <h3>New Collaborations</h3>
+      <div class="projects" *ngFor="let project of pendingProjects">
+        <div class="project">
+          <button (click)="goProfile(project.creatorId)"><img src="../../../assets/profile-icon.jpeg" alt="" ></button>
+          <p>Project: {{ project.projectName }}</p>
+          <div class="checkBoxes">
+            <label><input class="acceptCollaboration" type="checkbox" (change)="onAcceptCollaboration(project.projectId, project.collaborator, project.projectName)">Accept</label>
+            <label><input class="rejectCollaboration" type="checkbox" (change)="onRejectCollaboration(project.projectId, project.collaborator, project.projectName)">Reject</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <h3>Active Collaborations</h3>
+      <div class="projects" *ngFor="let project of activeProjects">
+        <div class="project">
+          <button (click)="goProfile(project.creatorId)"><img src="../../../assets/profile-icon.jpeg" alt="" ></button>
+          <p>Project: {{ project.projectName }}</p>
+          <div class="checkBoxes">
+            <label><input class="acceptCollaboration" type="checkbox" (change)="onProjectDone(project.projectId)">Done</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <h3>Past Collaborations</h3>
+      <div class="projects" *ngFor="let project of pastProjects">
+        <div class="project">
+          <button (click)="goProfile(project.creatorId)"><img src="../../../assets/profile-icon.jpeg" alt="" ></button>
+          <p>Project: {{ project.projectName }}</p>
+          <button class="collaborateButton" (click)="collaborate(project.collaborator)">Collaborate Again</button>
         </div>
       </div>
     </div>
   </div>
-</div>

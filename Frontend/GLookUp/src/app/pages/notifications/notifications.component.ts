@@ -18,6 +18,8 @@ export class NotificationsComponent {
   studentLoggedIn?: StudentData
   pendingProjects: Project[] = []
   names: String[] = []
+  activeProjects: Project[] = []
+  pastProjects: Project[] = []
 
   constructor(private route: ActivatedRoute, private router: Router, private studentService: StudentService, private projectService: ProjectService, private emailService: EmailService) {}
 
@@ -35,12 +37,14 @@ export class NotificationsComponent {
     this.projectService.getProjects(this.studentId).subscribe({
       next: (response) => {
         this.pendingProjects = response.filter(project => project.status === 'pending' && this.studentId != project.creatorId);
+        this.activeProjects = response.filter(project => project.status === 'active');
+        this.pastProjects = response.filter(project => project.status === 'done');
       }
     });
   }
 
   onAcceptCollaboration(projectId: number, collaboratorId: number, projectName: string): void {
-    this.projectService.markDone(projectId).subscribe();
+    this.projectService.markActive(projectId).subscribe();
     location.reload();
 
     this.studentService.getEmailInfo(this.studentId, collaboratorId).subscribe({
@@ -49,6 +53,11 @@ export class NotificationsComponent {
         this.emailService.sendAcceptInvitationEmail(info.receiverName, info.receiverEmail, info.senderName, info.senderEmail, projectName).subscribe();
       }
     });
+  }
+
+  onProjectDone(projectId: number) {
+    this.projectService.markDone(projectId).subscribe();
+    location.reload();
   }
 
   onRejectCollaboration(projectId: number, collaboratorId: number, projectName: string): void {
@@ -66,6 +75,14 @@ export class NotificationsComponent {
   goProfile(collaboratorId: number) {
     this.router.navigate(['/profile'], {
       queryParams: { search: collaboratorId, loggedIn: this.studentId }
+    }).catch(error => {
+      console.error('Navigation error:', error);
+    });
+  }
+
+  collaborate(collaboratorId: number) {
+    this.router.navigate(['/collaborate'], {
+      queryParams: { collaborate: collaboratorId, loggedIn: this.studentId }
     }).catch(error => {
       console.error('Navigation error:', error);
     });

@@ -44,6 +44,17 @@ public class ProjectService {
 		return null;
 	}
 	
+	public Project makeActive(int projectId) {
+		Optional<Project> existingProject = projectRepository.findById(projectId);
+		if (existingProject.get() != null) {
+			Project project = existingProject.get();
+			project.setStatus("active");
+			projectRepository.save(project);
+			return project;
+		}
+		return null;
+	}
+	
 	public Object[] getAllCollaborators(int studentId) {
 		Object[] projects = projectRepository.getProjectsByStudentId(studentId).toArray();
 		HashSet<Integer> set = new HashSet<>();
