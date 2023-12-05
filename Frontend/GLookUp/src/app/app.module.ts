@@ -46,7 +46,7 @@ import { NotificationsComponent } from './pages/notifications/notifications.comp
     FeedbackComponent,
     ListViewComponent,
     ListComponent,
-    NotificationsComponent
+    NotificationsComponent,
   ],
   imports: [
     BrowserModule,

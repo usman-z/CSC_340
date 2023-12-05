@@ -139,27 +139,17 @@ export class ProfileViewComponent{
    }
 
    deleteStudent() {
-    this.studentService.deleteStudent(this.studentData,this.studentData.id).subscribe(
-      () => {
-        console.log(`Student with ID ${this.studentData.id} rejected successfully.`);
-      },
-      (error) => {
-        console.error(`Error rejecting student with ID ${this.studentData.id}: ${error}`);
-      }
-    );
-    this.emailService.sendDeleteEmail(this.studentData.name,this.studentData.email).subscribe(
-      () => {
-        console.log(`Student with ID ${this.studentData.id} emailed successfully.`);
-      },
-      (error) => {
-        console.error(`Error emailing student with ID ${this.studentData.id}: ${error}`);
-      }
-    );
-
-    this.router.navigate(['/feedback'], {
-      queryParams: { loggedIn: "Admin", response: "Deleted successfully" }
-    }).catch(error => {
-      console.error('Navigation error:', error);
-    });
-   }
+    const confirmation = window.confirm('Are you sure you want to delete this student?');
+  
+    if (confirmation) {
+      this.studentService.deleteStudent(this.studentData,this.studentData.id).subscribe();
+      this.emailService.sendDeleteEmail(this.studentData.name,this.studentData.email).subscribe();
+      this.router.navigate(['/feedback'], {
+        queryParams: { loggedIn: "Admin", response: "Deleted successfully" }
+      }).catch(error => {
+        console.error('Navigation error:', error);
+      });
+    } else {
+    }
+  }
 }
