@@ -18,7 +18,7 @@ public class EmailController {
 	private EmailService emailService;
 	
 	@PostMapping("/send")
-	public ResponseEntity<Email> addStudent(@RequestBody Email emailRequest) {
+	public ResponseEntity<Email> sendEmail(@RequestBody Email emailRequest) {
 		emailService.sendEmail(emailRequest.getTo(), emailRequest.getSubject(), emailRequest.getBody());
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
