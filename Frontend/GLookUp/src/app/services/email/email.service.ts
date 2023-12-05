@@ -21,7 +21,7 @@ export class EmailService {
     return this.http.post<StudentData>(this.url, requestData);
   }
 
-  sendAcceptInvitationEmail(receiverName: string, receiverEmail: string, senderName: string, senderEmail: string, projectName: string, projectDescription: string, projectMessage: string) {
+  sendAcceptInvitationEmail(receiverName: string, receiverEmail: string, senderName: string, senderEmail: string, projectName: string) {
     const requestData = {
       "to": receiverEmail,
       "subject": "GLookUp | Collaboration Accepted from "+senderName,
@@ -31,7 +31,7 @@ export class EmailService {
     return this.http.post<StudentData>(this.url, requestData);
   }
 
-  sendRejectInvitationEmail(receiverName: string, receiverEmail: string, senderName: string, senderEmail: string, projectName: string, projectDescription: string, projectMessage: string) {
+  sendRejectInvitationEmail(receiverName: string, receiverEmail: string, senderName: string, projectName: string) {
     const requestData = {
       "to": receiverEmail,
       "subject": "GLookUp | Collaboration Rejected from "+senderName,
