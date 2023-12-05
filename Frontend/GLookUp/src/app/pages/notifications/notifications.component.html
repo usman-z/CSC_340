@@ -1,17 +1,16 @@
 <div class="content">
   <div class="backButton"><app-back-button></app-back-button></div>
   <div class="pendingProjects">
-    <h1>All Notifications</h1>
-    <h3>Pending Collaborations</h3>
-    <ul>
-        <li *ngFor="let project of pendingProjects">
-          <div class="project">
-            <button (click)="goProfile(project.creatorId)" class="profileButton"><img src="../../../assets/profile-icon.jpeg" alt="" ></button>
-            <p class="projectName">Project Name: {{ project.projectName }}</p>
-            <label><input class="acceptCollaboration" type="checkbox" (change)="onAcceptCollaboration(project.projectId)">Accept</label>
-            <label><input class="rejectCollaboration" type="checkbox" (change)="onRejectCollaboration(project.projectId)">Reject</label>
-          </div>
-        </li>
-      </ul>
+    <h1>New Collaborations</h1>
+    <div class="projects" *ngFor="let project of pendingProjects">
+      <div class="project">
+        <button (click)="goProfile(project.creatorId)"><img src="../../../assets/profile-icon.jpeg" alt="" ></button>
+        <p>Project Name: {{ project.projectName }}</p>
+        <div class="checkBoxes">
+          <label><input class="acceptCollaboration" type="checkbox" (change)="onAcceptCollaboration(project.projectId, project.collaborator, project.projectName)">Accept</label>
+          <label><input class="rejectCollaboration" type="checkbox" (change)="onRejectCollaboration(project.projectId, project.collaborator, project.projectName)">Reject</label>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

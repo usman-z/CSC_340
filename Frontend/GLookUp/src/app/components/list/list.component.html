@@ -1,6 +1,6 @@
-<div [ngClass]="{'ratingGreen': (student.rating > 3.5 && student.rating <= 5), 'ratingYellow': (student.rating > 2.5 && student.rating <= 3.5), 'ratingRed': (student.rating <= 2.5),'noRating': (!student.rating), 'box': true}" (click)="openProfile()" *ngIf="student">
+<div class="box" (click)="openProfile()" *ngIf="student">
     <div class="left">
-        <div class="rating" *ngIf="student.rating"><p>{{ student.rating | number:'1.1-1' }}/5</p></div>
+        <div class="rating" *ngIf="student.rating"><p>{{ student.rating | number:'1.1-1' }}</p></div>
         <div class="rating" *ngIf="!student.rating"><p>N/A</p></div>
     </div>
     <div class="right">

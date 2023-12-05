@@ -43,8 +43,12 @@ export class CollaborateViewComponent {
     this.studentService.getEmailInfo(this.loggedIn, this.collaborateWith).subscribe({
       next: (response: EmailInformation) => {
         const info = response;
-        console.log(info)
-        this.emailService.sendCollaborationEmail(info.receiverName, info.receiverEmail, info.senderName, info.senderEmail, this.projectName, this.projectMessage).subscribe();
+
+        this.emailService.sendCollaborationEmail(info.receiverName, info.receiverEmail, info.senderName, info.senderEmail, this.projectName, this.projectMessage).subscribe({
+          next: (response) => {
+            
+          }
+        });
       }
     });
 

@@ -3,34 +3,42 @@
     margin: auto;
     
     h1 {
-        margin-top: 1em;
+        margin-top: 2em;
         text-align: center;
         margin-bottom: 2em;
     }
 
-    h3 {
-        margin-top: 5em;
-        text-align: center;
-        margin-bottom: 2em;
-    }
-
-    ul {
-        li {
-            div {
-
+    .projects {
+            .project {
+                display: flex;
+                width: 90%;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0;
             }
             button {
-
+                width: 4em;
+                height: 4em;
+                padding: 0;
+                border: none;
+                cursor: pointer;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
             }
             p {
-
+                font-size: x-large;
             }
-            .acceptCollaboration {
+            .checkBoxes {
+                justify-content: flex-end;
+                .acceptCollaboration {
 
-            }
-            .rejectCollaboration {
-
-            }
+                }
+                .rejectCollaboration {
+                    margin-left: 1.5em;
+                }
         }
     }
 }
