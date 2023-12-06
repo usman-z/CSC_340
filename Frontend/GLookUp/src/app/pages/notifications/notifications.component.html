@@ -5,7 +5,7 @@
       <h3>New Collaborations</h3>
       <div class="projects" *ngFor="let project of pendingProjects">
         <div class="project">
-          <button (click)="goProfile(project.creatorId)"><img src="../../../assets/profile-icon.jpeg" alt="" ></button>
+          <button (click)="goProfile(project.collaborator)"><img src="../../../assets/profile-icon.jpeg" alt="" ></button>
           <p>Project: {{ project.projectName }}</p>
           <div class="checkBoxes">
             <label><input class="acceptCollaboration" type="checkbox" (change)="onAcceptCollaboration(project.projectId, project.collaborator, project.projectName)">Accept</label>
@@ -18,7 +18,7 @@
       <h3>Active Collaborations</h3>
       <div class="projects" *ngFor="let project of activeProjects">
         <div class="project">
-          <button (click)="goProfile(project.creatorId)"><img src="../../../assets/profile-icon.jpeg" alt="" ></button>
+          <button (click)="goProfile(project.collaborator)"><img src="../../../assets/profile-icon.jpeg" alt="" ></button>
           <p>Project: {{ project.projectName }}</p>
           <div class="checkBoxes">
             <label><input class="acceptCollaboration" type="checkbox" (change)="onProjectDone(project.projectId)">Done</label>
@@ -30,7 +30,7 @@
       <h3>Past Collaborations</h3>
       <div class="projects" *ngFor="let project of pastProjects">
         <div class="project">
-          <button (click)="goProfile(project.creatorId)"><img src="../../../assets/profile-icon.jpeg" alt="" ></button>
+          <button (click)="goProfile(project.collaborator)"><img src="../../../assets/profile-icon.jpeg" alt="" ></button>
           <p>Project: {{ project.projectName }}</p>
           <button class="collaborateButton" (click)="collaborate(project.collaborator)">Collaborate Again</button>
         </div>

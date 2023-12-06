@@ -9,11 +9,11 @@ export class EmailService {
 
   constructor(private http: HttpClient) { }
 
-  sendCollaborationEmail(receiverName: string, receiverEmail: string, senderName: string, senderEmail: string, projectName: string, projectMessage: string) {
+  sendCollaborationEmail(receiverName: string, receiverEmail: string, senderName: string, senderEmail: string, projectName: string) {
     const requestData = {
       "to": receiverEmail,
       "subject": "GLookUp | Request to Collaborate from "+senderName,
-      "body": "Hey "+receiverName+",\n\n"+senderName+" would like to collaborate with you on a project titled "+projectName+" through GLookUp. A Message from "+senderName+": "+projectMessage+". If interested in this collaboration, you can contact "+(senderName.split(' '))[0]+ " at "+senderEmail+". Thank you, and Happy collaboration!\n\nBest regards,\nGLookUp"
+      "body": "Hey "+receiverName+",\n\n"+senderName+" would like to collaborate with you on a project titled "+projectName+" through GLookUp. If interested, you can contact "+(senderName.split(' '))[0]+ " at "+senderEmail+". Thank you, and Happy collaboration!\n\nBest regards,\nGLookUp"
     };
     
     return this.http.post('http://localhost:8080/email/send', requestData);
